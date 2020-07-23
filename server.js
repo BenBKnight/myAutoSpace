@@ -4,7 +4,7 @@ const app = express();
 const PORT = 8080;
 
 // Serve static assets
-app.use(express.static("./client/build/"));
+app.use(express.static("./client"));
 
 // API routes are loaded before "catch all"
 const api = ["api info", "api info"]
@@ -18,6 +18,6 @@ app.get("/api", (req, res) => {
 
 
 // Catch all Last to Load
-app.get("*", (req, res) => res.sendFile(path.join(__dirname, "./client/build/index.html")))
+app.get("*", (req, res) => res.sendFile(path.join(__dirname, "./client/public/index.html")))
 
 app.listen(PORT, () => console.log("App running on PORT: " + PORT));
