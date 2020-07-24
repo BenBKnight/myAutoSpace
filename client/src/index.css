@@ -1,13 +1,130 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+form.signup,
+form.login {
+  margin-top: 50px;
+}
+.button {
+  margin-top: .5rem;
+}
+.container {
+  color: white;
+}
+.navbar {
+  background-color: white;
+}
+.image {
+  max-width: 400px;
+}
+.is-clickable {
+  cursor: pointer;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.container-center{
+  display: flex;
+  justify-content: center;
+}
+
+.container-select{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.img-wrench{
+  height: 10rem;
+}
+
+.container-wrench{
+  padding-top: 4rem;
+}
+
+.form-date{
+  display: flex;
+  justify-content: space-between;
+}
+
+.background{
+  position: fixed;
+  background-color: rgb(18, 50, 156);
+  z-index: -3;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden
+}
+
+.container-background{
+  background-color: rgba(255, 255, 255, 1);
+  border-radius: 3px;
+}
+
+.title-row{
+  display: flex;
+  justify-content: space-between;
+}
+
+.loginInput {
+  text-align: center;
+}
+::-webkit-input-placeholder {
+  text-align: center;
+}
+:-moz-placeholder {
+  text-align: center;
+}
+.backColor {
+  background-color: blue;
+}
+.backgroundImage {
+  background-attachment: fixed;
+  /* background-image: url("../public/images/metal.jpg"); */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+html, body {
+  height: 100%;
+  width: 100%;
+}
+
+.title, .subtitle, .label, .navbar-item {
+  color: black;
+}
+.label, .button {
+  margin-top: 1.5rem;
+}
+.is-underlined {
+  text-decoration: underline;
+}
+input {
+  text-align: center;
+}
+p {
+  color: black;
+}
+label{
+  color: black;
+}
+.vehicle-style{
+  width: 50%;
+}
+.container-center-col{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+@media only screen and (max-width: 768px) {
+  .vehicle-style{
+    width: 90%;
+  }
+}
+
+.m-auto{
+  margin: auto;
+}
+.bold {
+  font-style: bold;
 }
