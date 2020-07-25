@@ -1,35 +1,34 @@
 import React from "react";
-import $ from "jquery";
 
 function Maintenance() {
 
-    $(document).ready(() => {
-        const jobNames = $("#jobNames");
-        const loginHide = $(".login-hide");
-        const signupHide = $(".signup-hide");
-        $(document).ready(() => {
-            signupHide.hide();
-        });
-        $(document).ready(() => {
-            loginHide.hide();
-        });
-        $.ajax({
-            url: "/api/maintenance",
-            type: "GET"
-        })
-            .then(result => {
-                // nameArray.push(result);
+    // $(document).ready(() => {
+    //     const jobNames = $("#jobNames");
+    //     const loginHide = $(".login-hide");
+    //     const signupHide = $(".signup-hide");
+    //     $(document).ready(() => {
+    //         signupHide.hide();
+    //     });
+    //     $(document).ready(() => {
+    //         loginHide.hide();
+    //     });
+    //     $.ajax({
+    //         url: "/api/maintenance",
+    //         type: "GET"
+    //     })
+    //         .then(result => {
+    //             // nameArray.push(result);
 
-                result.forEach(index => {
-                    jobNames.append(`<li data-jobid= "${index.id}">${index.name}</li>`);
-                });
-            })
-            .catch(err => console.log(err));
+    //             result.forEach(index => {
+    //                 jobNames.append(`<li data-jobid= "${index.id}">${index.name}</li>`);
+    //             });
+    //         })
+    //         .catch(err => console.log(err));
 
-        // $("ul").click(event => {
-        //     location.pathname = `/maintenance/${event.target.dataset.jobid}`;
-        // });
-    });
+    //     // $("ul").click(event => {
+    //     //     location.pathname = `/maintenance/${event.target.dataset.jobid}`;
+    //     // });
+    // });
     return (
         <div className="section">
             <div className="container">

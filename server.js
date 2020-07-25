@@ -18,7 +18,7 @@ if (process.env.JAWSDB_URL) {
         host: "localhost",
         user: "root",
         password: "password",
-        database: "MyAutoSpace"
+        database: "carFacts"
     });
 }
 // Creating express app and configuring middleware needed for authentication
@@ -32,17 +32,9 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-// API routes are loaded before "catch all"
-const api = ["api info", "api info"]
-app.get("/api", (req, res) => {
-    res.json(api)
-})
 //  app.post()
-const routes = require("./routes")
-app.use(routes)
-
-
-
+const routes = require("./routes");
+app.use(routes);
 
 // Catch all Last to Load
 app.get("*", (req, res) => res.sendFile(path.join(__dirname, "./client/public/index.html")))

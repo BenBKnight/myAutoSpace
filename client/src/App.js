@@ -10,7 +10,6 @@ import Vehicles from "./pages/vehicles"
 import VehicleDisplay from "./pages/vehicleDisplay"
 import NewMaintenance from "./pages/newMaintenance"
 import Navbar from "./components/navbar"
-import $ from "jquery";
 
 function App() {
   return (
