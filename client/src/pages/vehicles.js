@@ -62,8 +62,6 @@ function Vehicles() {
                 locationLastOwned: locationLastOwned.val().trim()
             };
 
-            // console.log(newVehicle);
-
             // If we're updating a vehicle run updatePost to update a vehicle
             // Otherwise run submitPost to create a whole new vehicle
             if (updating) {

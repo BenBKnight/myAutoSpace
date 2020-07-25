@@ -5,7 +5,7 @@ const app = express();
 const PORT = 8080;
 const mysql = require("mysql");
 const passport = require("./config/passport");
-
+const db = require("./models")
 
 // Serve static assets
 app.use(express.static("./client"));
@@ -18,7 +18,7 @@ if (process.env.JAWSDB_URL) {
         host: "localhost",
         user: "root",
         password: "password",
-        database: "carFacts"
+        database: "MyAutoSpace"
     });
 }
 // Creating express app and configuring middleware needed for authentication
@@ -38,7 +38,8 @@ app.get("/api", (req, res) => {
     res.json(api)
 })
 //  app.post()
-
+const routes = require("./routes")
+app.use(routes)
 
 
 
@@ -46,4 +47,12 @@ app.get("/api", (req, res) => {
 // Catch all Last to Load
 app.get("*", (req, res) => res.sendFile(path.join(__dirname, "./client/public/index.html")))
 
-app.listen(PORT, () => console.log("App running on PORT: " + PORT));
+db.sequelize.sync().then(() => {
+    app.listen(PORT, () => {
+        console.log(
+            "==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.",
+            PORT,
+            PORT
+        );
+    });
+});

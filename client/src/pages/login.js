@@ -95,12 +95,12 @@ function Login() {
                             <h2 className="title is-underlined">Login Form</h2>
                             <form className="login">
                                 <div className="field form-group">
-                                    <label className="label" for="exampleInputEmail1">Email address:</label>
+                                    <label className="label" htmlFor="exampleInputEmail1">Email address:</label>
                                     <input type="email" className="input form-control" id="email-input" placeholder="User@email.com" />
                                 </div>
 
                                 <div className="container form-group">
-                                    <label className="label" for="exampleInputPassword1">Password</label>
+                                    <label className="label" htmlFor="exampleInputPassword1">Password</label>
                                     <input type="password" className="input loginInput form-control" id="password-input" placeholder="Password" />
                                 </div>
 
