@@ -8,15 +8,15 @@ function Navbar() {
         <nav className="navbar " role="navigation" aria-label="main navigation">
             <div className="navbar-brand">
                 <a className="navbar-item" href="/members">
-                    <img src="images/logo.png" width="40" height="28" />
+                    <img src="images/logo.png" alt="logo" width="40" height="28" />
                 </a>
 
-                <a role="button" className="navbar-burger burger" aria-label="menu" aria-expanded="false"
+                <button className="navbar-burger burger" aria-label="menu" aria-expanded="false"
                     data-target="navbarBasicExample">
                     <span aria-hidden="true"></span>
                     <span aria-hidden="true"></span>
                     <span aria-hidden="true"></span>
-                </a>
+                </button>
             </div>
 
             <div id="navbarBasicExample" className="navbar-menu">
@@ -26,9 +26,9 @@ function Navbar() {
                     <a className="navbar-item nav-hide" href="/newMaintenance">Add Maintenance</a>
                 </div>
                 <div className="navbar-end">
-                    <a className="navbar-item logoutHide logoutBtn">Logout</a>
-                    <a className="navbar-item signup-hide">Signup</a>
-                    <a className="navbar-item login-hide">Login</a>
+                    <button className="navbar-item logoutHide logoutBtn">Logout</button>
+                    <button className="navbar-item signup-hide">Signup</button>
+                    <button className="navbar-item login-hide">Login</button>
 
                 </div>
             </div>

@@ -19,7 +19,7 @@ if (process.env.JAWSDB_URL) {
         user: "root",
         password: "password",
         database: "carFacts"
-    });
+    })
 }
 // Creating express app and configuring middleware needed for authentication
 app.use(express.urlencoded({ extended: true }));

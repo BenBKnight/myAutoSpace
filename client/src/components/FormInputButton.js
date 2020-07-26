@@ -4,7 +4,7 @@ function FormInputButton(props) {
     return (
         <div className="container">
             <div>
-                <button onClick={props.handleLogin} type="submit" className="button loginInput btn btn-default" >{props.childeren}</button>
+                <button onClick={props.handleFormSubmit} type="submit" className="button loginInput btn btn-default" >{props.childeren}</button>
             </div>
         </div>
     );

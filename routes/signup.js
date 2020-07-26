@@ -4,12 +4,13 @@ const router = app.Router();
 const db = require("../models");
 
 // Renders signup page
-router.get("/signup", (req, res) => {
-  res.render("signup");
-});
+// router.get("/signup", (req, res) => {
+//   res.render("signup");
+// });
 
 // Takes new user information and sends it to database
 router.post("/api/signup", (req, res) => {
+  console.log("hit route")
   db.User.create({
     email: req.body.email,
     password: req.body.password,
