@@ -1,6 +1,5 @@
 const app = require("express");
 const router = app.Router();
-const test = require("../db/testData");
 
 // router.("/carmd", (req, res) => {
 

@@ -1,27 +1,15 @@
-import React from "react";
+import React, { Component } from "react";
+import FormInput from "../components/formInput";
+import FormInputButton from "../components/FormInputButton";
 
-function Signup() {
-    // $(document).ready(() => {
-    //     const navbar = $(".nav-hide");
-    //     const logoutHide = $(".logoutHide");
-    //     const signupHide = $(".signup-hide");
-    //     $(document).ready(() => {
-    //         signupHide.hide();
-    //     });
-    //     $(document).ready(() => {
-    //         logoutHide.hide();
-    //     });
-    //     $(document).ready(() => {
-    //         navbar.hide();
-    //     });
-    //     // Getting references to our form and input
-    //     const signUpForm = $("form.signup");
-    //     const emailInput = $("input#email-input");
-    //     const passwordInput = $("input#password-input");
-    //     const firstNameInput = $("input#firstNameId");
-    //     const lastNameInput = $("input#lastNameId");
-    //     const locationInput = $("input#locationId");
-
+class Signup extends Component {
+    state = {
+        email: "",
+        password: "",
+        firstName: "",
+        lastName: "",
+        location: ""
+    }
     //     // When the signup button is clicked, we validate the email and password are not blank
     //     signUpForm.on("submit", event => {
     //         event.preventDefault();
@@ -78,41 +66,27 @@ function Signup() {
     //     event.preventDefault();
     //     window.location.assign("/login");
     // });
-    return (
-        <div className="section loginInput is-parent is-vertical vehicle-style m-auto">
-            <div className="box">
-                <div className="container form-group">
-                    <h2 className="title">Sign Up Form</h2>
-                    <form className="signup">
-                        <div className="container form-group">
-                            <label className="label" for="exampleInputEmail1">Email address:</label>
-                            <input type="email" className="input form-control" id="email-input" placeholder="Email" />
-                        </div>
-                        <div className="container form-group">
-                            <label className="label" for="fistName">First Name:</label>
-                            <input type="text" className="input form-control" id="firstNameId" placeholder="First Name" />
-                        </div>
-                        <div className="container form-group">
-                            <label className="label" for="lastName">Last Name:</label>
-                            <input type="text" className="input form-control" id="lastNameId" placeholder="Last Name" />
-                        </div>
-                        <div className="container form-group">
-                            <label className="label" for="location">Location:</label>
-                            <input type="text" className="input form-control" id="locationId" placeholder="Location" />
-                        </div>
-                        <div className="container form-group">
-                            <label className="label" for="exampleInputPassword1">Password:</label>
-                            <input type="password" className="input form-control" id="password-input" placeholder="Password" />
-                        </div>
-                        <button type="submit" className="button is-link btn btn-default">Sign Me Up!</button>
-                    </form>
-                    <br />
-                    <br />
-                    <br />
+    render() {
+        return (
+            <div className="section loginInput is-parent is-vertical vehicle-style m-auto" >
+                <div className="box">
+                    <div className="container form-group">
+                        <h2 className="title">Sign Up Form</h2>
+                        <form className="signup">
+                            <FormInput handleInputChange={this.handleInputChange} value={this.state.email} htmlFor="exampleInputEmail1" placeholder="User@email.com" type="email">Email address:</FormInput>
+                            <FormInput handleInputChange={this.handleInputChange} value={this.state.password} htmlFor="exampleInputEmail1" placeholder="Password" type="password">Password</FormInput>
+                            <FormInput handleInputChange={this.handleInputChange} value={this.state.firstName} htmlFor="exampleInputEmail1" placeholder="First Name" type="text"></FormInput>
+                            <FormInput handleInputChange={this.handleInputChange} value={this.state.lastName} htmlFor="exampleInputEmail1" placeholder="Last Name" type="text"></FormInput>
+                            <FormInput handleInputChange={this.handleInputChange} value={this.state.location} htmlFor="exampleInputEmail1" placeholder="Location" type="text"></FormInput>
+                            <FormInputButton handleLogin={this.handleLogin}>Login</FormInputButton>
+                        </form>
+                        <br />
+                        <br />
+                        <br />
+                    </div>
                 </div>
             </div>
-        </div>
-    );
+        );
+    }
 }
-
 export default Signup;
