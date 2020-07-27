@@ -5,16 +5,25 @@ import {
 } from "react-router-dom";
 
 function Vehicles(props) {
+    let vehicleLink = "/vehicles/" + props.vehicle.id
     console.log(props.vehicle.id)
     // let path = "/vehicles/" + props.vehicles.id;
     return (
-        // <Router>
-        <p>
-            {props.vehicle.id}
-        </p>
-        // {/* <Link to={path}></Link> */}
-        // </Router>
-    )
+        <div>
+            <p>
+                {/* <img id="vehicleButton" src="images/${vehicleName.toLowerCase()}.png"> */}
+                {/* </a> */}
+                {props.vehicle.id}
+            </p>
+            <Link to={vehicleLink} className="image is-is-5by4 mb-2 container is-clickable">
+                clickHere
+            </Link>
+
+        </div>
+
+    );
+
 }
+
 
 export default Vehicles;
