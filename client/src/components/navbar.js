@@ -1,36 +1,47 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import { UserContext } from "../utils/userContext";
+import { useContext } from "react";
 
 function Navbar() {
-
+    const { user, setUser } = useContext(UserContext);
 
 
     return (
+
         <nav className="navbar " role="navigation" aria-label="main navigation">
             <div className="navbar-brand">
-                <a className="navbar-item" href="/members">
+                <Link className="navbar-item" to="/members">
                     <img src="images/logo.png" alt="logo" width="40" height="28" />
-                </a>
-
+                </Link>
                 <button className="navbar-burger burger" aria-label="menu" aria-expanded="false"
                     data-target="navbarBasicExample">
-                    <span aria-hidden="true"></span>
-                    <span aria-hidden="true"></span>
-                    <span aria-hidden="true"></span>
+                    <Link aria-hidden="true"></Link>
+                    <Link aria-hidden="true"></Link>
+                    <Link aria-hidden="true"></Link>
                 </button>
             </div>
 
             <div id="navbarBasicExample" className="navbar-menu">
                 <div className="navbar-start">
-                    <a className="navbar-item nav-hide" href="/members">Home</a>
-                    <a className="navbar-item nav-hide" href="/vehicles">Add Vehicles</a>
-                    <a className="navbar-item nav-hide" href="/newMaintenance">Add Maintenance</a>
+                    <Link to="/members" className="navbar-item nav-hide" >Home</Link>
+                    <Link to="/vehicles" className="navbar-item nav-hide" >Add Vehicles</Link>
+                    <Link to="/newMaintenance" className="navbar-item nav-hide" >Add Maintenance</Link>
                 </div>
-                <div className="navbar-end">
-                    <button className="navbar-item logoutHide logoutBtn">Logout</button>
-                    <button className="navbar-item signup-hide">Signup</button>
-                    <button className="navbar-item login-hide">Login</button>
 
-                </div>
+
+                {user ?
+                    (<div className="navbar-end">
+                        <Link to="/" className="navbar-item logoutHide logoutBtn" onClick={async () => setUser(false)}>Logout</Link>
+                    </div>)
+                    :
+                    (<div className="navbar-end">
+                        <Link to="/signup" className="navbar-item signup-hide">Signup</Link>
+                        <Link to="/" className="navbar-item login-hide" onClick={async () => setUser(true)}>Login</Link>
+                    </div>
+                    )
+                }
+
             </div>
         </nav>
     );
