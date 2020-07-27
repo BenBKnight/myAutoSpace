@@ -1,77 +1,108 @@
-import React from "react";
+import React, { Component } from "react";
+import API from "../utils/API";
+import Vehicles from "../components/vehicles";
+import {
+    BrowserRouter as Router,
+    Link
+} from "react-router-dom";
 
-function Members() {
+class Members extends Component {
+    state = {
+        vehicle: [{
+            UserId: 2,
+            accidents: 5,
+            condition: "Excellent",
+            createdAt: "2020-07-26T23:05:51.000Z",
+            id: 5,
+            locationLastOwned: "c",
+            make: "a",
+            mileage: 3,
+            model: "b",
+            numOfOwners: 6,
+            type: "Car",
+            updatedAt: "2020-07-26T23:05:51.000Z",
+            vin: 2,
+            year: 1,
+            yearPurchased: 4
+        }, {
+            UserId: 2,
+            accidents: 6,
+            condition: "Excellent",
+            createdAt: "2020-07-26T23:06:14.000Z",
+            id: 6,
+            locationLastOwned: "e",
+            make: "q",
+            mileage: 8,
+            model: "w",
+            numOfOwners: 5,
+            type: "Truck",
+            updatedAt: "2020-07-26T23:06:14.000Z",
+            vin: 9,
+            year: 0,
+            yearPurchased: 7
+        }, {
+            UserId: 2,
+            accidents: 66666,
+            condition: "Fair",
+            createdAt: "2020-07-26T23:06:42.000Z",
+            id: 7,
+            locationLastOwned: "i",
+            make: "p",
+            mileage: 666,
+            model: "o",
+            numOfOwners: 666666,
+            type: "Motorcycle",
+            updatedAt: "2020-07-26T23:06:42.000Z",
+            vin: 66,
+            year: 6,
+            yearPurchased: 6666
+        }],
+    }
+    componentDidMount() {
+        console.log(this.state.vehicle)
+    }
+    // componentDidMount() {
+    //     // getVehicles = () => {
+    //     API.allVehicles()
+    //         .then((res) => {
+    //             console.log(res)
+    //             this.setState({
+    //                 vehicle: res.vehicle
+    //             });
+    //         });
 
-    // let memberId;
+    // };
 
-    // async function getVehicles() {
-    //     //console.log("working");
-    //     const result = await $.ajax({
-    //         url: `/vehiclefind/${memberId}`,
-    //         method: "GET"
-    //     });
+    render() {
+        return (
+            <div>
+                <div className="container-center-col">
+                    <div className="tile box mt-5 has-text-centered container-center vehicle-style">
+                        <h2 className="title">Welcome <span className="title member-name"></span>!</h2>
+                    </div>
 
-    //     // result.forEach(vehicle => {
-    //     //     const vehicleName = vehicle.type;
-    //     //     $("#vehicleDisplay").append(
-    //     //         `<a href="/vehicles/${
-    //     //         vehicle.id
-    //     //         }" class="image is-is-5by4 mb-2 container is-clickable"><img id="vehicleButton"  src="images/${vehicleName.toLowerCase()}.png"></a>`
-    //     //     );
-    //     // });
-    // }
+                    <div className="tile box has-text-centered container-center vehicle-style">
+                        <div className="is-child">
+                            <h2 className="subtitle label">Your Vehicles:</h2>
 
-    // $(document).ready(() => {
-    //     // This file just does a GET request to figure out which user is logged in
-    //     // and updates the HTML on the page
-    //     const loginHide = $(".login-hide");
-    //     const signupHide = $(".signup-hide");
-    //     $(document).ready(() => {
-    //         signupHide.hide();
-    //     });
-    //     $(document).ready(() => {
-    //         loginHide.hide();
-    //     });
-    //     $.get("/api/user_data").then(data => {
-    //         $(".member-name").text(data.firstName);
-    //         //console.log(data.id);
-    //         memberId = data.id;
-    //         getVehicles();
-    //     });
-    // });
-    // //console.log(memberId);
+                            <div className="section">
+                                {this.state.vehicle.map(vehicles => (
+                                    <span key={vehicles.id}>
+                                        <Vehicles
+                                            vehicle={vehicles}
+                                        />
+                                    </span>
+                                ))}
 
-    // const logoutBtn = $(".logoutBtn");
-    // logoutBtn.on("click", event => {
-    //     event.preventDefault();
-    //     window.location.replace("/logout");
-    // });
-
-    // // CLick Listener for vehicle button
-    // const vehicleBtn = $("#vehicleButton");
-    // vehicleBtn.on("click", () => {
-    //     // console.log("button clicked");
-    //     window.location.replace("/vehicles");
-    //     // If there's an error, handle it by throwing up a bootstrap alert
-    //     // console.log("changed pages");
-    // });
-    return (
-        <div>
-            <div className="container-center-col">
-                <div className="tile box mt-5 has-text-centered container-center vehicle-style">
-                    <h2 className="title">Welcome <span className="title member-name"></span>!</h2>
-                </div>
-                <div className="tile box has-text-centered container-center vehicle-style">
-                    <div className="is-child">
-                        <h2 className="subtitle label">Your Vehicles:</h2>
-                        <div className="section loginInput" id="vehicleDisplay">
+                            </div>
+                            <Router>
+                                <Link to="/vehicles" />
+                            </Router>
                         </div>
-                        <button id="vehicleButton" className="button is-link">Add New Vehicle!</button>
                     </div>
                 </div>
             </div>
-        </div>
-    );
+        );
+    }
 }
-
 export default Members;
