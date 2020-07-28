@@ -1,9 +1,6 @@
 import React from "react";
 
 function VehicleDisplay() {
-    // const loginHide = $(".login-hide");
-    // const signupHide = $(".signup-hide");
-
     // async function getVehicle() {
     //     const url = window.location.href.split("/");
     //     const id = url[url.length - 1];

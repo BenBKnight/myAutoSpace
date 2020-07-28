@@ -2,6 +2,7 @@
 const app = require("express");
 const router = app.Router();
 const db = require("../models");
+// const User = require("../models/user")(db);
 
 // Renders signup page
 // router.get("/signup", (req, res) => {
@@ -9,6 +10,7 @@ const db = require("../models");
 // });
 
 // Takes new user information and sends it to database
+
 router.post("/api/signup", (req, res) => {
   console.log("hit route")
   db.User.create({

@@ -209,11 +209,6 @@ function Vehicles() {
     //         });
     //     }
     // });
-    // const logoutBtn = $(".logoutBtn");
-    // logoutBtn.on("click", event => {
-    //     event.preventDefault();
-    //     window.location.replace("/logout");
-    // });
     return (
         <div className="container-center-col">
             <div className="tile box mt-5 has-text-centered container-center vehicle-style">

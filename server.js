@@ -1,3 +1,4 @@
+console.log("server working")
 const express = require("express");
 const session = require("express-session");
 const path = require("path")
@@ -48,3 +49,11 @@ db.sequelize.sync().then(() => {
         );
     });
 });
+
+// app.listen(PORT, () => {
+//     console.log(
+//         "==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.",
+//         PORT,
+//         PORT
+//     );
+// });

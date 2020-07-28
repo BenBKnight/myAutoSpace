@@ -20,6 +20,8 @@ function MaintRecord() {
     //         })
     //         .catch(err => console.log(err));
     // });
+
+
     return (
         <div>
             <div className="tile box mt-4 ml-4 mr-4 maint-tile is-vertical">

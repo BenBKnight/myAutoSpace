@@ -21,14 +21,6 @@ function NewMaintenance() {
     // }
 
     // $(document).ready(() => {
-    //     const loginHide = $(".login-hide");
-    //     const signupHide = $(".signup-hide");
-
-    //     signupHide.hide();
-    //     loginHide.hide();
-    //     listVehicleNames();
-
-
     //     $("#submit").click(async (event) => {
     //         try {
     //             event.preventDefault();
@@ -67,12 +59,7 @@ function NewMaintenance() {
     //             }
     //         }
     //     });
-    // }); //end doc ready
-    // const logoutBtn = $(".logoutBtn");
-    // logoutBtn.on("click", event => {
-    //     event.preventDefault();
-    //     window.location.replace("/logout");
-    // });
+    // }); 
     return (
         <div className="section columns">
             <div className="tile container-center">

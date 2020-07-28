@@ -1,4 +1,5 @@
 import axios from "axios";
+const serverUrl = "http://localhost:8080";
 
 const sampleData =
     [{
@@ -53,10 +54,10 @@ const sampleData =
 
 export default {
     loginUser: function (data) {
-        return axios.post("/api/login");
+        return axios.post(serverUrl + "/api/login");
     },
     signUp: function (data) {
-        return axios.post("/api/signup")
+        return axios.post(serverUrl + "/api/signup")
     },
     allVehicles: function (req) {
         // let url = "/vehiclefind/" + id

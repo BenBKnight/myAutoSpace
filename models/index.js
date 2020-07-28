@@ -7,28 +7,33 @@ const basename = path.basename(module.filename);
 const env = process.env.NODE_ENV || "development";
 const config = require(__dirname + "/../config/config.json")[env];
 const db = {};
+const User = require("./user");
+var sequelize;
+
 
 if (config.use_env_variable) {
-  var sequelize = new Sequelize(process.env[config.use_env_variable]);
+  sequelize = new Sequelize(process.env[config.use_env_variable]);
 } else {
-  var sequelize = new Sequelize(
+  sequelize = new Sequelize(
     config.database,
     config.username,
     config.password,
     config
   );
 }
-
-// fs.readdirSync(__dirname)
-//   .filter(file => {
-//     return (
-//       file.indexOf(".") !== 0 && file !== basename && file.slice(-3) === ".js"
-//     );
-//   })
-//   .forEach(file => {
-//     const model = sequelize.import(path.join(__dirname, file));
-//     db[model.name] = model;
-//   });
+// console.log(sequelize.import)
+fs.readdirSync(__dirname)
+  .filter(file => {
+    return (
+      file.indexOf(".") !== 0 && file !== basename && file.slice(-3) === ".js"
+    );
+  })
+  .forEach(file => {
+    var model = require(path.join(__dirname, file))(sequelize, Sequelize.DataTypes)
+    // const model = sequelize.import(path.join(__dirname, file));
+    db[model.name] = model;
+    console.log("mark")
+  });
 
 Object.keys(db).forEach(modelName => {
   if (db[modelName].associate) {
