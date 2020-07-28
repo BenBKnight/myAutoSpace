@@ -24,14 +24,15 @@ class Signup extends Component {
         if (!this.state.email || !this.state.password) {
             return;
         }
+        console.log(user)
         // user.email, user.password, user.firstName, user.lastName, user.location
         API.signUp(user)
             .then((res) => {
-                console.log(res);
+                console.log("returned", res);
                 //router to members
             })
             .catch(err => {
-                console.log(this.handleSignUpErr(err));
+                console.log(err);
             })
     };
     handleSignUpErr(err) {
@@ -51,7 +52,7 @@ class Signup extends Component {
         this.setState({
             [name]: value
         });
-        console.log(this.state);
+        // console.log(this.state);
     };
 
     render() {

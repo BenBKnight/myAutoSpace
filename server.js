@@ -1,4 +1,3 @@
-console.log("server working")
 const express = require("express");
 const session = require("express-session");
 const path = require("path")
@@ -11,6 +10,9 @@ const db = require("./models")
 // Serve static assets
 app.use(express.static("./client"));
 
+// Remove when deploying
+const cors = require("cors")
+app.use(cors());
 
 if (process.env.JAWSDB_URL) {
     connection = mysql.createConnection(process.env.JAWSDB_URL);

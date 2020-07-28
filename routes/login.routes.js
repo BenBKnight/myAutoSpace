@@ -12,14 +12,9 @@ router.get("/", (req, res) => {
   res.render("login");
 });
 
-// Establishes /login as root route
-router.get("/login", (req, res) => {
-  res.redirect("/");
-});
-
 // Verifies user login information  passport.authenticate("local")
 router.post("/api/login", (req, res) => {
-  console.log("api route hit")
+  console.log(req.body)
   // Sending back a password, even a hashed password, isn't a good idea
   res.json({
     email: req.user.email,

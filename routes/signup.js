@@ -2,17 +2,11 @@
 const app = require("express");
 const router = app.Router();
 const db = require("../models");
-// const User = require("../models/user")(db);
-
-// Renders signup page
-// router.get("/signup", (req, res) => {
-//   res.render("signup");
-// });
 
 // Takes new user information and sends it to database
-
 router.post("/api/signup", (req, res) => {
   console.log("hit route")
+  console.log(req.body)
   db.User.create({
     email: req.body.email,
     password: req.body.password,
@@ -20,11 +14,13 @@ router.post("/api/signup", (req, res) => {
     lastName: req.body.lastName,
     location: req.body.location
   })
-    .then(() => {
-      res.redirect(307, "/api/login");
+    .then((res) => {
+      console.log("hit me here");
+      app.send(res)
+      // res.redirect(307, "/members");
     })
     .catch(err => {
-      res.status(401).json(err);
+      res.status(401).send("Bad");
     });
 });
 

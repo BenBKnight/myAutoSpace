@@ -54,10 +54,11 @@ const sampleData =
 
 export default {
     loginUser: function (data) {
-        return axios.post(serverUrl + "/api/login");
+        return axios.post(serverUrl + "/api/login", data);
     },
     signUp: function (data) {
-        return axios.post(serverUrl + "/api/signup")
+        console.log(data)
+        return axios.post(serverUrl + "/api/signup", data)
     },
     allVehicles: function (req) {
         // let url = "/vehiclefind/" + id
