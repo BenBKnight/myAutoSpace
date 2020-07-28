@@ -5,8 +5,6 @@ const db = require("../models");
 
 // Takes new user information and sends it to database
 router.post("/api/signup", (req, res) => {
-  console.log("hit route")
-  console.log(req.body)
   db.User.create({
     email: req.body.email,
     password: req.body.password,
@@ -14,12 +12,11 @@ router.post("/api/signup", (req, res) => {
     lastName: req.body.lastName,
     location: req.body.location
   })
-    .then((res) => {
-      console.log("hit me here");
-      app.send(res)
-      // res.redirect(307, "/members");
+    .then((data) => {
+      res.status(200).json(data);
     })
     .catch(err => {
+      // console.log(err)
       res.status(401).send("Bad");
     });
 });

@@ -228,38 +228,38 @@ function Vehicles() {
                             </div>
                         </div>
                         <div className="container">
-                            <label for="Make">Make:</label>
+                            <label htmlFor="Make">Make:</label>
                             <input type="text" className="input form-control" id="make">
                             </input>
                             <br />
                             <div>
                                 <div className="container">
-                                    <label for="Model">Model:</label>
+                                    <label htmlFor="Model">Model:</label>
                                     <input className="input form-control" rows="1" id="model"></input>
                                     <br />
                                 </div>
                                 <div className="container">
-                                    <label for="Year">Year:</label>
+                                    <label htmlFor="Year">Year:</label>
                                     <input className="input form-control" rows="1" id="year"></input>
                                     <br />
                                 </div>
                                 <div className="container">
-                                    <label for="VIN">VIN:</label>
+                                    <label htmlFor="VIN">VIN:</label>
                                     <input className="input form-control" rows="1" id="vin"></input>
                                     <br />
                                 </div>
                                 <div className="container">
-                                    <label for="Mileage">Mileage:</label>
+                                    <label htmlFor="Mileage">Mileage:</label>
                                     <input className="input form-control" rows="1" id="mileage"></input>
                                     <br />
                                 </div>
                                 <div className="container">
-                                    <label for="yearPurchased">Purchased Year:</label>
+                                    <label htmlFor="yearPurchased">Purchased Year:</label>
                                     <input className="input form-control" rows="1" id="yearPurchased"></input>
                                     <br />
                                 </div>
                                 <div className="container">
-                                    <label for="yearPurchased">Vehicle Condition:</label>
+                                    <label htmlFor="yearPurchased">Vehicle Condition:</label>
                                     <br />
                                     <div className="select">
                                         <select id="condition">
@@ -270,17 +270,17 @@ function Vehicles() {
                                     </div>
                                 </div>
                                 <div className="container">
-                                    <label for="accidents">Number of Accidents:</label>
+                                    <label htmlFor="accidents">Number of Accidents:</label>
                                     <input className="input form-control" rows="1" id="accidents"></input>
                                     <br />
                                 </div>
                                 <div className="container">
-                                    <label for="numOfOwners">Number of Previous Owners:</label>
+                                    <label htmlFor="numOfOwners">Number of Previous Owners:</label>
                                     <input className="input form-control" rows="1" id="numOfOwners"></input>
                                     <br />
                                 </div>
                                 <div className="container">
-                                    <label for="yearPurchased">Location Last Owned:</label>
+                                    <label htmlFor="yearPurchased">Location Last Owned:</label>
                                     <input className="input form-control" rows="1" id="locationLastOwned"></input>
                                     <br />
                                 </div>

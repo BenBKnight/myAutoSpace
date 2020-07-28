@@ -27,8 +27,8 @@ class Signup extends Component {
         console.log(user)
         // user.email, user.password, user.firstName, user.lastName, user.location
         API.signUp(user)
-            .then((res) => {
-                console.log("returned", res);
+            .then(() => {
+                console.log("returned");
                 //router to members
             })
             .catch(err => {
