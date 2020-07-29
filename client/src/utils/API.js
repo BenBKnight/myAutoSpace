@@ -60,9 +60,9 @@ export default {
     signUp: function (data) {
         return axios.post(serverUrl + "/api/signup", data)
     },
-    allVehicles: function (req) {
-        // let url = "/vehiclefind/" + id
-        return (sampleData);
+    allVehicles: function (data) {
+        let url = "/vehiclefind/"
+        return axios.get(serverUrl + url + data)
     },
     newVehicle: function (data) {
         return axios.post(serverUrl + "/api/postVehicle", data)

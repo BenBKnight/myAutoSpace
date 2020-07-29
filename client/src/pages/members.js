@@ -1,19 +1,33 @@
-import React, { Component } from "react";
+import React, { Component, useContext } from "react";
 import API from "../utils/API";
 import Vehicles from "../components/vehicles";
 import {
     BrowserRouter as Router,
     Link
 } from "react-router-dom";
+import { UserContext } from "../utils/userContext";
+
+
 
 class Members extends Component {
-
-
-
-    componentDidMount() {
-        API.allVehicles
+    state = {
+        userId: 2,
+        vehicle: []
     }
 
+    componentDidMount() {
+        API.allVehicles(this.state.userId)
+            .then((res) => {
+                console.log("api returned for members", res.data);
+                this.setState({
+                    vehicle: res.data
+                }
+                )
+            })
+            .catch(err => {
+                console.log(err);
+            })
+    }
     render() {
         return (
             <div>
