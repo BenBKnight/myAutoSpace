@@ -69,6 +69,9 @@ export default {
     },
     userData: function (data) {
         return axios.get(serverUrl + "/api/user")
+    },
+    maintRecord: function (data) {
+        return axios.post(serverUrl + "/api/maintenance", data)
     }
 }
 

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import FormInput from "../components/formInput";
 import FormInputButton from "../components/FormInputButton";
-
+import API from "../utils/API";
 
 class MaintRecord extends Component {
     state = {
@@ -10,7 +10,7 @@ class MaintRecord extends Component {
         milage: "",
         parts: "",
         jobDate: "",
-        VehicleId: ""
+        VehicleId: 11
     };
     handleInputChange = event => {
         // Getting the value and name of the input which triggered the change
@@ -25,17 +25,18 @@ class MaintRecord extends Component {
         //     return;
         // }
     };
-    // handleFormSubmit = (e) => {
-    //     e.preventDefault();
-    //     let vehicleNew = this.state;
-    //     API.newVehicle(vehicleNew)
-    //         .then((res) => {
-    //             console.log("api returned", res);
-    //         })
-    //         .catch(err => {
-    //             console.log(err);
-    //         })
-    // };
+    handleFormSubmit = (e) => {
+        e.preventDefault();
+        let maintNew = this.state;
+        API.maintRecord(maintNew)
+            .then((res) => {
+                console.log("api maint returned", res);
+            })
+            .catch(err => {
+                console.log(err);
+            })
+    };
+
     // const id = window.location.href.split("/");
 
     // // id[id.length - 1];
