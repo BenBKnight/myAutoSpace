@@ -66,6 +66,9 @@ export default {
     },
     newVehicle: function (data) {
         return axios.post(serverUrl + "/api/postVehicle", data)
+    },
+    userData: function (data) {
+        return axios.get(serverUrl + "/api/user")
     }
 }
 

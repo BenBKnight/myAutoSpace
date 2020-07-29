@@ -16,6 +16,24 @@ class Members extends Component {
     }
 
     componentDidMount() {
+        API.userData()
+            .then((res) => {
+                console.log(res.data);
+                // Need Session to be working, I think
+                //     this.setState({
+                //         userId: res.data.id
+                //     })
+                //         .then(() => {
+                //             let id = this.state.userId
+                //             this.getVehicles(id)
+                //         })
+            })
+            .catch(err => {
+                console.log(err)
+            })
+
+    }
+    getVehicles() {
         API.allVehicles(this.state.userId)
             .then((res) => {
                 console.log("api returned for members", res.data);
