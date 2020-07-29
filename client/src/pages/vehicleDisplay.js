@@ -1,6 +1,8 @@
 import React from "react";
 
 function VehicleDisplay() {
+
+
     // async function getVehicle() {
     //     const url = window.location.href.split("/");
     //     const id = url[url.length - 1];
@@ -9,21 +11,6 @@ function VehicleDisplay() {
     //         url: `/vehicleid/${id}`,
     //         method: "GET"
     //     });
-    //     //console.log(result);
-    //     // $("#vehiclePic").append(
-    //     //   `<a href="/vehicles/${result[0].id}" class="image is-is-5by4 container is-clickable"><img id="vehicleButton"  src="images/toyota.jpg"></a>`
-    //     // );
-    //     $("#vehicleType").html(result[0].type);
-    //     $("#vehicleMake").html(result[0].make);
-    //     $("#vehicleModel").html(result[0].model);
-    //     $("#vehicleYear").html(result[0].year);
-    //     $("#vehicleMileage").html(result[0].mileage);
-    //     $("#vehicleVin").html(result[0].vin);
-    //     $("#yearPurchased").html(result[0].yearPurchased);
-    //     $("#condition").html(result[0].condition);
-    //     $("#accidents").html(result[0].accidents);
-    //     $("#numOfOwners").html(result[0].numOfOwners);
-    //     $("#locationLastOwned").html(result[0].locationLastOwned);
     // }
 
     // async function getOwner() {
@@ -57,12 +44,8 @@ function VehicleDisplay() {
     //         const cell2 = row.insertCell(1);
     //         const cell3 = row.insertCell(2);
     //         const cell4 = row.insertCell(3);
-    //         // const cell5 = row.insertCell(4);
-    //         // const cell6 = row.insertCell(5);
     //         cell1.innerHTML = job.name;
-    //         // cell2.innerHTML = job.description;
     //         cell2.innerHTML = job.milage;
-    //         // cell4.innerHTML = job.parts;
     //         cell3.innerHTML = job.jobDate;
     //         cell4.innerHTML = "<a href=" + "/maintenance/" + job.id + ">More info</a>";
     //         num++;
@@ -74,7 +57,6 @@ function VehicleDisplay() {
     //         url: "/carmd",
     //         method: "GET"
     //     });
-    //     //console.log(result);
     //     // Loop through Maintenance and append to table
     //     let num = 0;
     //     result.data.forEach(job => {
@@ -154,22 +136,6 @@ function VehicleDisplay() {
     //             break;
     //     }
     // }
-
-    // // $("#newCarMaintenance").on("click", () => {
-    // //     location.pathname = "/newMaintenance";
-    // // });
-
-    // $(document).ready(() => {
-    //     signupHide.hide();
-    //     loginHide.hide();
-    //     setImage();
-    //     getCarMD();
-    //     getMaintenance();
-    //     setCondition();
-    //     getOwner();
-    //     getVehicle();
-    //     // console.log("working");
-    // });
     return (
         <div>
             <br />

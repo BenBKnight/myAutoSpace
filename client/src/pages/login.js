@@ -70,15 +70,15 @@ class Login extends Component {
                         {/* <div className="is-parent box vehicle-style">
                             <div className="container">
                                 <h2 className="title is-underlined">Login Form</h2> */}
-                        <Card title="Login Page" />
-                        <form className="login">
-                            <FormInput handleInputChange={this.handleInputChange} value={this.state.email} htmlFor="exampleInputEmail1" id="emailInput" placeholder="User@email.com" type="email">Email address:</FormInput>
-                            <FormInput handleInputChange={this.handleInputChange} value={this.state.password} htmlFor="exampleInputEmail1" id="passwordInput" placeholder="Password" type="password">Password</FormInput>
-                            {/* <Link to="/Members"> */}
-                            <FormInputButton handleFormSubmit={this.handleFormSubmit}>Login</FormInputButton>
-                            {/* </Link> */}
-                        </form>
-
+                        <Card title="Login Page">
+                            <form className="login">
+                                <FormInput handleInputChange={this.handleInputChange} value={this.state.email} htmlFor="exampleInputEmail1" id="emailInput" placeholder="User@email.com" type="email">Email address:</FormInput>
+                                <FormInput handleInputChange={this.handleInputChange} value={this.state.password} htmlFor="exampleInputEmail1" id="passwordInput" placeholder="Password" type="password">Password</FormInput>
+                                {/* <Link to="/Members"> */}
+                                <FormInputButton handleFormSubmit={this.handleFormSubmit}>Login</FormInputButton>
+                                {/* </Link> */}
+                            </form>
+                        </Card>
                     </div>
                 </div>
             </div>

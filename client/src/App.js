@@ -35,7 +35,7 @@ function App() {
                 <Route exact path="/Maintenance" component={Maintenance} />
                 <Route exact path="/Vehicles" component={Vehicles} />
                 <Route exact path="/NewMaintenance" component={NewMaintenance} />
-                <Route exact path="/VehicleDisplay" component={VehicleDisplay} />
+                <Route exact path="/Vehicles/5" component={VehicleDisplay} />
               </VehicleContext.Provider>
             </Switch>
           </UserContext.Provider>

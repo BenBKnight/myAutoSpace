@@ -6,12 +6,6 @@ function Maintenance() {
     //     const jobNames = $("#jobNames");
     //     const loginHide = $(".login-hide");
     //     const signupHide = $(".signup-hide");
-    //     $(document).ready(() => {
-    //         signupHide.hide();
-    //     });
-    //     $(document).ready(() => {
-    //         loginHide.hide();
-    //     });
     //     $.ajax({
     //         url: "/api/maintenance",
     //         type: "GET"
@@ -25,9 +19,9 @@ function Maintenance() {
     //         })
     //         .catch(err => console.log(err));
 
-    //     // $("ul").click(event => {
-    //     //     location.pathname = `/maintenance/${event.target.dataset.jobid}`;
-    //     // });
+    //     $("ul").click(event => {
+    //         location.pathname = `/maintenance/${event.target.dataset.jobid}`;
+    //     });
     // });
     return (
         <div className="section">

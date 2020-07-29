@@ -8,6 +8,9 @@ function Card(props) {
                 <div className="container">
                     <h2 className="title is-underlined">{props.title}</h2>
                 </div>
+                <div {...props}>
+
+                </div>
             </div>
         </div>
 
