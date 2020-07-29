@@ -1,0 +1,2 @@
+DROP DATABASE IF EXISTS carfacts;
+CREATE DATABASE carfacts;

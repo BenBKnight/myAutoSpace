@@ -1,12 +1,7 @@
 import React from 'react';
 
-function Table(props) {
-    let help = function () {
-        console.log(props.headers)
-    }
-    help()
+function TableMaint(props) {
     return (
-
         <table className="table" >
             <thead className="thead-dark">
                 <tr>
@@ -16,17 +11,17 @@ function Table(props) {
                 </tr>
             </thead>
             <tbody>
-
-
-                <tr>Holder of Place</tr>
-                <tr>Holder of Place</tr>
-                <tr>Holder of Place</tr>
-                <tr>Holder of Place</tr>
-                <tr>Holder of Place</tr>
-                <tr>Holder of Place</tr>
+                {props.tableData.map(data => (
+                    <tr key={data.id}>
+                        <td>{data.name}</td>
+                        <td>{data.milage}</td>
+                        <td>{data.jobDate}</td>
+                        <td>PlaceHolder</td>
+                    </tr>
+                ))}
             </tbody>
         </table >
     );
 }
 
-export default Table;
+export default TableMaint;

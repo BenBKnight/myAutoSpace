@@ -45,7 +45,6 @@ router.get("/vehicleid/:id", (req, res) => {
       id: vehicleId
     }
   }).then(result => {
-    // console.log(result);
     res.send(result);
   });
 });

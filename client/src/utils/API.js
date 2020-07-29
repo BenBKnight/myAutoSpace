@@ -53,6 +53,8 @@ const sampleData =
     }]
 
 export default {
+
+    // Post Routes
     loginUser: function (data) {
         console.log(data)
         return axios.post(serverUrl + "/api/login", data);
@@ -60,18 +62,30 @@ export default {
     signUp: function (data) {
         return axios.post(serverUrl + "/api/signup", data)
     },
-    allVehicles: function (data) {
-        let url = "/vehiclefind/"
-        return axios.get(serverUrl + url + data)
-    },
     newVehicle: function (data) {
         return axios.post(serverUrl + "/api/postVehicle", data)
+    },
+
+    maintRecord: function (data) {
+        return axios.post(serverUrl + "/api/maintenance", data)
+    },
+
+    // Get Routes
+    allVehicles: function (data) {
+        // Data is equal to user Id
+        let url = "/vehiclefind/"
+        return axios.get(serverUrl + url + data)
     },
     userData: function (data) {
         return axios.get(serverUrl + "/api/user")
     },
-    maintRecord: function (data) {
-        return axios.post(serverUrl + "/api/maintenance", data)
+    vehicleById: function (data) {
+        // Data is Equal to Vehicle Id
+        return axios.get(serverUrl + "/vehicleid/" + data)
+    },
+    getMaintRecords: function (data) {
+        // Data is Equal to vehicle Id
+        return axios.get(serverUrl + "/maintenancefindvehicle/" + data)
     }
 }
 
