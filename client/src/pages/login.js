@@ -7,7 +7,8 @@ import Card from "../components/card";
 class Login extends Component {
     state = {
         email: "",
-        password: ""
+        password: "",
+        id: ""
     };
     handleFormSubmit = (e) => {
         e.preventDefault();
@@ -23,7 +24,10 @@ class Login extends Component {
         API.loginUser(user)
             .then((res) => {
                 console.log("api returned", res);
-                //router to members
+                this.setState({
+                    email: res.data.email,
+                    id: res.data.id
+                })
             })
             .catch(err => {
                 console.log(err);

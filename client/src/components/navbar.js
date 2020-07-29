@@ -4,7 +4,7 @@ import { UserContext } from "../utils/userContext";
 import { useContext } from "react";
 
 function Navbar() {
-    const { user, setUser } = useContext(UserContext);
+    const { userLoggedIn, setUserLoggedIn } = useContext(UserContext);
 
 
     return (
@@ -30,14 +30,14 @@ function Navbar() {
                 </div>
 
 
-                {user ?
+                {userLoggedIn ?
                     (<div className="navbar-end">
-                        <Link to="/" className="navbar-item logoutHide logoutBtn" onClick={async () => setUser(false)}>Logout</Link>
+                        <Link to="/" className="navbar-item logoutHide logoutBtn" onClick={async () => setUserLoggedIn(false)}>Logout</Link>
                     </div>)
                     :
                     (<div className="navbar-end">
                         <Link to="/signup" className="navbar-item signup-hide">Signup</Link>
-                        <Link to="/" className="navbar-item login-hide" onClick={async () => setUser(true)}>Login</Link>
+                        <Link to="/" className="navbar-item login-hide" onClick={async () => setUserLoggedIn(true)}>Login</Link>
                     </div>
                     )
                 }

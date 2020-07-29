@@ -1,17 +1,71 @@
-import React from "react";
+import React, { Component, useContext } from "react";
+import FormInput from "../components/formInput";
+import DropDown from "../components/dropDown";
+import FormInputButton from "../components/FormInputButton";
+import API from "../utils/API";
+import { UserContext } from "../utils/userContext";
 
-function Vehicles() {
-    // $(document).ready(() => {
-    //     const loginHide = $(".login-hide");
-    //     const signupHide = $(".signup-hide");
-    //     $(document).ready(() => {
-    //         signupHide.hide();
-    //     });
-    //     $(document).ready(() => {
-    //         loginHide.hide();
-    //     });
+class Vehicles extends Component {
+    state = {
+        type: "",
+        make: "",
+        model: "",
+        year: "",
+        vin: "",
+        mileage: "",
+        yearPurchased: "",
+        condition: "",
+        accidents: "",
+        numOfOwners: "",
+        locationLastOwned: "",
+        UserId: 2
+    };
+    handleInputChange = event => {
+        // Getting the value and name of the input which triggered the change
+        let value = event.target.value;
+        const name = event.target.id;
+        this.setState({
+            [name]: value
+        });
+        console.log(this.state)
+        // if (!this.state.email || !this.state.password) {
+        //     return;
+        // }
+    };
+    handleSelect = event => {
+        let value = event.target.value;
+        const name = event.target.id;
+        console.log(event, value, name)
+
+        this.setState({
+            [name]: value
+        });
+        console.log(this.state)
+        // if (!this.state.email || !this.state.password) {
+        //     return;
+        // }
+    }
+    handleFormSubmit = (e) => {
+        e.preventDefault();
+        let vehicleNew = this.state;
+        API.newVehicle(vehicleNew)
+            .then((res) => {
+                console.log("api returned", res);
+            })
+            .catch(err => {
+                console.log(err);
+            })
+    };
+    // componentDidMount() {
+    //     function setUserOnLoad() {
+    //         const { id, setUserId } = useContext(UserContext);
+
+    //         this.setState({
+    //             UserId: id
+    //         })
+    //     }
+    // }
     //     // Gets an optional query string from our url (i.e. ?post_id=23)
-    //     // const url = window.location.search;
     //     let vehicleId;
     //     // Sets a flag for whether or not we're updating a vehicle to be false initially
     //     const updating = false;
@@ -24,21 +78,6 @@ function Vehicles() {
     //     $(document).on("click", "button.edit", handleVehicleEdit);
     //     postCategorySelect.on("change", handleTypeChange);
     //     let vehicles;
-
-    //     // Getting jQuery references
-    //     const makeInput = $("#make");
-    //     const modelInput = $("#model");
-    //     const yearInput = $("#year");
-    //     const vinInput = $("#vin");
-    //     const mileageInput = $("#mileage");
-    //     const vehicleForm = $("#buttonADD");
-    //     const type = $("#type");
-    //     const yearPurchased = $("#yearPurchased");
-    //     const condition = $("#condition");
-    //     const accidents = $("#accidents");
-    //     const numOfOwners = $("#numOfOwners");
-    //     const locationLastOwned = $("#locationLastOwned");
-
     //     // Adding an event listener for when the form is submitted
     //     $(vehicleForm).on("click", event => {
     //         event.preventDefault();
@@ -209,89 +248,62 @@ function Vehicles() {
     //         });
     //     }
     // });
-    return (
-        <div className="container-center-col">
-            <div className="tile box mt-5 has-text-centered container-center vehicle-style">
-                <p className="title is-1 level-item has-text-centered">Add Your Vehicle!</p>
-            </div>
-            <div className="tile box section container-center vehicle-style">
-                <form id="vehicleForm ">
-                    <p className="is-5">Type of Vehicle:</p>
-                    <div className="form-group">
-                        <div className="container">
-                            <div className="select">
-                                <select id="type">
-                                    <option value="Car">Car</option>
-                                    <option value="Truck">Truck</option>
-                                    <option value="Motorcycle">Motorcycle</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div className="container">
-                            <label htmlFor="Make">Make:</label>
-                            <input type="text" className="input form-control" id="make">
-                            </input>
-                            <br />
-                            <div>
-                                <div className="container">
-                                    <label htmlFor="Model">Model:</label>
-                                    <input className="input form-control" rows="1" id="model"></input>
-                                    <br />
-                                </div>
-                                <div className="container">
-                                    <label htmlFor="Year">Year:</label>
-                                    <input className="input form-control" rows="1" id="year"></input>
-                                    <br />
-                                </div>
-                                <div className="container">
-                                    <label htmlFor="VIN">VIN:</label>
-                                    <input className="input form-control" rows="1" id="vin"></input>
-                                    <br />
-                                </div>
-                                <div className="container">
-                                    <label htmlFor="Mileage">Mileage:</label>
-                                    <input className="input form-control" rows="1" id="mileage"></input>
-                                    <br />
-                                </div>
-                                <div className="container">
-                                    <label htmlFor="yearPurchased">Purchased Year:</label>
-                                    <input className="input form-control" rows="1" id="yearPurchased"></input>
-                                    <br />
-                                </div>
-                                <div className="container">
-                                    <label htmlFor="yearPurchased">Vehicle Condition:</label>
-                                    <br />
-                                    <div className="select">
-                                        <select id="condition">
-                                            <option value="Excellent">Excellent</option>
-                                            <option value="Fair">Fair</option>
-                                            <option value="Poor">Poor</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div className="container">
-                                    <label htmlFor="accidents">Number of Accidents:</label>
-                                    <input className="input form-control" rows="1" id="accidents"></input>
-                                    <br />
-                                </div>
-                                <div className="container">
-                                    <label htmlFor="numOfOwners">Number of Previous Owners:</label>
-                                    <input className="input form-control" rows="1" id="numOfOwners"></input>
-                                    <br />
-                                </div>
-                                <div className="container">
-                                    <label htmlFor="yearPurchased">Location Last Owned:</label>
-                                    <input className="input form-control" rows="1" id="locationLastOwned"></input>
-                                    <br />
-                                </div>
-                                <button type="submit" id="buttonADD" className="button btn btn-success submit btn-lg">Submit</button>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    );
-}
 
+    render() {
+        const conditionOptions = ["Excellent", "Good", "Fair"]
+        const makeOptions = ["Car", "Truck", "Motorcycle"];
+
+
+        return (
+            <div className="container-center-col">
+                <div className="tile box mt-5 has-text-centered container-center vehicle-style">
+                    <p className="title is-1 level-item has-text-centered">Add Your Vehicle!</p>
+                </div>
+                <div className="tile box section container-center vehicle-style">
+                    <form id="vehicleForm ">
+                        <DropDown handleSelect={this.handleSelect} id="type" value={this.state.type} options={makeOptions} />
+
+                        <FormInput handleInputChange={this.handleInputChange}
+                            id="make" value={this.state.make} placeholder="Make" type="text">Make:
+                                    </FormInput>
+
+                        <FormInput handleInputChange={this.handleInputChange}
+                            id="model" value={this.state.model} placeholder="Model" type="text">Model
+                                    </FormInput>
+
+                        <FormInput handleInputChange={this.handleInputChange}
+                            id="year" value={this.state.year} placeholder="Year" type="text">Year
+                                    </FormInput>
+
+                        <FormInput handleInputChange={this.handleInputChange}
+                            id="vin" value={this.state.vin} placeholder="Vin" type="text">Vin:
+                                    </FormInput>
+
+                        <FormInput handleInputChange={this.handleInputChange}
+                            id="mileage" value={this.state.mileage} placeholder="Mileage" type="text">Mileage:
+                                    </FormInput>
+
+                        <FormInput handleInputChange={this.handleInputChange}
+                            id="yearPurchased" value={this.state.yearPurchased} placeholder="Purchased Year" type="text">Purchased Year:
+                                    </FormInput>
+                        <DropDown handleSelect={this.handleSelect} id="condition" value={this.state.type} options={conditionOptions} />
+
+                        <FormInput handleInputChange={this.handleInputChange}
+                            id="accidents" value={this.state.accidents} placeholder="Number of Accidents" type="text">Number of Accidents:
+                                    </FormInput>
+
+                        <FormInput handleInputChange={this.handleInputChange}
+                            id="numOfOwners" value={this.state.numOfOwners} placeholder="Number of Previous Owners" type="text">Number of Previous Owners:
+                                    </FormInput>
+
+                        <FormInput handleInputChange={this.handleInputChange}
+                            id="locationLastOwned" value={this.state.locationLastOwned} placeholder="Location Last Owned" type="text">Location Last Owned:
+                                    </FormInput>
+                        <FormInputButton handleFormSubmit={this.handleFormSubmit}>Add Vehicle</FormInputButton>
+                    </form>
+                </div >
+            </div >
+        );
+    }
+}
 export default Vehicles;

@@ -8,12 +8,6 @@ router.get("/members", isAuthenticated, (req, res) => {
   res.render("members");
 });
 
-// Logs the user out
-router.get("/logout", (req, res) => {
-  req.logout();
-  res.redirect("/");
-});
-
 // Route for getting some data about our user to be used client side
 router.get("/api/user_data", (req, res) => {
   if (!req.user) {

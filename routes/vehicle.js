@@ -52,6 +52,7 @@ router.get("/vehicleid/:id", (req, res) => {
 
 // POST route for saving a new post
 router.post("/api/postVehicle", (req, res) => {
+  console.log(req.body.id)
   db.Vehicle.create({
     type: req.body.type,
     make: req.body.make,
@@ -64,11 +65,15 @@ router.post("/api/postVehicle", (req, res) => {
     accidents: req.body.accidents,
     numOfOwners: req.body.numOfOwners,
     locationLastOwned: req.body.locationLastOwned,
-    UserId: req.user.id
+    UserId: req.body.UserId
   }).then(dbPost => {
     console.log("Posting Vehicle");
     res.json(dbPost);
-  });
+  })
+    .catch(err => {
+      console.log(err)
+      res.status(401)
+    });
 });
 
 // DELETE route for deleting posts

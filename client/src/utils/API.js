@@ -63,6 +63,9 @@ export default {
     allVehicles: function (req) {
         // let url = "/vehiclefind/" + id
         return (sampleData);
+    },
+    newVehicle: function (data) {
+        return axios.post(serverUrl + "/api/postVehicle", data)
     }
 }
 
