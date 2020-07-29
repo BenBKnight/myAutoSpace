@@ -3,7 +3,7 @@ import React from "react";
 export default function DropDown(props) {
     return (
         <div className="container">
-            <label htmlFor="yearPurchased">Vehicle Condition:</label>
+            <label htmlFor="yearPurchased">{props.title}</label>
             <br />
             <div className="select" onChange={props.handleSelect}>
                 <select id={props.id}>

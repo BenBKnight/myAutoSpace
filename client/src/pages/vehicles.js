@@ -67,15 +67,12 @@ class Vehicles extends Component {
         return (
             <div className="container-center-col">
                 <br />
-                <Card>
-                    <Header
-                        className={"tile box mt-5 has-text-centered container-center vehicle-style"}
-                        value={"Add Your Vehicle"} />
+                <Card title={"Add Your Vehicle"}>
                 </Card>
                 <br />
                 <Card>
                     <form id="vehicleForm ">
-                        <DropDown handleSelect={this.handleSelect} id="type" value={this.state.type} options={makeOptions} />
+                        <DropDown handleSelect={this.handleSelect} title={"Vehicle Type:"} id="type" value={this.state.type} options={makeOptions} />
 
                         <FormInput handleInputChange={this.handleInputChange}
                             id="make" value={this.state.make} placeholder="Make" type="text">Make:
@@ -100,7 +97,7 @@ class Vehicles extends Component {
                         <FormInput handleInputChange={this.handleInputChange}
                             id="yearPurchased" value={this.state.yearPurchased} placeholder="Purchased Year" type="text">Purchased Year:
                                     </FormInput>
-                        <DropDown handleSelect={this.handleSelect} id="condition" value={this.state.type} options={conditionOptions} />
+                        <DropDown handleSelect={this.handleSelect} title={"Vehicle Condition:"} id="condition" value={this.state.type} options={conditionOptions} />
 
                         <FormInput handleInputChange={this.handleInputChange}
                             id="accidents" value={this.state.accidents} placeholder="Number of Accidents" type="text">Number of Accidents:

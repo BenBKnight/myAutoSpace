@@ -1,7 +1,14 @@
 import React from "react";
+import { Link, Route } from "react-router-dom";
+import Card from "../components/card";
+import InformationDisplay from "../components/informationDisplay";
+import Ancestor from "../components/ancestor";
+import Table from "../components/table";
+import Subtitle from "../components/subtitle";
 
 function VehicleDisplay() {
-
+    let maintRecordHeaders = ["Job", "Mileage", "Date", "Link"];
+    let carMdHeaders = ["Description", "Mileage", "More Information", "Complete"]
 
     // async function getVehicle() {
     //     const url = window.location.href.split("/");
@@ -139,138 +146,86 @@ function VehicleDisplay() {
     return (
         <div>
             <br />
+            <Ancestor>
+                <div>
+                    <Card title={"Picture"}>
+                        <br />
+                        <figure id="vehiclePic" className="image is-4by3">
+
+                        </figure>
+                    </Card>
+                    <br />
+                    <Card title={"Overview"}>
+                        <InformationDisplay className={"subtitle"} label={"Type: "} value={"placeholder"} />
+                        <InformationDisplay className={"subtitle"} label={"Make: "} value={"placeholder"} />
+                        <InformationDisplay className={"subtitle"} label={"Model: "} value={"placeholder"} />
+                        <InformationDisplay className={"subtitle"} label={"Year: "} value={"placeholder"} />
+                        <InformationDisplay className={"subtitle"} label={"Mileage: "} value={"placeholder"} />
+                        <InformationDisplay className={"subtitle"} label={"Vin: "} value={"placeholder"} />
+                    </Card>
+                    <br />
+                    <Card title={"Title Information"}>
+                        <InformationDisplay className={"subtitle Bold"} label={"Owner: "} value={"placeholder"} />
+                        <InformationDisplay className={"subtitle Bold"} label={"Year Purchased: "} value={"placeholder"} />
+                    </Card>
+                    <br />
+                    <Card title={"Quick Links"}>
+                        <hr />
+                        {/* I don't know how to make quick links using react
+                        <Link to="#currentCondition" innerRef={}>Current Condition of Vehicle</Link>
+                                <Link to="#historyOfVehicle" >History of Vehicle</Link>
+                                <Link to="#MaintenanceRecord" >Maintenance Record</Link>
+                                <Link to="#AddNewMaintenance" >Add New Maintenance</Link>
+                                <Link to="#CarMD" >CarMD</Link> */}
+                        <p className="subtitle"><a href="#currentCondition" title="currentCondition">Current Condition of Vehicle</a></p>
+                        <p className="subtitle"><a href="#historyOfVehicle" title="historyOfVehicle">History of Vehicle</a></p>
+                        <p className="subtitle"><a href="#MaintenanceRecord" title="MaintenanceRecord">Maintenance Record</a></p>
+                        <p className="subtitle"><a href="#AddNewMaintenance" title="AddNewMaintenance">Add New Maintenance</a></p>
+                        <p className="subtitle"><a href="#CarMD" title="CarMD">CarMD</a></p>
+                    </Card>
+                    <br />
+                </div>
+            </Ancestor>
             <br />
-            <div className="tile is-ancestor">
-                <div className="tile is-vertical is-8">
-                    <div className="tile">
-                        <div className="tile is-parent">
-                            <article className="tile is-child box">
-                                <br />
-                                <br />
-                                <br />
-                                <figure id="vehiclePic" className="image is-4by3">
-                                </figure>
-                            </article>
-                        </div>
-                        <div className="tile is-parent is-vertical">
-                            <article className="tile is-child box">
-                                <p className="title has-text-centered">Overview</p>
-                                <hr />
-                                <p className="subtitle"><span className="bold">Type: </span><span id="vehicleType"></span></p>
-                                <p className="subtitle"><span className="bold">Make: </span><span id="vehicleMake"></span></p>
-                                <p className="subtitle"><span className="bold">Model: </span><span id="vehicleModel"></span></p>
-                                <p className="subtitle"><span className="bold">Year: </span><span id="vehicleYear"></span></p>
-                                <p className="subtitle"><span className="bold">Mileage: </span><span id="vehicleMileage"></span></p>
-                                <p className="subtitle"><span className="bold">Vin: </span><span id="vehicleVin"></span></p>
-                            </article>
-                            <article className="tile is-child box">
-                                <p className="title has-text-centered">Title Information</p>
-                                <hr />
-                                <p className="subtitle"><span className="bold">Owner: </span><span id="owner"></span><span className="bold"> </span><span id="lastName"></span></p>
-                                <p className="subtitle"><span className="bold">Year Purchased: </span><span id="yearPurchased"></span></p>
-                                <p className="subtitle"></p>
-                            </article>
-                        </div>
-                    </div>
-                </div>
-                <div className="tile is-parent">
-                    <article className="tile is-child box">
-                        <div className="content">
-                            <p className="title has-text-centered">Quick Links</p>
-                            <hr />
-                            <p className="subtitle"><a href="#currentCondition" title="currentCondition">Current Condition of Vehicle</a></p>
-                            <p className="subtitle"><a href="#historyOfVehicle" title="historyOfVehicle">History of Vehicle</a></p>
-                            <p className="subtitle"><a href="#MaintenanceRecord" title="MaintenanceRecord">Maintenance Record</a></p>
-                            <p className="subtitle"><a href="#AddNewMaintenance" title="AddNewMaintenance">Add New Maintenance</a></p>
-                            <p className="subtitle"><a href="#CarMD" title="CarMD">CarMD</a></p>
-                        </div>
-                    </article>
-                </div>
-            </div >
-
-            <div className="tile is-ancestor">
-                <div className="tile is-parent">
-                    <article className="tile is-child box">
-                        <p id="currentCondition" className="title has-text-centered">Current Condition</p>
-                        <hr />
-                        <div className="content">
-                            <p className="subtitle"><span className="bold">Status: </span><span id="condition"></span></p>
-                            <p className="subtitle"><span id="carCondition"></span></p>
-                        </div>
-                    </article>
-                </div>
-                <div className="tile is-parent is-8">
-                    <article className="tile is-child box">
-                        <p id="historyOfVehicle" className="title has-text-centered">Vehicle History</p>
-                        <hr />
-                        <div className="content">
-                            <p className="subtitle"><span className="bold">Number of Accidents: </span><span id="accidents"></span></p>
-                            <p className="subtitle"><span className="bold">Number of Previous Owners: </span><span id="numOfOwners"></span></p>
-                            <p><span className="bold">Service History Reports: </span><span id="totalMaintenance"></span></p>
-                            <p><span className="bold">Type: Personal Vehicle</span></p>
-                            <p className="subtitle"><span className="bold">Location Last Owned: </span><span id="locationLastOwned"></span></p>
-                        </div>
-                    </article>
-                </div>
-            </div>
-
-            <div className="tile is-ancestor">
-                <div className="tile is-parent">
-                    <article className="tile is-child box">
-                        <p id="AddNewMaintenance" className="title has-text-centered">Add New Maintenance</p>
-                        <hr />
-                        <p className="subtitle has-text-centered">Have you made imporvements to your vehicle?</p>
-                        <div className="content has-text-centered">
-                            <button id="newCarMaintenance" className="button is-info">Add New Maintenance</button>
-                        </div>
-                    </article>
-                </div>
-                <div className="tile is-parent is-8">
-                    <article className="tile is-child box">
-                        <p id="MaintenanceRecord" className="title has-text-centered">Maintenance Record</p>
-                        <hr />
-                        <div className="content">
-                            <table className="table">
-                                <thead>
-                                    <tr>
-                                        <th>Job</th>
-                                        <th><abbr title="Mileage">Mileage</abbr></th>
-                                        <th><abbr title="Date">Date</abbr></th>
-                                        <th>Link to More Information</th>
-                                    </tr>
-                                    <tbody id="tableBody">
-
-                                    </tbody>
-                                </thead>
-                            </table>
-                        </div >
-                    </article >
-                </div >
-            </div >
-
-
-
-            <div className="tile is-parent is-12">
-                <article className="tile is-child box">
-                    <p id="CarMD" className="title has-text-centered">CarMd</p>
-                    <p className="subtitle has-text-centered">Suggested Maintenance</p>
+            <Ancestor>
+                <Card title={"Current Condition"} id="currentCondition">
+                    <InformationDisplay className={"subtitle Bold"} label={"Status: "} value={"placeholder"} />
+                </Card>
+                <br />
+                <Card title={"Vehicle History"} id="historyOfVehicle">
+                    <InformationDisplay className={"subtitle Bold"} label={"Number of Accidents: "} value={"placeholder"} />
+                    <InformationDisplay className={"subtitle Bold"} label={"Number of Previous Owners: "} value={"placeholder"} />
+                    <InformationDisplay className={"subtitle Bold"} label={"Service Hisotry: "} value={"placeholder"} />
+                    <InformationDisplay className={"subtitle Bold"} label={"Type: "} value={"placeholder"} />
+                    <InformationDisplay className={"subtitle Bold"} label={"Location Last Owned: "} value={"placeholder"} />
+                </Card>
+            </Ancestor>
+            <br />
+            <Ancestor>
+                <Card title={"Add New Maintenance"} id={"AddNewMaintenance"}>
                     <hr />
-                    <div className="content">
-                        <table className="table">
-                            <thead>
-                                <tr>
-                                    <th><abbr title="Description">Description</abbr></th>
-                                    <th><abbr title="Mileage">Mileage</abbr></th>
-                                    <th><abbr title="Info">More Information</abbr></th>
-                                    <th><abbr title="Completion">Already Done?</abbr></th>
-                                </tr>
-                                <tbody id="tableBodyCarMD">
-                                </tbody>
-                            </thead>
-                        </table>
-                    </div>
-                </article>
-            </div >
+                    <InformationDisplay className={"subtitle Bold"} label={"Have you made imporvements to your vehicle?"} />
+                    <button><Link to={location => ({ ...location, pathname: "/NewMaintenance" })} /></button>
+                </Card>
+                <br />
+                <Card title={"Maintenance Record"} id={"MaintenanceRecord"}>
+                    <hr />
+                    <Table headers={maintRecordHeaders}>
+
+                    </Table>
+                </Card>
+
+
+            </Ancestor>
+            <br />
+            <Ancestor>
+                <Card title={"CarMd"} id="CarMD">
+                    <Subtitle className={"subtitle"} value={"Suggested Maintenance"} />
+                    <Table headers={carMdHeaders}>
+
+                    </Table>
+                </Card>
+            </Ancestor>
         </div >
     );
 }

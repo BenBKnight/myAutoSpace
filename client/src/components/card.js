@@ -2,7 +2,7 @@ import React from "react";
 
 function Card(props) {
     return (
-        <div >
+        <div id={props.id}>
             <div className="is-parent box vehicle-style">
                 <div className="container">
                     <h2 className="title is-underlined">
