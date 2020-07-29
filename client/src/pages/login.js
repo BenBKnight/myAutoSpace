@@ -4,6 +4,9 @@ import FormInput from "../components/formInput";
 import FormInputButton from "../components/FormInputButton";
 // import { Link, withRouter } from "react-router-dom";
 import Card from "../components/card";
+import Header from "../components/header";
+import Subtitle from "../components/subtitle";
+
 class Login extends Component {
     state = {
         email: "",
@@ -53,34 +56,30 @@ class Login extends Component {
     render() {
         return (
             <div>
-                <div className="hero text-center">
-                    <h1>Login Page</h1>
-                </div>
-
-                <div className="section has-text-centered is-parent is-vertical container-center-col">
-                    <div className="container is-child box is-12">
-                        <p className="title">
-                            Welcome to CarFacts!</p>
-                        <p>CarFacts is your all-in-one app to track all maintenance and modifications done to your vehicle.</p>
-                        <br />
-                        <p>If this is your first time here, click sign up and add your first vehicle!</p>
-                        <br />
-                        <br />
-
-                        {/* <div className="is-parent box vehicle-style">
-                            <div className="container">
-                                <h2 className="title is-underlined">Login Form</h2> */}
-                        <Card title="Login Page">
-                            <form className="login">
-                                <FormInput handleInputChange={this.handleInputChange} value={this.state.email} htmlFor="exampleInputEmail1" id="emailInput" placeholder="User@email.com" type="email">Email address:</FormInput>
-                                <FormInput handleInputChange={this.handleInputChange} value={this.state.password} htmlFor="exampleInputEmail1" id="passwordInput" placeholder="Password" type="password">Password</FormInput>
-                                {/* <Link to="/Members"> */}
-                                <FormInputButton handleFormSubmit={this.handleFormSubmit}>Login</FormInputButton>
-                                {/* </Link> */}
-                            </form>
-                        </Card>
-                    </div>
-                </div>
+                <br />
+                <Card>
+                    <Header className={"hero text-center"} value={"Login Page"} />
+                </Card>
+                <br />
+                <Card>
+                    <Header value={"Welcome to CarFacts!"} className={"title"} />
+                    <br />
+                    <Subtitle value={"CarFacts is your all-in-one app to track all maintenance and modifications done to your vehicle."}
+                        className={"subtitle"} />
+                    <Subtitle value={"If this is your first time here, click sign up and add your first vehicle!"}
+                        className={"subtitle"} />
+                </Card>
+                <br />
+                <br />
+                <Card title="Login Page">
+                    <form className="login">
+                        <FormInput handleInputChange={this.handleInputChange} value={this.state.email} htmlFor="exampleInputEmail1" id="emailInput" placeholder="User@email.com" type="email">Email address:</FormInput>
+                        <FormInput handleInputChange={this.handleInputChange} value={this.state.password} htmlFor="exampleInputEmail1" id="passwordInput" placeholder="Password" type="password">Password</FormInput>
+                        {/* <Link to="/Members"> */}
+                        <FormInputButton handleFormSubmit={this.handleFormSubmit}>Login</FormInputButton>
+                        {/* </Link> */}
+                    </form>
+                </Card>
             </div>
         );
     }

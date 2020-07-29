@@ -4,6 +4,8 @@ import DropDown from "../components/dropDown";
 import FormInputButton from "../components/FormInputButton";
 import API from "../utils/API";
 import { UserContext } from "../utils/userContext";
+import Card from "../components/card";
+import Header from "../components/header";
 
 class Vehicles extends Component {
     state = {
@@ -64,10 +66,14 @@ class Vehicles extends Component {
 
         return (
             <div className="container-center-col">
-                <div className="tile box mt-5 has-text-centered container-center vehicle-style">
-                    <p className="title is-1 level-item has-text-centered">Add Your Vehicle!</p>
-                </div>
-                <div className="tile box section container-center vehicle-style">
+                <br />
+                <Card>
+                    <Header
+                        className={"tile box mt-5 has-text-centered container-center vehicle-style"}
+                        value={"Add Your Vehicle"} />
+                </Card>
+                <br />
+                <Card>
                     <form id="vehicleForm ">
                         <DropDown handleSelect={this.handleSelect} id="type" value={this.state.type} options={makeOptions} />
 
@@ -109,8 +115,8 @@ class Vehicles extends Component {
                                     </FormInput>
                         <FormInputButton handleFormSubmit={this.handleFormSubmit}>Add Vehicle</FormInputButton>
                     </form>
-                </div >
-            </div >
+                </Card>
+            </div>
         );
     }
 }

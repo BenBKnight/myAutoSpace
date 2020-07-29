@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import FormInput from "../components/formInput";
 import FormInputButton from "../components/FormInputButton";
 import API from "../utils/API";
+import Card from "../components/card";
+import Header from "../components/header";
 
 class Signup extends Component {
     state = {
@@ -57,23 +59,22 @@ class Signup extends Component {
 
     render() {
         return (
-            <div className="section loginInput is-parent is-vertical vehicle-style m-auto" >
-                <div className="box">
-                    <div className="container form-group">
-                        <h2 className="title">Sign Up Form</h2>
-                        <form className="signup">
-                            <FormInput handleInputChange={this.handleInputChange} value={this.state.email} id="email" htmlFor="exampleInputEmail1" placeholder="User@email.com" type="email">Email address:</FormInput>
-                            <FormInput handleInputChange={this.handleInputChange} value={this.state.password} id="password" htmlFor="exampleInputEmail1" placeholder="Password" type="password">Password</FormInput>
-                            <FormInput handleInputChange={this.handleInputChange} value={this.state.firstName} id="firstName" htmlFor="exampleInputEmail1" placeholder="First Name" type="firstName"></FormInput>
-                            <FormInput handleInputChange={this.handleInputChange} value={this.state.lastName} id="lastName" htmlFor="exampleInputEmail1" placeholder="Last Name" type="lastName"></FormInput>
-                            <FormInput handleInputChange={this.handleInputChange} value={this.state.location} id="location" htmlFor="exampleInputEmail1" placeholder="Location" type="location"></FormInput>
-                            <FormInputButton handleFormSubmit={this.handleFormSubmit}>Sign Up</FormInputButton>
-                        </form>
-                        <br />
-                        <br />
-                        <br />
-                    </div>
-                </div>
+            <div>
+                <Card>
+                    <Header className={"title"} value={"Sign up form"} />
+                </Card>
+                <br />
+                <Card>
+                    <form className="signup">
+                        <FormInput handleInputChange={this.handleInputChange} value={this.state.email} id="email" htmlFor="exampleInputEmail1" placeholder="User@email.com" type="email">Email address:</FormInput>
+                        <FormInput handleInputChange={this.handleInputChange} value={this.state.password} id="password" htmlFor="exampleInputEmail1" placeholder="Password" type="password">Password</FormInput>
+                        <FormInput handleInputChange={this.handleInputChange} value={this.state.firstName} id="firstName" htmlFor="exampleInputEmail1" placeholder="First Name" type="firstName"></FormInput>
+                        <FormInput handleInputChange={this.handleInputChange} value={this.state.lastName} id="lastName" htmlFor="exampleInputEmail1" placeholder="Last Name" type="lastName"></FormInput>
+                        <FormInput handleInputChange={this.handleInputChange} value={this.state.location} id="location" htmlFor="exampleInputEmail1" placeholder="Location" type="location"></FormInput>
+                        <FormInputButton handleFormSubmit={this.handleFormSubmit}>Sign Up</FormInputButton>
+                    </form>
+                </Card>
+
             </div>
         );
     }

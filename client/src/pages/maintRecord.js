@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import FormInput from "../components/formInput";
 import FormInputButton from "../components/FormInputButton";
 import API from "../utils/API";
+import Card from "../components/card";
+import Header from "../components/header";
 
 class MaintRecord extends Component {
     state = {
@@ -40,31 +42,38 @@ class MaintRecord extends Component {
     render() {
         return (
             <div>
-                <div className="tile box mt-4 ml-4 mr-4 maint-tile is-vertical">
+                <br />
+                <Card>
+                    <Header
+                        value={"Add Maintenance"} />
+                </Card>
+                <br />
+                <Card>
                     <form id="maint-form">
 
                         <FormInput handleInputChange={this.handleInputChange}
                             id="name" value={this.state.job} placeholder="Job" type="text">Job
-                                    </FormInput>
+                        </FormInput>
 
                         <FormInput handleInputChange={this.handleInputChange}
                             id="jobDate" value={this.state.jobDate} placeholder="Job Date" type="text">Job Date
-                                    </FormInput>
+                        </FormInput>
 
                         <FormInput handleInputChange={this.handleInputChange}
                             id="milage" value={this.state.milage} placeholder="Vehicle Milage" type="text">Vehicle Milage:
-                                    </FormInput>
+                         </FormInput>
 
                         <FormInput handleInputChange={this.handleInputChange}
                             id="description" value={this.state.description} placeholder="Description" type="text">Description:
-                                    </FormInput>
+                        </FormInput>
 
                         <FormInput handleInputChange={this.handleInputChange}
                             id="parts" value={this.state.parts} placeholder="Parts" type="text">Parts:
-                                    </FormInput>
+                        </FormInput>
                         <FormInputButton handleFormSubmit={this.handleFormSubmit}>Add Maintenance</FormInputButton>
                     </form>
-                </div>
+                </Card>
+
             </div>
         );
     }

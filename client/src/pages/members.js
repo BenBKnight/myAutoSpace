@@ -6,7 +6,9 @@ import {
     Link
 } from "react-router-dom";
 import { UserContext } from "../utils/userContext";
-
+import Card from "../components/card";
+import Header from "../components/header";
+import Subtitle from "../components/subtitle";
 
 
 class Members extends Component {
@@ -49,31 +51,32 @@ class Members extends Component {
     render() {
         return (
             <div>
-                <div className="container-center-col">
-                    <div className="tile box mt-5 has-text-centered container-center vehicle-style">
-                        <h2 className="title">Welcome <span className="title member-name"></span>!</h2>
+                <br />
+                <Card>
+                    <Header
+                        className={"tile box mt-5 has-text-centered container-center vehicle-style"}
+                        value={"Welcome"} />
+                </Card>
+                <br />
+
+                <Card>
+                    <Subtitle className={"subtitle label"} value={"Your Vehicles"} />
+
+
+                    <div className="section">
+                        {this.state.vehicle.map(vehicles => (
+                            <span key={vehicles.id}>
+                                <Vehicles
+                                    vehicle={vehicles}
+                                />
+                            </span>
+                        ))}
+
                     </div>
-
-                    <div className="tile box has-text-centered container-center vehicle-style">
-                        <div className="is-child">
-                            <h2 className="subtitle label">Your Vehicles:</h2>
-
-                            <div className="section">
-                                {this.state.vehicle.map(vehicles => (
-                                    <span key={vehicles.id}>
-                                        <Vehicles
-                                            vehicle={vehicles}
-                                        />
-                                    </span>
-                                ))}
-
-                            </div>
-                            <Router>
-                                <Link to="/vehicles" />
-                            </Router>
-                        </div>
-                    </div>
-                </div>
+                </Card>
+                <Router>
+                    <Link to="/vehicles" />
+                </Router>
             </div>
         );
     }
