@@ -1,6 +1,41 @@
-import React from "react";
+import React, { Component } from "react";
+import FormInput from "../components/formInput";
+import FormInputButton from "../components/FormInputButton";
 
-function MaintRecord() {
+
+class MaintRecord extends Component {
+    state = {
+        name: "",
+        description: "",
+        milage: "",
+        parts: "",
+        jobDate: "",
+        VehicleId: ""
+    };
+    handleInputChange = event => {
+        // Getting the value and name of the input which triggered the change
+        let value = event.target.value;
+        const name = event.target.id;
+        console.log(value, name)
+        this.setState({
+            [name]: value
+        });
+        console.log(this.state)
+        // if (!this.state.email || !this.state.password) {
+        //     return;
+        // }
+    };
+    // handleFormSubmit = (e) => {
+    //     e.preventDefault();
+    //     let vehicleNew = this.state;
+    //     API.newVehicle(vehicleNew)
+    //         .then((res) => {
+    //             console.log("api returned", res);
+    //         })
+    //         .catch(err => {
+    //             console.log(err);
+    //         })
+    // };
     // const id = window.location.href.split("/");
 
     // // id[id.length - 1];
@@ -21,18 +56,36 @@ function MaintRecord() {
     //         .catch(err => console.log(err));
     // });
 
+    render() {
+        return (
+            <div>
+                <div className="tile box mt-4 ml-4 mr-4 maint-tile is-vertical">
+                    <form id="maint-form">
 
-    return (
-        <div>
-            <div className="tile box mt-4 ml-4 mr-4 maint-tile is-vertical">
-                <p className="title has-text-dark is-1" id="jobName">Job: </p>
-                <p className="title has-text-dark is-4" id="jobDate">Date of Maintenance: </p>
-                <p className="title has-text-dark is-6" id="milage">Vehicle Milage: </p>
-                <p className="" id="description">Description: </p>
-                <p className="pt-1" id="parts">Parts: </p>
+                        <FormInput handleInputChange={this.handleInputChange}
+                            id="name" value={this.state.job} placeholder="Job" type="text">Job
+                                    </FormInput>
+
+                        <FormInput handleInputChange={this.handleInputChange}
+                            id="jobDate" value={this.state.jobDate} placeholder="Job Date" type="text">Job Date
+                                    </FormInput>
+
+                        <FormInput handleInputChange={this.handleInputChange}
+                            id="milage" value={this.state.milage} placeholder="Vehicle Milage" type="text">Vehicle Milage:
+                                    </FormInput>
+
+                        <FormInput handleInputChange={this.handleInputChange}
+                            id="description" value={this.state.description} placeholder="Description" type="text">Description:
+                                    </FormInput>
+
+                        <FormInput handleInputChange={this.handleInputChange}
+                            id="parts" value={this.state.parts} placeholder="Parts" type="text">Parts:
+                                    </FormInput>
+                        <FormInputButton handleFormSubmit={this.handleFormSubmit}>Add Maintenance</FormInputButton>
+                    </form>
+                </div>
             </div>
-        </div>
-    );
+        );
+    }
 }
-
 export default MaintRecord;

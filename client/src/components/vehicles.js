@@ -6,8 +6,6 @@ import {
 
 function Vehicles(props) {
     let vehicleLink = "/vehicles/" + props.vehicle.id
-    console.log(props.vehicle.id)
-    // let path = "/vehicles/" + props.vehicles.id;
     return (
         <div>
             <p>
