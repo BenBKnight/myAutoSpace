@@ -1,52 +1,88 @@
-import React from "react";
+import React, { Component } from "react";
+import API from "../utils/API";
+import FormInput from "../components/formInput/formInput";
+import FormInputButton from "../components/formInputButton/FormInputButton";
+// import { Link, withRouter } from "react-router-dom";
+import Card from "../components/card/card";
+import Header from "../components/header/header";
+import Subtitle from "../components/subtitle/subtitle";
 
-function Login() {
+class Login extends Component {
+    state = {
+        email: "",
+        password: "",
+        id: ""
+    };
 
-    // Java Script  <script type="text/javascript" src="js/login.js"></script>
+    handleFormSubmit = (e) => {
+        e.preventDefault();
 
-    return (
-        <div>
-            <div className="hero text-center">
-                <h1>Login Page</h1>
+        let user = {
+            email: this.state.email.trim(),
+            password: this.state.password.trim()
+        }
+        if (!this.state.email || !this.state.password) {
+            return;
+        }
+        // use withRouter here READ: LINK & WITHROUTER & react router docs
+        API.loginUser(user)
+            .then((res) => {
+                console.log("api returned", res);
+                this.setState({
+                    email: res.data.email,
+                    id: res.data.id
+                })
+            })
+            .catch(err => {
+                console.log(err);
+            })
+    };
+
+    handleInputChange = event => {
+        // Getting the value and name of the input which triggered the change
+        let value = event.target.value;
+        const name = event.target.type;
+
+        if (name === "password") {
+            value = value.substring(0, 15);
+        }
+        // Updating the input's state
+        this.setState({
+            [name]: value
+        }); if (!this.state.email || !this.state.password) {
+            return;
+        }
+    };
+
+    render() {
+        return (
+            <div>
+                <br />
+                <Card>
+                    <Header className={"hero text-center"} value={"Login Page"} />
+                </Card>
+                <br />
+                <Card>
+                    <Header value={"Welcome to CarFacts!"} className={"title"} />
+                    <br />
+                    <Subtitle value={"CarFacts is your all-in-one app to track all maintenance and modifications done to your vehicle."}
+                        className={"subtitle"} />
+                    <Subtitle value={"If this is your first time here, click sign up and add your first vehicle!"}
+                        className={"subtitle"} />
+                </Card>
+                <br />
+                <br />
+                <Card title="Login Page">
+                    <form className="login">
+                        <FormInput className={"style"} handleInputChange={this.handleInputChange} value={this.state.email} htmlFor="exampleInputEmail1" id="emailInput" placeholder="User@email.com" type="email">Email address:</FormInput>
+                        <FormInput handleInputChange={this.handleInputChange} value={this.state.password} htmlFor="exampleInputEmail1" id="passwordInput" placeholder="Password" type="password">Password</FormInput>
+                        {/* <Link to="/Members"> */}
+                        <FormInputButton handleFormSubmit={this.handleFormSubmit}>Login</FormInputButton>
+                        {/* </Link> */}
+                    </form>
+                </Card>
             </div>
-
-            <div className="section has-text-centered is-parent is-vertical container-center-col">
-                <div className="container is-child box is-12">
-                    <p className="title">
-                        Welcome to CarFacts!</p>
-                    <p>CarFacts is your all-in-one app to track all maintenance and modifications done to your vehicle.</p>
-                    <br />
-                    <p>If this is your first time here, click sign up and add your first vehicle!</p>
-                    <br />
-                    <br />
-                    <div className="is-parent box vehicle-style">
-                        <div className="container ">
-                            <h2 className="title is-underlined">Login Form</h2>
-                            <form className="login">
-                                <div className="field form-group">
-                                    <label className="label" for="exampleInputEmail1">Email address:</label>
-                                    <input type="email" className="input form-control" id="email-input" placeholder="User@email.com" />
-                                </div>
-
-                                <div className="container form-group">
-                                    <label className="label" for="exampleInputPassword1">Password</label>
-                                    <input type="password" className="input loginInput form-control" id="password-input" placeholder="Password" />
-                                </div>
-
-                                <div className="container">
-                                    <div>
-                                        <button type="submit" className="button loginInput btn btn-default">Login</button>
-                                    </div>
-
-                                </div>
-
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    );
+        );
+    }
 }
-
 export default Login;

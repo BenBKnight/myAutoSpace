@@ -1,26 +1,78 @@
-import React from "react";
+import React, { Component } from "react";
+import API from "../utils/API";
+import Vehicles from "../components/vehicles/vehicles";
+import {
+    BrowserRouter as Router,
+    Link
+} from "react-router-dom";
+import Card from "../components/card/card";
+import Header from "../components/header/header";
+import Subtitle from "../components/subtitle/subtitle";
 
-function Members() {
-    return (
-        <div>
-            <div class="container-center-col">
 
+class Members extends Component {
+    state = {
+        userId: 2,
+        vehicle: []
+    }
 
-                <div class="tile box mt-5 has-text-centered container-center vehicle-style">
-                    <h2 class="title">Welcome <span class="title member-name"></span>!</h2>
-                </div>
+    componentDidMount() {
+        API.userData()
+            .then((res) => {
+                // Need Session to be working, I think
+                //     this.setState({
+                //         userId: res.data.id
+                //     })
+                //         .then(() => {
+                //             let id = this.state.userId
+                //             this.getVehicles(id)
+                //         })
+            })
+            .catch(err => {
+                console.log(err)
+            })
 
-                <div class="tile box has-text-centered container-center vehicle-style">
-                    <div class="is-child">
-                        <h2 class="subtitle label">Your Vehicles:</h2>
-                        <div class="section loginInput" id="vehicleDisplay">
-                        </div>
-                        <button id="vehicleButton" class="button is-link">Add New Vehicle!</button>
+    }
+    getVehicles() {
+        API.allVehicles(this.state.userId)
+            .then((res) => {
+                console.log("api returned for members", res.data);
+                this.setState({
+                    vehicle: res.data
+                }
+                )
+            })
+            .catch(err => {
+                console.log(err);
+            })
+    }
+    render() {
+        return (
+            <div>
+                <br />
+                <Card>
+                    <Header
+                        className={"tile box mt-5 has-text-centered container-center vehicle-style"}
+                        value={"Welcome"} />
+                </Card>
+                <br />
+                <Card>
+                    <Subtitle className={"subtitle label"} value={"Your Vehicles"} />
+                    <div className="section">
+                        {this.state.vehicle.map(vehicles => (
+                            <span key={vehicles.id}>
+                                <Vehicles
+                                    vehicle={vehicles}
+                                />
+                            </span>
+                        ))}
                     </div>
-                </div>
+                </Card>
+                <Router>
+                    <Link to="/vehicles" />
+                </Router>
             </div>
-        </div>
-    );
+        );
+    }
 }
-
 export default Members;
