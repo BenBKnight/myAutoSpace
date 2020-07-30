@@ -24,7 +24,6 @@ class VehicleDisplay extends Component {
                 this.setState({
                     vehicle: res.data[0]
                 })
-                console.log(this.state.vehicle)
             })
             .catch(err => {
                 console.log(err)
@@ -77,6 +76,7 @@ class VehicleDisplay extends Component {
 
         let maintRecordHeaders = ["Job", "Mileage", "Date", "Link"];
         let carMdHeaders = ["Description", "Mileage", "More Information", "Complete"]
+
         return (
             <div>
                 <br />

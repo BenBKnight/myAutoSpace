@@ -27,7 +27,6 @@ class Login extends Component {
         // use withRouter here READ: LINK & WITHROUTER & react router docs
         API.loginUser(user)
             .then((res) => {
-                console.log("api returned", res);
                 this.setState({
                     email: res.data.email,
                     id: res.data.id

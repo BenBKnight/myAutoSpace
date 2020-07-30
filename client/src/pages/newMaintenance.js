@@ -26,7 +26,6 @@ class NewMaintenance extends Component {
         let value = event.target.value;
         const name = event.target.id;
         this.setState({
-            // [name]: value
             maintToAdd: {
                 ...this.state.maintToAdd,
                 [name]: value

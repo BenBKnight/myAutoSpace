@@ -27,7 +27,6 @@ class Vehicles extends Component {
         this.setState({
             [name]: value
         });
-        console.log(this.state)
         // if (!this.state.email || !this.state.password) {
         //     return;
         // }
@@ -40,7 +39,6 @@ class Vehicles extends Component {
         this.setState({
             [name]: value
         });
-        console.log(this.state)
         // if (!this.state.email || !this.state.password) {
         //     return;
         // }

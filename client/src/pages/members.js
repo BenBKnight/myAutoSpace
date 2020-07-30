@@ -20,13 +20,13 @@ class Members extends Component {
         API.userData()
             .then((res) => {
                 // Need Session to be working, I think
-                //     this.setState({
-                //         userId: res.data.id
-                //     })
-                //         .then(() => {
-                //             let id = this.state.userId
-                //             this.getVehicles(id)
-                //         })
+                this.setState({
+                    userId: res.data.id
+                })
+                // .then(() => {
+                //     let id = this.state.userId
+                //     this.getVehicles(id)
+                // })
             })
             .catch(err => {
                 console.log(err)
