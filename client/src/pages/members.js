@@ -1,14 +1,13 @@
-import React, { Component, useContext } from "react";
+import React, { Component } from "react";
 import API from "../utils/API";
-import Vehicles from "../components/vehicles";
+import Vehicles from "../components/vehicles/vehicles";
 import {
     BrowserRouter as Router,
     Link
 } from "react-router-dom";
-import { UserContext } from "../utils/userContext";
-import Card from "../components/card";
-import Header from "../components/header";
-import Subtitle from "../components/subtitle";
+import Card from "../components/card/card";
+import Header from "../components/header/header";
+import Subtitle from "../components/subtitle/subtitle";
 
 
 class Members extends Component {
@@ -20,7 +19,6 @@ class Members extends Component {
     componentDidMount() {
         API.userData()
             .then((res) => {
-                console.log(res.data);
                 // Need Session to be working, I think
                 //     this.setState({
                 //         userId: res.data.id
@@ -58,11 +56,8 @@ class Members extends Component {
                         value={"Welcome"} />
                 </Card>
                 <br />
-
                 <Card>
                     <Subtitle className={"subtitle label"} value={"Your Vehicles"} />
-
-
                     <div className="section">
                         {this.state.vehicle.map(vehicles => (
                             <span key={vehicles.id}>
@@ -71,7 +66,6 @@ class Members extends Component {
                                 />
                             </span>
                         ))}
-
                     </div>
                 </Card>
                 <Router>

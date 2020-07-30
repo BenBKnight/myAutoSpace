@@ -1,12 +1,12 @@
 import React, { Component } from "react";
-import { Link, Route } from "react-router-dom";
-import Card from "../components/card";
-import InformationDisplay from "../components/informationDisplay";
-import Ancestor from "../components/ancestor";
-import TableMaint from "../components/tableMaint";
-import Subtitle from "../components/subtitle";
+import { Link } from "react-router-dom";
+import Card from "../components/card/card";
+import InformationDisplay from "../components/informationDisplay/informationDisplay";
+import Ancestor from "../components/ancestor/ancestor";
+import TableMaint from "../components/tableMaint/tableMaint";
+import Subtitle from "../components/subtitle/subtitle";
 import API from "../utils/API";
-import TableMd from "../components/tableMd";
+import TableMd from "../components/tableMd/tableMd";
 import TestMdData from "../db/testData";
 
 class VehicleDisplay extends Component {
@@ -51,6 +51,9 @@ class VehicleDisplay extends Component {
                     conditionDescription: "Has some cosmetic defects that require repairing and/or mechanical problems."
                 });
                 break;
+            default: this.setState({
+                condition: "No Description Available"
+            })
         }
     };
 

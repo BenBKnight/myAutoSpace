@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import FormInput from "../components/formInput";
-import FormInputButton from "../components/FormInputButton";
+import FormInput from "../components/formInput/formInput";
+import FormInputButton from "../components/formInputButton/FormInputButton";
 import API from "../utils/API";
-import Card from "../components/card";
-import Header from "../components/header";
+import Card from "../components/card/card";
+import Header from "../components/header/header";
 
 class Signup extends Component {
     state = {

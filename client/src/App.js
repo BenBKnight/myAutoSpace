@@ -9,14 +9,14 @@ import Maintenance from "./pages/maintenance";
 import Vehicles from "./pages/vehicles";
 import VehicleDisplay from "./pages/vehicleDisplay";
 import NewMaintenance from "./pages/newMaintenance";
-import Navbar from "./components/navbar";
+import Navbar from "./components/navbar/navbar";
 import { UserContext } from "./utils/userContext";
 import { VehicleContext } from "./utils/vehicleContext";
 
 function App() {
   // To hide navBar buttons, whether or not the user is signed in or not
   const [userLoggedIn, setUserLoggedIn] = useState(true);
-  const { id, setUserId } = useContext(UserContext);
+  const { id } = useContext(UserContext);
 
   const loggedInValue = useMemo(() => ({ userLoggedIn, setUserLoggedIn }), [userLoggedIn, setUserLoggedIn])
   return (

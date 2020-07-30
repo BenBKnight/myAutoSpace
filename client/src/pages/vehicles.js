@@ -1,11 +1,9 @@
-import React, { Component, useContext } from "react";
-import FormInput from "../components/formInput";
-import DropDown from "../components/dropDown";
-import FormInputButton from "../components/FormInputButton";
+import React, { Component } from "react";
+import FormInput from "../components/formInput/formInput";
+import DropDown from "../components/dropDown/dropDown";
+import FormInputButton from "../components/formInputButton/FormInputButton";
 import API from "../utils/API";
-import { UserContext } from "../utils/userContext";
-import Card from "../components/card";
-import Header from "../components/header";
+import Card from "../components/card/card";
 
 class Vehicles extends Component {
     state = {

@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import API from "../utils/API";
-import FormInput from "../components/formInput";
-import FormInputButton from "../components/FormInputButton";
+import FormInput from "../components/formInput/formInput";
+import FormInputButton from "../components/formInputButton/FormInputButton";
 // import { Link, withRouter } from "react-router-dom";
-import Card from "../components/card";
-import Header from "../components/header";
-import Subtitle from "../components/subtitle";
+import Card from "../components/card/card";
+import Header from "../components/header/header";
+import Subtitle from "../components/subtitle/subtitle";
 
 class Login extends Component {
     state = {
@@ -74,7 +74,7 @@ class Login extends Component {
                 <br />
                 <Card title="Login Page">
                     <form className="login">
-                        <FormInput handleInputChange={this.handleInputChange} value={this.state.email} htmlFor="exampleInputEmail1" id="emailInput" placeholder="User@email.com" type="email">Email address:</FormInput>
+                        <FormInput className={"style"} handleInputChange={this.handleInputChange} value={this.state.email} htmlFor="exampleInputEmail1" id="emailInput" placeholder="User@email.com" type="email">Email address:</FormInput>
                         <FormInput handleInputChange={this.handleInputChange} value={this.state.password} htmlFor="exampleInputEmail1" id="passwordInput" placeholder="Password" type="password">Password</FormInput>
                         {/* <Link to="/Members"> */}
                         <FormInputButton handleFormSubmit={this.handleFormSubmit}>Login</FormInputButton>
