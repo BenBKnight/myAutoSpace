@@ -4,38 +4,22 @@ import FormInputButton from "../components/FormInputButton";
 import API from "../utils/API";
 import Card from "../components/card";
 import Header from "../components/header";
+import InformationDisplay from "../components/informationDisplay";
 
 class MaintRecord extends Component {
     state = {
-        name: "",
-        description: "",
-        milage: "",
-        parts: "",
-        jobDate: "",
-        VehicleId: 11
+        data: [],
+        id: 7
     };
-    handleInputChange = event => {
-        // Getting the value and name of the input which triggered the change
-        let value = event.target.value;
-        const name = event.target.id;
-        console.log(value, name)
-        this.setState({
-            [name]: value
-        });
-        console.log(this.state)
-        // if (!this.state.email || !this.state.password) {
-        //     return;
-        // }
-    };
-    handleFormSubmit = (e) => {
-        e.preventDefault();
-        let maintNew = this.state;
-        API.maintRecord(maintNew)
+    componentDidMount() {
+        API.getOneMaintRecord(this.state.id)
             .then((res) => {
-                console.log("api maint returned", res);
+                this.setState({
+                    data: res.data[0]
+                })
             })
             .catch(err => {
-                console.log(err);
+                console.log(err)
             })
     };
 
@@ -45,32 +29,21 @@ class MaintRecord extends Component {
                 <br />
                 <Card>
                     <Header
-                        value={"Add Maintenance"} />
+                        value={"Maintenance Record"} />
                 </Card>
                 <br />
                 <Card>
                     <form id="maint-form">
-
-                        <FormInput handleInputChange={this.handleInputChange}
-                            id="name" value={this.state.job} placeholder="Job" type="text">Job
-                        </FormInput>
-
-                        <FormInput handleInputChange={this.handleInputChange}
-                            id="jobDate" value={this.state.jobDate} placeholder="Job Date" type="text">Job Date
-                        </FormInput>
-
-                        <FormInput handleInputChange={this.handleInputChange}
-                            id="milage" value={this.state.milage} placeholder="Vehicle Milage" type="text">Vehicle Milage:
-                         </FormInput>
-
-                        <FormInput handleInputChange={this.handleInputChange}
-                            id="description" value={this.state.description} placeholder="Description" type="text">Description:
-                        </FormInput>
-
-                        <FormInput handleInputChange={this.handleInputChange}
-                            id="parts" value={this.state.parts} placeholder="Parts" type="text">Parts:
-                        </FormInput>
-                        <FormInputButton handleFormSubmit={this.handleFormSubmit}>Add Maintenance</FormInputButton>
+                        <InformationDisplay label="Job: " value={this.state.data.name} />
+                        <br />
+                        <InformationDisplay label="Job Date: " value={this.state.data.jobDate} />
+                        <br />
+                        <InformationDisplay label="Mileage: " value={this.state.data.milage} />
+                        <br />
+                        <InformationDisplay label="Description: " value={this.state.data.description} />
+                        <br />
+                        <InformationDisplay label="Parts: " value={this.state.data.parts} />
+                        <br />
                     </form>
                 </Card>
 

@@ -5,8 +5,6 @@ import { useContext } from "react";
 
 function Navbar() {
     const { userLoggedIn, setUserLoggedIn } = useContext(UserContext);
-
-
     return (
 
         <nav className="navbar " role="navigation" aria-label="main navigation">

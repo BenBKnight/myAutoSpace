@@ -15,6 +15,7 @@ router.get("/newMaintenance", isAuthenticated, (req, res) => {
 });
 
 router.post("/api/maintenance", (req, res) => {
+  console.log(req.body)
   db.Maintenance.create({
     name: req.body.name,
     description: req.body.description,
@@ -46,7 +47,7 @@ router.get("/maintenancefind/:jobid", (req, res) => {
       id: jobId
     }
   }).then(result => res.send(result))
-  .catch(() => res.status(401).json(err));
+    .catch(() => res.status(401).json(err));
 });
 
 router.get("/maintenance/:jobid", isAuthenticated, (req, res) => {
@@ -62,7 +63,7 @@ router.get("/maintenancefindvehicle/:vehicleid", (req, res) => {
   }).then(result => {
     res.send(result);
   })
-  .catch(() => res.status(401).json(err));
+    .catch(() => res.status(401).json(err));
 });
 
 module.exports = router;

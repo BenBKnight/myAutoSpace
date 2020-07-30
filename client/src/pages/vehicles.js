@@ -46,7 +46,7 @@ class Vehicles extends Component {
         // if (!this.state.email || !this.state.password) {
         //     return;
         // }
-    }
+    };
     handleFormSubmit = (e) => {
         e.preventDefault();
         let vehicleNew = this.state;

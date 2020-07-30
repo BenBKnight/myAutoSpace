@@ -65,7 +65,6 @@ export default {
     newVehicle: function (data) {
         return axios.post(serverUrl + "/api/postVehicle", data)
     },
-
     maintRecord: function (data) {
         return axios.post(serverUrl + "/api/maintenance", data)
     },
@@ -86,6 +85,9 @@ export default {
     getMaintRecords: function (data) {
         // Data is Equal to vehicle Id
         return axios.get(serverUrl + "/maintenancefindvehicle/" + data)
+    },
+    getOneMaintRecord: function (data) {
+        return axios.get(serverUrl + "/maintenancefind/" + data)
     }
 }
 
