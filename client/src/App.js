@@ -12,7 +12,7 @@ import NewMaintenance from "./pages/newMaintenance";
 import Navbar from "./components/navbar/navbar";
 import { UserContext } from "./utils/userContext";
 import { VehicleContext } from "./utils/vehicleContext";
-
+import ProtectedRoute from "../src/utils/protectedRoute";
 function App() {
   // To hide navBar buttons, whether or not the user is signed in or not
   const [userLoggedIn, setUserLoggedIn] = useState(true);

@@ -2,17 +2,25 @@ import React, { Component } from "react";
 import API from "../utils/API";
 import FormInput from "../components/formInput/formInput";
 import FormInputButton from "../components/formInputButton/FormInputButton";
-// import { Link, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import Card from "../components/card/card";
 import Header from "../components/header/header";
 import Subtitle from "../components/subtitle/subtitle";
 
 class Login extends Component {
+    // constructor(props) {
+    //     super(props);
+    //     this.sendUserToMembers = this.sendUserToMembers.bind(this)
+    // }
     state = {
         email: "",
         password: "",
-        id: ""
+        id: "",
+
     };
+    // sendUserToMembers = () => {
+    //     useHistory().push("/Members")
+    // }
 
     handleFormSubmit = (e) => {
         e.preventDefault();
@@ -31,12 +39,13 @@ class Login extends Component {
                     email: res.data.email,
                     id: res.data.id
                 })
+                // useHistory().push("/members");
+                this.props.history.push("/Members")
             })
             .catch(err => {
                 console.log(err);
             })
     };
-
     handleInputChange = event => {
         // Getting the value and name of the input which triggered the change
         let value = event.target.value;
@@ -84,4 +93,4 @@ class Login extends Component {
         );
     }
 }
-export default Login;
+export default withRouter(Login);
