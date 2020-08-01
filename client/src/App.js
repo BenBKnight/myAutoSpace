@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
 import './App.css';
 import Login from "./pages/login";
 import Signup from "./pages/signup";
@@ -20,7 +20,7 @@ class App extends Component {
       userId: null,
     };
   };
-  login = (token, userId, tokenExperation) => {
+  login = (token, userId) => {
     this.setState({
       token: token,
       userId: userId
@@ -47,7 +47,6 @@ class App extends Component {
               <Navbar />
               <Switch>
                 <Route exact path="/" component={Login} />
-                <Route exact path="/Signup" component={Signup} />
                 <Route path="/MaintRecord/:id" component={MaintRecord} />
                 <Route exact path="/Members" component={Members} />
                 <Route exact path="/Maintenance" component={Maintenance} />

@@ -28,6 +28,7 @@ export default {
                 const token = res.data.token;
                 localStorage.setItem("jwt.Token", token);
                 setAuthorizationToken(token);
+                res.json()
             })
     },
     newVehicle: function (data) {

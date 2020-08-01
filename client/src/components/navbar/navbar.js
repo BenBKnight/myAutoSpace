@@ -26,7 +26,7 @@ const Navbar = props => (
                         <div className="navbar-start">
                             <Link to="/members" className="navbar-item nav-hide" >Home</Link>
                             <Link to="/vehicles" className="navbar-item nav-hide" >Add Vehicles</Link>
-                            <Link to="/newMaintenance" className="navbar-item nav-hide" >Add Maintenance</Link>
+                            <Link to="/newMaintenance/:id" className="navbar-item nav-hide" >Add Maintenance</Link>
                         </div>
                         {!context.token && (
                             <div className="navbar-end">
@@ -36,7 +36,7 @@ const Navbar = props => (
                         )}
                         {context.token && (
                             <div className="navbar-end">
-                                <Link to="/" className="navbar-item logoutHide logoutBtn" >Logout</Link>
+                                <Link to="/" className="navbar-item logoutHide logoutBtn" onClick={context.logout()} >Logout</Link>
                             </div>
                         )}
 

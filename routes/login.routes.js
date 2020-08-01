@@ -31,11 +31,12 @@ router.post("/api/login", (req, res) => {
               expiresIn: "1h"
             }
           )
-          return res.status(200).json({
-            message: "Auth Successful",
-            token: token,
-            id: user.dataValues.id
-          });
+          return res.status(200)
+            .json({
+              message: "Auth Successful",
+              token: token,
+              id: user.dataValues.id
+            })
         }
         res.status(401).json({
           message: "Auth Unsuccessful"
