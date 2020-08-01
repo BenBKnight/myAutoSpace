@@ -19,6 +19,7 @@ const router = app.Router();
 
 router.get("/vehiclefind/:userid", isAuthenticated, (req, res) => {
   const userId = req.params.userid;
+  console.log("===============111111111111", userId)
   db.Vehicle.findAll({
     where: {
       UserId: userId

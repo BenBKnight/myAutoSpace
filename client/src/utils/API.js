@@ -1,8 +1,11 @@
 import axios from "axios";
 import setAuthorizationToken from "./setAuthorizationToken";
-// import jwt from "jsonwebtoken";
+import jwt from "jsonwebtoken";
+
 
 const serverUrl = "http://localhost:8080";
+
+
 
 export default {
 
@@ -13,6 +16,12 @@ export default {
                 console.log("++=+++===+++======++===", res)
                 const token = res.data.token;
                 localStorage.setItem("jwt.Token", token);
+                const decoded = jwt.decode(token)
+                // console.log("decoded", decoded.id)
+                // const [id, setId] = useState(true);
+                // setId(decoded.id);
+                // res.json(decoded)
+                localStorage.setItem("userId", decoded.id)
                 setAuthorizationToken(token);
             })
     },
@@ -44,8 +53,8 @@ export default {
     // Get Routes
     allVehicles: function (data) {
         // Data is equal to user Id
-        let url = "/vehiclefind/"
-        return axios.get(serverUrl + url + data, {
+        console.log(localStorage.getItem("jwt.Token"))
+        return axios.get(serverUrl + "/vehiclefind/" + data, {
             headers: {
                 Authorization: localStorage.getItem("jwt.Token")
             }

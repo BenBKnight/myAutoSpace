@@ -1,11 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { UserContext } from "../../utils/userContext";
-import { useContext } from "react";
 import { AuthContext } from "../../utils/authContext";
 
 // import "./style.css";
-// const { userLoggedIn, setUserLoggedIn } = useContext(UserContext);
 
 
 const Navbar = props => (
@@ -19,9 +16,9 @@ const Navbar = props => (
                         </Link>
                         <button className="navbar-burger burger" aria-label="menu" aria-expanded="false"
                             data-target="navbarBasicExample">
+                            {/* <Link aria-hidden="true"></Link>
                             <Link aria-hidden="true"></Link>
-                            <Link aria-hidden="true"></Link>
-                            <Link aria-hidden="true"></Link>
+                            <Link aria-hidden="true"></Link> */}
                         </button>
                     </div>
 
@@ -42,17 +39,6 @@ const Navbar = props => (
                                 <Link to="/" className="navbar-item logoutHide logoutBtn" >Logout</Link>
                             </div>
                         )}
-                        {/* {userLoggedIn ?
-                            (<div className="navbar-end">
-                                <Link to="/" className="navbar-item logoutHide logoutBtn" onClick={async () => setUserLoggedIn(false)}>Logout</Link>
-                            </div>)
-                            :
-                            (<div className="navbar-end">
-                                <Link to="/signup" className="navbar-item signup-hide">Signup</Link>
-                                <Link to="/" className="navbar-item login-hide" onClick={async () => setUserLoggedIn(true)}>Login</Link>
-                            </div>
-                            )
-                        } */}
 
                     </div>
                 </nav>

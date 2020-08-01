@@ -8,7 +8,12 @@ import Header from "../components/header/header";
 import Subtitle from "../components/subtitle/subtitle";
 import { AuthContext } from "../utils/authContext";
 
+
 class Login extends Component {
+    // constructor(props) {
+    //     super(props);
+    //     this.sendUserToMembers = this.sendUserToMembers.bind(this)
+    // }
     state = {
         email: "",
         password: "",
@@ -27,16 +32,8 @@ class Login extends Component {
             return;
         }
         API.loginUser(user)
-            .then(res => {
-                if (res.status !== 200 && res.status !== 201) {
-                    throw new Error("Failed");
-                }
-                return res.json();
-            })
-            .then(res => {
-                if (res.data.login.token) {
-                    this.context.login(res.data.login.token, res.data.login.userId, res.data.login.tokenExperation)
-                }
+            .then((res) => {
+                console.log("app", res)
                 this.props.history.push("/Members")
             })
             .catch(err => {

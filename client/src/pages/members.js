@@ -1,25 +1,20 @@
 import React, { Component } from "react";
 import API from "../utils/API";
 import Vehicles from "../components/vehicles/vehicles";
-import {
-    BrowserRouter as Router,
-    Link,
-    Switch,
-    Route
-} from "react-router-dom";
 import Card from "../components/card/card";
 import Header from "../components/header/header";
 import Subtitle from "../components/subtitle/subtitle";
-import NewMaintenance from "./newMaintenance";
 
 
 class Members extends Component {
     state = {
         userId: 40,
+        // localStorage.getItem("userId"),
         vehicle: []
     }
 
     componentDidMount() {
+        console.log("state:", this.state)
         API.allVehicles(this.state.userId)
             .then(res => {
                 console.log("api returned for members", res);

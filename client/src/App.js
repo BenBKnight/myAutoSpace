@@ -1,5 +1,5 @@
-import React, { useState, useMemo, useContext, Component } from 'react';
-import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
+import React, { Component } from 'react';
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import './App.css';
 import Login from "./pages/login";
 import Signup from "./pages/signup";
@@ -54,14 +54,12 @@ class App extends Component {
                   <VehicleContext.Provider>
                     <Route exact path="/" component={Login} />
                     <Route exact path="/Signup" component={Signup} />
-                    {!this.state.token && <Redirect from="/Members" to="/" />}
                     <Route path="/MaintRecord/:id" component={MaintRecord} />
-                    {/* <Route exact path="/Members" component={Members} /> */}
+                    <Route exact path="/Members" component={Members} />
                     <Route exact path="/Maintenance" component={Maintenance} />
                     <Route exact path="/Vehicles" component={Vehicles} />
                     <Route exact path="/NewMaintenance" component={NewMaintenance} />
                     <Route path="/Vehicles/:id" component={VehicleDisplay} />
-
                   </VehicleContext.Provider>
                 </Switch>
               </UserContext.Provider>
