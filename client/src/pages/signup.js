@@ -27,7 +27,6 @@ class Signup extends Component {
             return;
         }
         console.log(user)
-        // user.email, user.password, user.firstName, user.lastName, user.location
         API.signUp(user)
             .then(() => {
                 this.props.history.push("/Members")
@@ -38,7 +37,6 @@ class Signup extends Component {
     };
     handleSignUpErr(err) {
         alert(err);
-        // $("#alert").fadeIn(500);
     }
 
     handleInputChange = event => {
@@ -53,7 +51,6 @@ class Signup extends Component {
         this.setState({
             [name]: value
         });
-        // console.log(this.state);
     };
 
     render() {

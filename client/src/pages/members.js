@@ -7,12 +7,13 @@ import Subtitle from "../components/subtitle/subtitle";
 
 
 class Members extends Component {
-    state = {
-        userId: 40,
-        // localStorage.getItem("userId"),
-        vehicle: []
-    }
-
+    constructor(props) {
+        super(props)
+        this.state = {
+            userId: localStorage.getItem("userId"),
+            vehicle: []
+        }
+    };
     componentDidMount() {
         console.log("state:", this.state)
         API.allVehicles(this.state.userId)

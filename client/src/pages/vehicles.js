@@ -19,7 +19,7 @@ class Vehicles extends Component {
         accidents: "",
         numOfOwners: "",
         locationLastOwned: "",
-        UserId: 26
+        UserId: localStorage.getItem("userId")
     };
     static contextType = AuthContext;
 

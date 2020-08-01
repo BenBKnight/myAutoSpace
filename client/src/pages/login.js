@@ -10,10 +10,6 @@ import { AuthContext } from "../utils/authContext";
 
 
 class Login extends Component {
-    // constructor(props) {
-    //     super(props);
-    //     this.sendUserToMembers = this.sendUserToMembers.bind(this)
-    // }
     state = {
         email: "",
         password: "",
