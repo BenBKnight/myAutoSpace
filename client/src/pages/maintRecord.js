@@ -3,7 +3,7 @@ import API from "../utils/API";
 import Card from "../components/card/card";
 import Header from "../components/header/header";
 import InformationDisplay from "../components/informationDisplay/informationDisplay";
-import { useParams, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 
 class MaintRecord extends Component {
     state = {

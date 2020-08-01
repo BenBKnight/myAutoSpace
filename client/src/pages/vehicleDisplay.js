@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import Card from "../components/card/card";
 import InformationDisplay from "../components/informationDisplay/informationDisplay";
 import Ancestor from "../components/ancestor/ancestor";
@@ -11,7 +11,7 @@ import TestMdData from "../db/testData";
 
 class VehicleDisplay extends Component {
     state = {
-        vehicleID: 18,
+        vehicleID: "",
         vehicle: {},
         conditionDescription: "",
         maintRecords: [],
@@ -19,6 +19,14 @@ class VehicleDisplay extends Component {
     };
 
     componentDidMount() {
+        let location = this.props.match.params.id;
+        this.setState({
+            vehicleID: location
+        }, () => {
+            this.apiCall()
+        })
+    };
+    apiCall = () => {
         API.vehicleById(this.state.vehicleID)
             .then((res) => {
                 this.setState({
@@ -32,8 +40,7 @@ class VehicleDisplay extends Component {
                 this.setCondition();
                 this.maintRecords();
             })
-    };
-
+    }
     setCondition() {
         switch (this.state.vehicle.condition) {
             case "Excellent":
@@ -157,4 +164,4 @@ class VehicleDisplay extends Component {
         );
     }
 }
-export default VehicleDisplay;
+export default withRouter(VehicleDisplay);

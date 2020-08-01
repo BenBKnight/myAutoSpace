@@ -13,6 +13,7 @@ router.post("/api/login", (req, res) => {
     }
   })
     .then(user => {
+      console.log(user.dataValues)
       // If they cannot find a user
       bcrypt.compare(req.body.password, user.dataValues.password, (err, result) => {
         if (err) {
@@ -23,7 +24,7 @@ router.post("/api/login", (req, res) => {
         if (result) {
           const token = jwt.sign({
             email: user.dataValues.email,
-            userId: user.dataValues.id
+            id: user.dataValues.id
           },
             process.env.JWT_KEY,
             {
@@ -32,7 +33,8 @@ router.post("/api/login", (req, res) => {
           )
           return res.status(200).json({
             message: "Auth Successful",
-            token: token
+            token: token,
+            id: user.dataValues.id
           });
         }
         res.status(401).json({

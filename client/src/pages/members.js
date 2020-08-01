@@ -19,26 +19,8 @@ class Members extends Component {
         vehicle: []
     }
 
-    // componentDidMount() {
-    //     API.userData()
-    //         .then((res) => {
-    //             this.setState({
-    //                 userId: res.data.id
-    //             })
-    //                 .then(() => {
-    //                     let id = this.state.userId
-    //                     this.getVehicles(id)
-    //                 })
-    //         })
-    //         .catch(err => {
-    //             console.log(err)
-    //         })
-
-    // };
-
     componentDidMount() {
         API.allVehicles(this.state.userId)
-            // console.log("00000000000000000 mounting")
             .then(res => {
                 console.log("api returned for members", res);
                 this.setState({

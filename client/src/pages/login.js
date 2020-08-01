@@ -28,6 +28,15 @@ class Login extends Component {
         }
         API.loginUser(user)
             .then(res => {
+                if (res.status !== 200 && res.status !== 201) {
+                    throw new Error("Failed");
+                }
+                return res.json();
+            })
+            .then(res => {
+                if (res.data.login.token) {
+                    this.context.login(res.data.login.token, res.data.login.userId, res.data.login.tokenExperation)
+                }
                 this.props.history.push("/Members")
             })
             .catch(err => {
