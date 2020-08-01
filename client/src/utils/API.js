@@ -86,7 +86,11 @@ export default {
         })
     },
     maintRecord: function (data) {
-        return axios.post(serverUrl + "/api/maintenance", data)
+        return axios.post(serverUrl + "/api/maintenance", data, {
+            headers: {
+                Authorization: localStorage.getItem("jwt.Token")
+            }
+        })
     },
 
     // Get Routes
@@ -104,7 +108,11 @@ export default {
     },
     vehicleById: function (data) {
         // Data is Equal to Vehicle Id
-        return axios.get(serverUrl + "/vehicleid/" + data)
+        return axios.get(serverUrl + "/vehicleid/" + data, {
+            headers: {
+                Authorization: localStorage.getItem("jwt.Token")
+            }
+        })
     },
     getMaintRecords: function (data) {
         // Data is Equal to vehicle Id

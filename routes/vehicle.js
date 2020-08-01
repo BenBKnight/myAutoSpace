@@ -41,16 +41,16 @@ router.get("/vehiclefind/:userid", isAuthenticated, (req, res) => {
 //   }).then(() => res.render("vehicleDisplay"));
 // });
 
-// router.get("/vehicleid/:id", isAuthenticated, (req, res) => {
-//   const vehicleId = req.params.id;
-//   db.Vehicle.findAll({
-//     where: {
-//       id: vehicleId
-//     }
-//   }).then(result => {
-//     res.send(result);
-//   });
-// });
+router.get("/vehicleid/:id", isAuthenticated, (req, res) => {
+  const vehicleId = req.params.id;
+  db.Vehicle.findAll({
+    where: {
+      id: vehicleId
+    }
+  }).then(result => {
+    res.send(result);
+  });
+});
 
 // POST route for saving a new post
 router.post("/api/postVehicle", isAuthenticated, (req, res) => {

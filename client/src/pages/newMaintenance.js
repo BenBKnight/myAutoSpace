@@ -14,7 +14,7 @@ class NewMaintenance extends Component {
             milage: "",
             parts: "",
             jobDate: "",
-            VehicleId: "5"
+            VehicleId: 18
         },
         year: "",
         day: "",
@@ -49,7 +49,7 @@ class NewMaintenance extends Component {
     };
     handleFormSubmit = (e) => {
         e.preventDefault();
-        this.setDate();
+        // this.setDate();
         let newMaint = this.state.maintToAdd;
         console.log(newMaint)
         API.maintRecord(newMaint)
@@ -60,14 +60,14 @@ class NewMaintenance extends Component {
                 console.log(err);
             })
     };
-    setDate = () => {
-        this.setState(prevState => {
-            let maintToAdd = Object.assign({}, prevState.maintToAdd);
-            maintToAdd.jobDate = this.state.year + "-" + this.state.month + "-" + this.state.day;
-            console.log(maintToAdd.jobDate);
-            return maintToAdd;
-        })
-    };
+    // setDate = () => {
+    //     this.setState(prevState => {
+    //         let maintToAdd = Object.assign({}, prevState.maintToAdd);
+    //         maintToAdd.jobDate = this.state.year + "-" + this.state.month + "-" + this.state.day;
+    //         console.log(maintToAdd.jobDate);
+    //         return maintToAdd;
+    //     })
+    // };
     render() {
         // const jobYears = [
         //     "2020",

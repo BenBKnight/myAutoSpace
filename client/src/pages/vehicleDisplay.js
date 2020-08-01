@@ -11,7 +11,7 @@ import TestMdData from "../db/testData";
 
 class VehicleDisplay extends Component {
     state = {
-        vehicleID: 40,
+        vehicleID: 18,
         vehicle: {},
         conditionDescription: "",
         maintRecords: [],
@@ -30,6 +30,7 @@ class VehicleDisplay extends Component {
             })
             .then(() => {
                 this.setCondition();
+                this.maintRecords();
             })
     };
 
@@ -56,14 +57,12 @@ class VehicleDisplay extends Component {
         }
     };
 
-    componentDidMount() {
+    maintRecords() {
         API.getMaintRecords(this.state.vehicleID)
             .then((res) => {
-                // console.log(res.data)
                 this.setState({
                     maintRecords: res.data
                 })
-                console.log(TestMdData)
             })
 
             .catch(err => {
@@ -73,7 +72,6 @@ class VehicleDisplay extends Component {
     };
 
     render() {
-
         let maintRecordHeaders = ["Job", "Mileage", "Date", "Link"];
         let carMdHeaders = ["Description", "Mileage", "More Information", "Complete"]
 
@@ -140,7 +138,7 @@ class VehicleDisplay extends Component {
                         <hr />
                         <InformationDisplay className={"subtitle Bold"} label={"Have you made imporvements to your vehicle?"} />
                         {/* This Does not work */}
-                        <button><Link to={location => ({ ...location, pathname: "/NewMaintenance" })} /></button>
+                        <Link to={location => ({ ...location, pathname: "/NewMaintenance" })} >Add Maintenance</Link>
                     </Card>
                     <br />
                     <Card title={"Maintenance Record"} id={"MaintenanceRecord"}>

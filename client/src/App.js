@@ -33,7 +33,7 @@ function App() {
                 <VehicleContext.Provider>
                   <Route exact path="/" component={Login} />
                   <Route exact path="/Signup" component={Signup} />
-                  <Route exact path="/MaintRecord" component={MaintRecord} />
+                  <Route path="/MaintRecord/:id" component={MaintRecord} />
                   <Route exact path="/Members" component={Members} value={id} />
                   <Route exact path="/Maintenance" component={Maintenance} />
                   <Route exact path="/Vehicles" component={Vehicles} />
