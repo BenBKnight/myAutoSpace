@@ -15,10 +15,8 @@ class Members extends Component {
         }
     };
     componentDidMount() {
-        console.log("state:", this.state)
         API.allVehicles(this.state.userId)
             .then(res => {
-                console.log("api returned for members", res);
                 this.setState({
                     vehicle: res.data
                 }

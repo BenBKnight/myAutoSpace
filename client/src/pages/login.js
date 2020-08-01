@@ -32,7 +32,6 @@ class Login extends Component {
         }
         API.loginUser(user)
             .then((res) => {
-                console.log("app", res)
                 this.props.history.push("/Members")
             })
             .catch(err => {

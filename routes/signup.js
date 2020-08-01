@@ -21,8 +21,6 @@ router.post("/api/signup", (req, res) => {
         location: req.body.location
       })
         .then(user => {
-          console.log("api ************************** ", user.dataValues)
-
           const token = jwt.sign({
             email: user.dataValues.email,
             userId: user.dataValues.id
