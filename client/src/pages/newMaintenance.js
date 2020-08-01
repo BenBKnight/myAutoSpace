@@ -4,29 +4,32 @@ import Ancestor from "../components/ancestor/ancestor";
 import API from "../utils/API";
 import FormInput from "../components/formInput/formInput";
 import FormInputButton from "../components/formInputButton/FormInputButton";
+import { withRouter } from "react-router-dom";
 
 
 class NewMaintenance extends Component {
-    state = {
-        maintToAdd: {
-            name: "",
-            description: "",
-            milage: "",
-            parts: "",
-            jobDate: "",
-            VehicleId: "5"
-        },
-        year: "",
-        day: "",
-        month: ""
+    constructor(props) {
+        super(props)
+        this.state = {
+            maintToAdd: {
+                name: "",
+                description: "",
+                milage: "",
+                parts: "",
+                jobDate: "",
+                VehicleId: localStorage.getItem("vehicleId")
+            },
+            year: "",
+            day: "",
+            month: ""
+        };
     };
-
     handleInputChange = event => {
+        console.log(this.state)
         // Getting the value and name of the input which triggered the change
         let value = event.target.value;
         const name = event.target.id;
         this.setState({
-            // [name]: value
             maintToAdd: {
                 ...this.state.maintToAdd,
                 [name]: value
@@ -50,25 +53,25 @@ class NewMaintenance extends Component {
     };
     handleFormSubmit = (e) => {
         e.preventDefault();
-        this.setDate();
+        // this.setDate();
         let newMaint = this.state.maintToAdd;
         console.log(newMaint)
         API.maintRecord(newMaint)
             .then((res) => {
-                console.log("api returned maint", res);
+                this.props.history.push(`/Vehicles/${this.state.maintToAdd.VehicleId}`)
             })
             .catch(err => {
                 console.log(err);
             })
     };
-    setDate = () => {
-        this.setState(prevState => {
-            let maintToAdd = Object.assign({}, prevState.maintToAdd);
-            maintToAdd.jobDate = this.state.year + "-" + this.state.month + "-" + this.state.day;
-            console.log(maintToAdd.jobDate);
-            return maintToAdd;
-        })
-    };
+    // setDate = () => {
+    //     this.setState(prevState => {
+    //         let maintToAdd = Object.assign({}, prevState.maintToAdd);
+    //         maintToAdd.jobDate = this.state.year + "-" + this.state.month + "-" + this.state.day;
+    //         console.log(maintToAdd.jobDate);
+    //         return maintToAdd;
+    //     })
+    // };
     render() {
         // const jobYears = [
         //     "2020",
@@ -167,4 +170,4 @@ class NewMaintenance extends Component {
         );
     }
 }
-export default NewMaintenance;
+export default withRouter(NewMaintenance);

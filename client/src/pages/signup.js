@@ -6,14 +6,16 @@ import Card from "../components/card/card";
 import Header from "../components/header/header";
 
 class Signup extends Component {
-    state = {
-        email: "",
-        password: "",
-        firstName: "",
-        lastName: "",
-        location: ""
-    };
-
+    constructor(props) {
+        super(props)
+        this.state = {
+            email: "",
+            password: "",
+            firstName: "",
+            lastName: "",
+            location: ""
+        };
+    }
     handleFormSubmit = event => {
         event.preventDefault();
         let user = {
@@ -27,11 +29,9 @@ class Signup extends Component {
             return;
         }
         console.log(user)
-        // user.email, user.password, user.firstName, user.lastName, user.location
         API.signUp(user)
             .then(() => {
-                console.log("returned");
-                //router to members
+                this.props.history.push("/Members")
             })
             .catch(err => {
                 console.log(err);
@@ -39,7 +39,6 @@ class Signup extends Component {
     };
     handleSignUpErr(err) {
         alert(err);
-        // $("#alert").fadeIn(500);
     }
 
     handleInputChange = event => {
@@ -54,7 +53,6 @@ class Signup extends Component {
         this.setState({
             [name]: value
         });
-        // console.log(this.state);
     };
 
     render() {

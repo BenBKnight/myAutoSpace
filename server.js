@@ -4,7 +4,7 @@ const path = require("path")
 const app = express();
 const PORT = 8080;
 const mysql = require("mysql");
-const passport = require("./config/passport");
+// const passport = require("./config");
 const db = require("./models")
 
 // Serve static assets
@@ -20,7 +20,7 @@ if (process.env.JAWSDB_URL) {
     connection = mysql.createConnection({
         host: "localhost",
         user: "root",
-        password: "password",
+        password: process.env.MYSQL_KEY,
         database: "carFacts"
     })
 }
@@ -29,11 +29,11 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // We need to use sessions to keep track of our user's login status
-app.use(
-    session({ secret: "keyboard cat", resave: true, saveUninitialized: true })
-);
-app.use(passport.initialize());
-app.use(passport.session());
+// app.use(
+//     session({ secret: "keyboard cat", resave: true, saveUninitialized: true })
+// );
+// app.use(passport.initialize());
+// app.use(passport.session());
 
 //  app.post()
 const routes = require("./routes");

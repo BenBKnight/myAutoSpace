@@ -1,44 +1,26 @@
 // Requiring our models and passport as we've configured it
 const db = require("../models");
 const isAuthenticated = require("../config/middleware/isAuthenticated");
-// Requiring path to so we can use relative routes to our HTML files
-// const path = require("path");
 const app = require("express");
 const router = app.Router();
-// const passport = require("../config/passport");
 
-// View members vehicles
-router.get("/vehicles", isAuthenticated, (req, res) => {
-  res.render("vehicles");
-});
-
-//Route to get all vehicles
-router.get("/api/allVehicles", (req, res) => {
-  db.Vehicle.findAll({}).then(result => res.json(result));
-});
-
-router.get("/vehiclefind/:userid", (req, res) => {
+router.get("/vehiclefind/:userid", isAuthenticated, (req, res) => {
   const userId = req.params.userid;
+  console.log("===============111111111111", userId)
   db.Vehicle.findAll({
     where: {
       UserId: userId
     }
-  }).then(result => {
-    //console.log(result);
-    res.send(result);
-  });
+  }).then(results => {
+    res.json(results)
+  })
+    .catch(err => {
+      console.log(err)
+      res.status(401).send("Auth Unsuccessful");
+    });
 });
 
-router.get("/vehicles/:id", isAuthenticated, (req, res) => {
-  const id = req.params.id;
-  db.Vehicle.findAll({
-    where: {
-      id: id
-    }
-  }).then(() => res.render("vehicleDisplay"));
-});
-
-router.get("/vehicleid/:id", (req, res) => {
+router.get("/vehicleid/:id", isAuthenticated, (req, res) => {
   const vehicleId = req.params.id;
   db.Vehicle.findAll({
     where: {
@@ -50,8 +32,7 @@ router.get("/vehicleid/:id", (req, res) => {
 });
 
 // POST route for saving a new post
-router.post("/api/postVehicle", (req, res) => {
-  console.log(req.body.id)
+router.post("/api/postVehicle", isAuthenticated, (req, res) => {
   db.Vehicle.create({
     type: req.body.type,
     make: req.body.make,
@@ -75,26 +56,26 @@ router.post("/api/postVehicle", (req, res) => {
     });
 });
 
-// DELETE route for deleting posts
-router.delete("/api/vehicles/:id", (req, res) => {
-  db.Vehicle.destroy({
-    where: {
-      id: req.params.id
-    }
-  }).then(dbVehicle => {
-    res.json(dbVehicle);
-  });
-});
+// // DELETE route for deleting posts
+// router.delete("/api/vehicles/:id", isAuthenticated, (req, res) => {
+//   db.Vehicle.destroy({
+//     where: {
+//       id: req.params.id
+//     }
+//   }).then(dbVehicle => {
+//     res.json(dbVehicle);
+//   });
+// });
 
-// Get route for returning posts of a specific type
-router.get("/api/allVehicles/type/:type", (req, res) => {
-  db.Vehicle.findAll({
-    where: {
-      type: req.params.type
-    }
-  }).then(dbVehicle => {
-    res.json(dbVehicle);
-  });
-});
+// // Get route for returning posts of a specific type
+// router.get("/api/allVehicles/type/:type", isAuthenticated, (req, res) => {
+//   db.Vehicle.findAll({
+//     where: {
+//       type: req.params.type
+//     }
+//   }).then(dbVehicle => {
+//     res.json(dbVehicle);
+//   });
+// });
 
 module.exports = router;

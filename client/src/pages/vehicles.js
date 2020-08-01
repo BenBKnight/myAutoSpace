@@ -4,22 +4,28 @@ import DropDown from "../components/dropDown/dropDown";
 import FormInputButton from "../components/formInputButton/FormInputButton";
 import API from "../utils/API";
 import Card from "../components/card/card";
+import { AuthContext } from "../utils/authContext";
 
 class Vehicles extends Component {
-    state = {
-        type: "car",
-        make: "",
-        model: "",
-        year: "",
-        vin: "",
-        mileage: "",
-        yearPurchased: "",
-        condition: "Excellent",
-        accidents: "",
-        numOfOwners: "",
-        locationLastOwned: "",
-        UserId: 2
-    };
+    constructor(props) {
+        super(props)
+        this.state = {
+            type: "car",
+            make: "",
+            model: "",
+            year: "",
+            vin: "",
+            mileage: "",
+            yearPurchased: "",
+            condition: "Excellent",
+            accidents: "",
+            numOfOwners: "",
+            locationLastOwned: "",
+            UserId: localStorage.getItem("userId")
+        };
+    }
+    static contextType = AuthContext;
+
     handleInputChange = event => {
         // Getting the value and name of the input which triggered the change
         let value = event.target.value;
@@ -27,7 +33,6 @@ class Vehicles extends Component {
         this.setState({
             [name]: value
         });
-        console.log(this.state)
         // if (!this.state.email || !this.state.password) {
         //     return;
         // }
@@ -35,12 +40,9 @@ class Vehicles extends Component {
     handleSelect = event => {
         let value = event.target.value;
         const name = event.target.id;
-        console.log(event, value, name)
-
         this.setState({
             [name]: value
         });
-        console.log(this.state)
         // if (!this.state.email || !this.state.password) {
         //     return;
         // }

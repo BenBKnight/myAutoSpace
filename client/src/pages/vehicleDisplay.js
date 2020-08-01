@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import Card from "../components/card/card";
 import InformationDisplay from "../components/informationDisplay/informationDisplay";
 import Ancestor from "../components/ancestor/ancestor";
@@ -10,30 +10,39 @@ import TableMd from "../components/tableMd/tableMd";
 import TestMdData from "../db/testData";
 
 class VehicleDisplay extends Component {
-    state = {
-        vehicleID: 5,
-        vehicle: {},
-        conditionDescription: "",
-        maintRecords: [],
-        maintRecordsTable: {}
+    constructor(props) {
+        super(props)
+        this.state = {
+            vehicleID: "",
+            vehicle: {},
+            conditionDescription: "",
+            maintRecords: [],
+            maintRecordsTable: {}
+        };
     };
-
     componentDidMount() {
+        let location = this.props.match.params.id;
+        this.setState({
+            vehicleID: location
+        }, () => {
+            this.apiCall()
+        })
+    };
+    apiCall = () => {
         API.vehicleById(this.state.vehicleID)
             .then((res) => {
                 this.setState({
                     vehicle: res.data[0]
                 })
-                console.log(this.state.vehicle)
             })
             .catch(err => {
                 console.log(err)
             })
             .then(() => {
                 this.setCondition();
+                this.maintRecords();
             })
-    };
-
+    }
     setCondition() {
         switch (this.state.vehicle.condition) {
             case "Excellent":
@@ -57,14 +66,12 @@ class VehicleDisplay extends Component {
         }
     };
 
-    componentDidMount() {
+    maintRecords() {
         API.getMaintRecords(this.state.vehicleID)
             .then((res) => {
-                // console.log(res.data)
                 this.setState({
                     maintRecords: res.data
                 })
-                console.log(TestMdData)
             })
 
             .catch(err => {
@@ -74,9 +81,9 @@ class VehicleDisplay extends Component {
     };
 
     render() {
-
         let maintRecordHeaders = ["Job", "Mileage", "Date", "Link"];
         let carMdHeaders = ["Description", "Mileage", "More Information", "Complete"]
+
         return (
             <div>
                 <br />
@@ -139,8 +146,7 @@ class VehicleDisplay extends Component {
                     <Card title={"Add New Maintenance"} id={"AddNewMaintenance"}>
                         <hr />
                         <InformationDisplay className={"subtitle Bold"} label={"Have you made imporvements to your vehicle?"} />
-                        {/* This Does not work */}
-                        <button><Link to={location => ({ ...location, pathname: "/NewMaintenance" })} /></button>
+                        <Link to={location => ({ ...location, pathname: `/NewMaintenance/${this.state.vehicle.id}` })} onClick={() => localStorage.setItem("vehicleId", this.state.vehicle.id)} >Add Maintenance</Link>
                     </Card>
                     <br />
                     <Card title={"Maintenance Record"} id={"MaintenanceRecord"}>
@@ -159,4 +165,4 @@ class VehicleDisplay extends Component {
         );
     }
 }
-export default VehicleDisplay;
+export default withRouter(VehicleDisplay);

@@ -2,17 +2,23 @@ import React, { Component } from "react";
 import API from "../utils/API";
 import FormInput from "../components/formInput/formInput";
 import FormInputButton from "../components/formInputButton/FormInputButton";
-// import { Link, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import Card from "../components/card/card";
 import Header from "../components/header/header";
 import Subtitle from "../components/subtitle/subtitle";
+import { AuthContext } from "../utils/authContext";
+
 
 class Login extends Component {
-    state = {
-        email: "",
-        password: "",
-        id: ""
+    constructor(props) {
+        super(props)
+        this.state = {
+            email: "",
+            password: "",
+            id: ""
+        };
     };
+    static contextType = AuthContext;
 
     handleFormSubmit = (e) => {
         e.preventDefault();
@@ -24,20 +30,14 @@ class Login extends Component {
         if (!this.state.email || !this.state.password) {
             return;
         }
-        // use withRouter here READ: LINK & WITHROUTER & react router docs
         API.loginUser(user)
             .then((res) => {
-                console.log("api returned", res);
-                this.setState({
-                    email: res.data.email,
-                    id: res.data.id
-                })
+                this.props.history.push("/Members")
             })
             .catch(err => {
                 console.log(err);
             })
     };
-
     handleInputChange = event => {
         // Getting the value and name of the input which triggered the change
         let value = event.target.value;
@@ -76,13 +76,11 @@ class Login extends Component {
                     <form className="login">
                         <FormInput className={"style"} handleInputChange={this.handleInputChange} value={this.state.email} htmlFor="exampleInputEmail1" id="emailInput" placeholder="User@email.com" type="email">Email address:</FormInput>
                         <FormInput handleInputChange={this.handleInputChange} value={this.state.password} htmlFor="exampleInputEmail1" id="passwordInput" placeholder="Password" type="password">Password</FormInput>
-                        {/* <Link to="/Members"> */}
                         <FormInputButton handleFormSubmit={this.handleFormSubmit}>Login</FormInputButton>
-                        {/* </Link> */}
                     </form>
                 </Card>
             </div>
         );
     }
 }
-export default Login;
+export default withRouter(Login);

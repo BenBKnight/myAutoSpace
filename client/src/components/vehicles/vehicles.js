@@ -1,13 +1,11 @@
 import React from "react";
+import {
+    Link
+} from "react-router-dom";
+
 // import "./style.css";
 
-// import {
-//     BrowserRouter as Router,
-//     Link
-// } from "react-router-dom";
-
 function Vehicles(props) {
-    // let vehicleLink = "/vehicles/" + props.vehicle.id
     return (
         <div>
             <p>
@@ -16,10 +14,7 @@ function Vehicles(props) {
                 {props.vehicle.id}
                 Place Holder
             </p>
-            {/* <Link to={vehicleLink} className="image is-is-5by4 mb-2 container is-clickable">
-                clickHere
-            </Link> */}
-
+            <Link to={`/vehicles/${props.vehicle.id}`}> {props.vehicle.id}</Link>
         </div>
 
     );

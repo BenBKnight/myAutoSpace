@@ -3,13 +3,25 @@ import API from "../utils/API";
 import Card from "../components/card/card";
 import Header from "../components/header/header";
 import InformationDisplay from "../components/informationDisplay/informationDisplay";
+import { withRouter } from "react-router-dom";
 
 class MaintRecord extends Component {
-    state = {
-        data: [],
-        id: 7
+    constructor(props) {
+        super(props)
+        this.state = {
+            data: [],
+            id: ""
+        };
     };
     componentDidMount() {
+        let location = this.props.match.params.id;
+        this.setState({
+            id: location
+        }, () => {
+            this.apiCall()
+        })
+    };
+    apiCall = () => {
         API.getOneMaintRecord(this.state.id)
             .then((res) => {
                 this.setState({
@@ -19,8 +31,7 @@ class MaintRecord extends Component {
             .catch(err => {
                 console.log(err)
             })
-    };
-
+    }
     render() {
         return (
             <div>
@@ -49,4 +60,4 @@ class MaintRecord extends Component {
         );
     }
 }
-export default MaintRecord;
+export default withRouter(MaintRecord);

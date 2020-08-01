@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 // import "./style.css";
 
 
@@ -18,7 +19,7 @@ function TableMaint(props) {
                         <td>{data.name}</td>
                         <td>{data.milage}</td>
                         <td>{data.jobDate}</td>
-                        <td>PlaceHolder</td>
+                        <td><Link to={`/MaintRecord/${data.id}`}> {data.id}</Link></td>
                     </tr>
                 ))}
             </tbody>

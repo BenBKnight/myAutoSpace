@@ -9,7 +9,7 @@ router.get("/members", isAuthenticated, (req, res) => {
 });
 
 // Route for getting some data about our user to be used client side
-router.get("/api/user_data", (req, res) => {
+router.get("/api/user_data", isAuthenticated, (req, res) => {
   if (!req.user) {
     // The user is not logged in, send back an empty object
     res.json({});
