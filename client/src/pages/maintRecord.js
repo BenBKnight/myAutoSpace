@@ -6,11 +6,13 @@ import InformationDisplay from "../components/informationDisplay/informationDisp
 import { withRouter } from "react-router-dom";
 
 class MaintRecord extends Component {
-    state = {
-        data: [],
-        id: ""
+    constructor(props) {
+        super(props)
+        this.state = {
+            data: [],
+            id: ""
+        };
     };
-
     componentDidMount() {
         let location = this.props.match.params.id;
         this.setState({

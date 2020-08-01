@@ -6,14 +6,16 @@ import Card from "../components/card/card";
 import Header from "../components/header/header";
 
 class Signup extends Component {
-    state = {
-        email: "",
-        password: "",
-        firstName: "",
-        lastName: "",
-        location: ""
-    };
-
+    constructor(props) {
+        super(props)
+        this.state = {
+            email: "",
+            password: "",
+            firstName: "",
+            lastName: "",
+            location: ""
+        };
+    }
     handleFormSubmit = event => {
         event.preventDefault();
         let user = {

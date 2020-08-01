@@ -10,14 +10,16 @@ import TableMd from "../components/tableMd/tableMd";
 import TestMdData from "../db/testData";
 
 class VehicleDisplay extends Component {
-    state = {
-        vehicleID: "",
-        vehicle: {},
-        conditionDescription: "",
-        maintRecords: [],
-        maintRecordsTable: {}
+    constructor(props) {
+        super(props)
+        this.state = {
+            vehicleID: "",
+            vehicle: {},
+            conditionDescription: "",
+            maintRecords: [],
+            maintRecordsTable: {}
+        };
     };
-
     componentDidMount() {
         let location = this.props.match.params.id;
         this.setState({
@@ -144,8 +146,7 @@ class VehicleDisplay extends Component {
                     <Card title={"Add New Maintenance"} id={"AddNewMaintenance"}>
                         <hr />
                         <InformationDisplay className={"subtitle Bold"} label={"Have you made imporvements to your vehicle?"} />
-                        {/* This Does not work */}
-                        <Link to={location => ({ ...location, pathname: "/NewMaintenance" })} >Add Maintenance</Link>
+                        <Link to={location => ({ ...location, pathname: `/NewMaintenance/${this.state.vehicle.id}` })} onClick={() => localStorage.setItem("vehicleId", this.state.vehicle.id)} >Add Maintenance</Link>
                     </Card>
                     <br />
                     <Card title={"Maintenance Record"} id={"MaintenanceRecord"}>

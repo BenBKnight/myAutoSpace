@@ -10,10 +10,13 @@ import { AuthContext } from "../utils/authContext";
 
 
 class Login extends Component {
-    state = {
-        email: "",
-        password: "",
-        id: ""
+    constructor(props) {
+        super(props)
+        this.state = {
+            email: "",
+            password: "",
+            id: ""
+        };
     };
     static contextType = AuthContext;
 

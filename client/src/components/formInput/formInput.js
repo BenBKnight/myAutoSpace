@@ -2,7 +2,6 @@ import React from "react";
 // import "./style.css";
 
 function FormInput(props) {
-    // console.log(props)
     return (
         <div className="field form-group">
             <label className={props.className} htmlFor={props.htmlFor}>{props.childeren}</label>

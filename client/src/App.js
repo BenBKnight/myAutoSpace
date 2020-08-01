@@ -13,10 +13,13 @@ import Navbar from "./components/navbar/navbar";
 import { AuthContext } from "./utils/authContext";
 
 class App extends Component {
-  state = {
-    token: null,
-    userId: null,
-  }
+  constructor(props) {
+    super(props)
+    this.state = {
+      token: null,
+      userId: null,
+    };
+  };
   login = (token, userId, tokenExperation) => {
     this.setState({
       token: token,
@@ -49,7 +52,7 @@ class App extends Component {
                 <Route exact path="/Members" component={Members} />
                 <Route exact path="/Maintenance" component={Maintenance} />
                 <Route exact path="/Vehicles" component={Vehicles} />
-                <Route exact path="/NewMaintenance" component={NewMaintenance} />
+                <Route exact path="/NewMaintenance/:id" component={NewMaintenance} />
                 <Route path="/Vehicles/:id" component={VehicleDisplay} />
               </Switch>
             </header>

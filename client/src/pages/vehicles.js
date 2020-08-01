@@ -7,20 +7,23 @@ import Card from "../components/card/card";
 import { AuthContext } from "../utils/authContext";
 
 class Vehicles extends Component {
-    state = {
-        type: "car",
-        make: "",
-        model: "",
-        year: "",
-        vin: "",
-        mileage: "",
-        yearPurchased: "",
-        condition: "Excellent",
-        accidents: "",
-        numOfOwners: "",
-        locationLastOwned: "",
-        UserId: localStorage.getItem("userId")
-    };
+    constructor(props) {
+        super(props)
+        this.state = {
+            type: "car",
+            make: "",
+            model: "",
+            year: "",
+            vin: "",
+            mileage: "",
+            yearPurchased: "",
+            condition: "Excellent",
+            accidents: "",
+            numOfOwners: "",
+            locationLastOwned: "",
+            UserId: localStorage.getItem("userId")
+        };
+    }
     static contextType = AuthContext;
 
     handleInputChange = event => {

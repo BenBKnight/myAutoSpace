@@ -1,20 +1,19 @@
 const app = require("express");
 const isAuthenticated = require("../config/middleware/isAuthenticated");
 const router = app.Router();
-// const passport = require("../config/passport");
 const db = require("../models");
 
-router.get("/maintenance", isAuthenticated, (req, res) => {
-  // res.sendFile(path.join(__dirname, "../public/maintenance.html"));
-  res.render("maintenance");
-});
+// router.get("/maintenance", isAuthenticated, (req, res) => {
+//   // res.sendFile(path.join(__dirname, "../public/maintenance.html"));
+//   res.render("maintenance");
+// });
 
-router.get("/newMaintenance", isAuthenticated, (req, res) => {
-  // res.sendFile(path.join(__dirname, "../public/newMaintenance.html"));
-  res.render("newMaintenance");
-});
+// router.get("/newMaintenance", isAuthenticated, (req, res) => {
+//   // res.sendFile(path.join(__dirname, "../public/newMaintenance.html"));
+//   res.render("newMaintenance");
+// });
 
-router.post("/api/maintenance", isAuthenticated, (req, res) => {
+router.post("/api/maintenance/:id", isAuthenticated, (req, res) => {
   console.log(req.body)
   db.Maintenance.create({
     name: req.body.name,

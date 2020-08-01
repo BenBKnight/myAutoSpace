@@ -39,7 +39,7 @@ export default {
         })
     },
     maintRecord: function (data) {
-        return axios.post(serverUrl + "/api/maintenance", data, {
+        return axios.post(serverUrl + "/api/maintenance/:id", data, {
             headers: {
                 Authorization: localStorage.getItem("jwt.Token")
             }
