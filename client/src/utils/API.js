@@ -123,7 +123,11 @@ export default {
         })
     },
     getOneMaintRecord: function (data) {
-        return axios.get(serverUrl + "/maintenancefind/" + data)
+        return axios.get(serverUrl + "/maintenancefind/" + data, {
+            headers: {
+                Authorization: localStorage.getItem("jwt.Token")
+            }
+        })
     }
 }
 
