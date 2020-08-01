@@ -3,11 +3,14 @@ import API from "../utils/API";
 import Vehicles from "../components/vehicles/vehicles";
 import {
     BrowserRouter as Router,
-    Link
+    Link,
+    Switch,
+    Route
 } from "react-router-dom";
 import Card from "../components/card/card";
 import Header from "../components/header/header";
 import Subtitle from "../components/subtitle/subtitle";
+import NewMaintenance from "./newMaintenance";
 
 
 class Members extends Component {
@@ -69,9 +72,6 @@ class Members extends Component {
                         ))}
                     </div>
                 </Card>
-                <Router>
-                    <Link to="/vehicles" />
-                </Router>
             </div>
         );
     }

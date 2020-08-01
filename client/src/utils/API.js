@@ -108,7 +108,11 @@ export default {
     },
     getMaintRecords: function (data) {
         // Data is Equal to vehicle Id
-        return axios.get(serverUrl + "/maintenancefindvehicle/" + data)
+        return axios.get(serverUrl + "/maintenancefindvehicle/" + data, {
+            headers: {
+                Authorization: localStorage.getItem("jwt.Token")
+            }
+        })
     },
     getOneMaintRecord: function (data) {
         return axios.get(serverUrl + "/maintenancefind/" + data)

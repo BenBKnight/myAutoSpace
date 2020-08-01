@@ -11,7 +11,7 @@ import TestMdData from "../db/testData";
 
 class VehicleDisplay extends Component {
     state = {
-        vehicleID: 5,
+        vehicleID: 40,
         vehicle: {},
         conditionDescription: "",
         maintRecords: [],
