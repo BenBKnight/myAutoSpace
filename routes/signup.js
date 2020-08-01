@@ -3,6 +3,8 @@ const app = require("express");
 const router = app.Router();
 const db = require("../models");
 const bcrypt = require("bcryptjs")
+const jwt = require("jsonwebtoken")
+
 // Takes new user information and sends it to database
 router.post("/api/signup", (req, res) => {
   bcrypt.hash(req.body.password, 10, (err, hash) => {
@@ -18,19 +20,30 @@ router.post("/api/signup", (req, res) => {
         lastName: req.body.lastName,
         location: req.body.location
       })
-        .then((data) => {
-          res.status(200).json(data);
+        .then(user => {
+          console.log("api ************************** ", user.dataValues)
+
+          const token = jwt.sign({
+            email: user.dataValues.email,
+            userId: user.dataValues.id
+          },
+            process.env.JWT_KEY,
+            {
+              expiresIn: "1h"
+            }
+          )
+          console.log(token)
+          return res.status(200).json({
+            message: "Auth Successful",
+            token: token
+          })
+            .catch(err => {
+              console.log(err)
+              res.status(401).send("Auth Unsuccessful");
+            });
         })
-        .catch(err => {
-          // console.log(err)
-          res.status(401).send("Auth Unsuccessful");
-        });
     }
   })
-
-
-
-
 });
 
 module.exports = router;

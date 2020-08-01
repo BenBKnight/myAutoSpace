@@ -14,8 +14,6 @@ router.post("/api/login", (req, res) => {
   })
     .then(user => {
       // If they cannot find a user
-      // console.log(user)
-      // console.log(req.body)
       bcrypt.compare(req.body.password, user.dataValues.password, (err, result) => {
         if (err) {
           return res.status(401).json({

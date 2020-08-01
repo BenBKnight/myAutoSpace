@@ -17,17 +17,20 @@ const router = app.Router();
 //   db.Vehicle.findAll({}).then(result => res.json(result));
 // });
 
-// router.get("/vehiclefind/:userid", isAuthenticated, (req, res) => {
-//   const userId = req.params.userid;
-//   db.Vehicle.findAll({
-//     where: {
-//       UserId: userId
-//     }
-//   }).then(result => {
-//     //console.log(result);
-//     res.send(result);
-//   });
-// });
+router.get("/vehiclefind/:userid", isAuthenticated, (req, res) => {
+  const userId = req.params.userid;
+  db.Vehicle.findAll({
+    where: {
+      UserId: userId
+    }
+  }).then(results => {
+    res.json(results)
+  })
+    .catch(err => {
+      console.log(err)
+      res.status(401).send("Auth Unsuccessful");
+    });
+});
 
 // router.get("/vehicles/:id", isAuthenticated, (req, res) => {
 //   const id = req.params.id;
@@ -51,8 +54,6 @@ const router = app.Router();
 
 // POST route for saving a new post
 router.post("/api/postVehicle", isAuthenticated, (req, res) => {
-  console.log("++++++++++++++asdfasdfa+++++++++++asdfasdf+++++++++++++++++++++++++++++++++++")
-  console.log(req.body.id)
   db.Vehicle.create({
     type: req.body.type,
     make: req.body.make,

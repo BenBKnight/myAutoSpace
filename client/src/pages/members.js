@@ -12,31 +12,32 @@ import Subtitle from "../components/subtitle/subtitle";
 
 class Members extends Component {
     state = {
-        userId: 2,
+        userId: 40,
         vehicle: []
     }
 
-    componentDidMount() {
-        API.userData()
-            .then((res) => {
-                // Need Session to be working, I think
-                this.setState({
-                    userId: res.data.id
-                })
-                // .then(() => {
-                //     let id = this.state.userId
-                //     this.getVehicles(id)
-                // })
-            })
-            .catch(err => {
-                console.log(err)
-            })
+    // componentDidMount() {
+    //     API.userData()
+    //         .then((res) => {
+    //             this.setState({
+    //                 userId: res.data.id
+    //             })
+    //                 .then(() => {
+    //                     let id = this.state.userId
+    //                     this.getVehicles(id)
+    //                 })
+    //         })
+    //         .catch(err => {
+    //             console.log(err)
+    //         })
 
-    }
-    getVehicles() {
+    // };
+
+    componentDidMount() {
         API.allVehicles(this.state.userId)
-            .then((res) => {
-                console.log("api returned for members", res.data);
+            // console.log("00000000000000000 mounting")
+            .then(res => {
+                console.log("api returned for members", res);
                 this.setState({
                     vehicle: res.data
                 }

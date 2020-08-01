@@ -30,8 +30,7 @@ class Signup extends Component {
         // user.email, user.password, user.firstName, user.lastName, user.location
         API.signUp(user)
             .then(() => {
-                console.log("returned");
-                //router to members
+                this.props.history.push("/Members")
             })
             .catch(err => {
                 console.log(err);

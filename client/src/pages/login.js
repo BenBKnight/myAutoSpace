@@ -9,10 +9,6 @@ import Subtitle from "../components/subtitle/subtitle";
 import { AuthContext } from "../utils/authContext";
 
 class Login extends Component {
-    // constructor(props) {
-    //     super(props);
-    //     this.sendUserToMembers = this.sendUserToMembers.bind(this)
-    // }
     state = {
         email: "",
         password: "",
@@ -30,11 +26,8 @@ class Login extends Component {
         if (!this.state.email || !this.state.password) {
             return;
         }
-        // use withRouter here READ: LINK & WITHROUTER & react router docs
         API.loginUser(user)
-            .then((res) => {
-                console.log()
-                // if (res.data.token)
+            .then(res => {
                 this.props.history.push("/Members")
             })
             .catch(err => {
@@ -79,9 +72,7 @@ class Login extends Component {
                     <form className="login">
                         <FormInput className={"style"} handleInputChange={this.handleInputChange} value={this.state.email} htmlFor="exampleInputEmail1" id="emailInput" placeholder="User@email.com" type="email">Email address:</FormInput>
                         <FormInput handleInputChange={this.handleInputChange} value={this.state.password} htmlFor="exampleInputEmail1" id="passwordInput" placeholder="Password" type="password">Password</FormInput>
-                        {/* <Link to="/Members"> */}
                         <FormInputButton handleFormSubmit={this.handleFormSubmit}>Login</FormInputButton>
-                        {/* </Link> */}
                     </form>
                 </Card>
             </div>
