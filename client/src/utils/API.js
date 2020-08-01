@@ -1,4 +1,8 @@
 import axios from "axios";
+import setAuthorizationToken from "./setAuthorizationToken";
+// import jwt from "jsonwebtoken";
+
+
 const serverUrl = "http://localhost:8080";
 
 // const sampleData =
@@ -55,15 +59,26 @@ const serverUrl = "http://localhost:8080";
 export default {
 
     // Post Routes
-    loginUser: function (data) {
-        console.log(data)
-        return axios.post(serverUrl + "/api/login", data);
+    loginUser: function (user) {
+        return axios.post(serverUrl + "/api/login", user)
+            .then(res => {
+                console.log(res.data.token)
+                const token = res.data.token;
+                localStorage.setItem("jwt.Token", token);
+                setAuthorizationToken(token);
+                // res.send(jwt.decode(token))
+            });
     },
     signUp: function (data) {
         return axios.post(serverUrl + "/api/signup", data)
     },
     newVehicle: function (data) {
-        return axios.post(serverUrl + "/api/postVehicle", data)
+        console.log("*******************", localStorage.getItem("jwt.Token"), data)
+        return axios.post(serverUrl + "/api/postVehicle", data, {
+            headers: {
+                Authorization: localStorage.getItem("jwt.Token")
+            }
+        })
     },
     maintRecord: function (data) {
         return axios.post(serverUrl + "/api/maintenance", data)

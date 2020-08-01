@@ -4,6 +4,7 @@ import DropDown from "../components/dropDown/dropDown";
 import FormInputButton from "../components/formInputButton/FormInputButton";
 import API from "../utils/API";
 import Card from "../components/card/card";
+import { AuthContext } from "../utils/authContext";
 
 class Vehicles extends Component {
     state = {
@@ -18,8 +19,10 @@ class Vehicles extends Component {
         accidents: "",
         numOfOwners: "",
         locationLastOwned: "",
-        UserId: 2
+        UserId: 26
     };
+    static contextType = AuthContext;
+
     handleInputChange = event => {
         // Getting the value and name of the input which triggered the change
         let value = event.target.value;
@@ -34,8 +37,6 @@ class Vehicles extends Component {
     handleSelect = event => {
         let value = event.target.value;
         const name = event.target.id;
-        console.log(event, value, name)
-
         this.setState({
             [name]: value
         });

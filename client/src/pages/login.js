@@ -6,6 +6,7 @@ import { withRouter } from "react-router-dom";
 import Card from "../components/card/card";
 import Header from "../components/header/header";
 import Subtitle from "../components/subtitle/subtitle";
+import { AuthContext } from "../utils/authContext";
 
 class Login extends Component {
     // constructor(props) {
@@ -15,12 +16,9 @@ class Login extends Component {
     state = {
         email: "",
         password: "",
-        id: "",
-
+        id: ""
     };
-    // sendUserToMembers = () => {
-    //     useHistory().push("/Members")
-    // }
+    static contextType = AuthContext;
 
     handleFormSubmit = (e) => {
         e.preventDefault();
@@ -35,11 +33,8 @@ class Login extends Component {
         // use withRouter here READ: LINK & WITHROUTER & react router docs
         API.loginUser(user)
             .then((res) => {
-                this.setState({
-                    email: res.data.email,
-                    id: res.data.id
-                })
-                // useHistory().push("/members");
+                console.log()
+                // if (res.data.token)
                 this.props.history.push("/Members")
             })
             .catch(err => {

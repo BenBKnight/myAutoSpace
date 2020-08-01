@@ -14,7 +14,7 @@ router.get("/newMaintenance", isAuthenticated, (req, res) => {
   res.render("newMaintenance");
 });
 
-router.post("/api/maintenance", (req, res) => {
+router.post("/api/maintenance", isAuthenticated, (req, res) => {
   console.log(req.body)
   db.Maintenance.create({
     name: req.body.name,
@@ -32,7 +32,7 @@ router.post("/api/maintenance", (req, res) => {
     });
 });
 
-router.get("/api/maintenance", (req, res) => {
+router.get("/api/maintenance", isAuthenticated, (req, res) => {
   db.Maintenance.findAll()
     .then(result => {
       res.send(result);
@@ -40,7 +40,7 @@ router.get("/api/maintenance", (req, res) => {
     .catch(() => res.status(401).json(err));
 });
 
-router.get("/maintenancefind/:jobid", (req, res) => {
+router.get("/maintenancefind/:jobid", isAuthenticated, (req, res) => {
   const jobId = req.params.jobid;
   db.Maintenance.findAll({
     where: {
@@ -54,7 +54,7 @@ router.get("/maintenance/:jobid", isAuthenticated, (req, res) => {
   res.render("maintRecord");
 });
 
-router.get("/maintenancefindvehicle/:vehicleid", (req, res) => {
+router.get("/maintenancefindvehicle/:vehicleid", isAuthenticated, (req, res) => {
   const vehicleId = req.params.vehicleid;
   db.Maintenance.findAll({
     where: {

@@ -1,19 +1,9 @@
 // Requiring path to so we can use relative routes to our HTML files
 const app = require("express");
 const router = app.Router();
-const passport = require("../config/passport");
 const db = require("../models");
 const bcrypt = require("bcryptjs");
-// const bcrypt = require("bcryptjs")
-
-// Verifies user login information  passport.authenticate("local")
-// router.post("/api/login", passport.authenticate("local"), (req, res) => {
-//   // Sending back a password, even a hashed password, isn't a good idea
-//   res.json({
-//     email: req.user.email,
-//     id: req.user.id
-//   });
-// });
+const jwt = require("jsonwebtoken")
 
 
 router.post("/api/login", (req, res) => {
@@ -24,8 +14,8 @@ router.post("/api/login", (req, res) => {
   })
     .then(user => {
       // If they cannot find a user
-      console.log(user)
-      console.log(req.body)
+      // console.log(user)
+      // console.log(req.body)
       bcrypt.compare(req.body.password, user.dataValues.password, (err, result) => {
         if (err) {
           return res.status(401).json({
@@ -33,8 +23,18 @@ router.post("/api/login", (req, res) => {
           });
         }
         if (result) {
+          const token = jwt.sign({
+            email: user.dataValues.email,
+            userId: user.dataValues.id
+          },
+            process.env.JWT_KEY,
+            {
+              expiresIn: "1h"
+            }
+          )
           return res.status(200).json({
-            message: "Auth Successful"
+            message: "Auth Successful",
+            token: token
           });
         }
         res.status(401).json({

@@ -12,7 +12,9 @@ import NewMaintenance from "./pages/newMaintenance";
 import Navbar from "./components/navbar/navbar";
 import { UserContext } from "./utils/userContext";
 import { VehicleContext } from "./utils/vehicleContext";
+import { AuthContext } from "./utils/authContext";
 import ProtectedRoute from "../src/utils/protectedRoute";
+
 function App() {
   // To hide navBar buttons, whether or not the user is signed in or not
   const [userLoggedIn, setUserLoggedIn] = useState(true);
@@ -22,25 +24,27 @@ function App() {
   return (
 
     <Router>
-      <div className="App">
-        <header className="App-header">
-          <UserContext.Provider value={loggedInValue}>
-            <Navbar />
-            <Switch>
-              <VehicleContext.Provider>
-                <Route exact path="/" component={Login} />
-                <Route exact path="/Signup" component={Signup} />
-                <Route exact path="/MaintRecord" component={MaintRecord} />
-                <Route exact path="/Members" component={Members} value={id} />
-                <Route exact path="/Maintenance" component={Maintenance} />
-                <Route exact path="/Vehicles" component={Vehicles} />
-                <Route exact path="/NewMaintenance" component={NewMaintenance} />
-                <Route exact path="/Vehicles/5" component={VehicleDisplay} />
-              </VehicleContext.Provider>
-            </Switch>
-          </UserContext.Provider>
-        </header>
-      </div >
+      <AuthContext.Provider>
+        <div className="App">
+          <header className="App-header">
+            <UserContext.Provider value={loggedInValue}>
+              <Navbar />
+              <Switch>
+                <VehicleContext.Provider>
+                  <Route exact path="/" component={Login} />
+                  <Route exact path="/Signup" component={Signup} />
+                  <Route exact path="/MaintRecord" component={MaintRecord} />
+                  <Route exact path="/Members" component={Members} value={id} />
+                  <Route exact path="/Maintenance" component={Maintenance} />
+                  <Route exact path="/Vehicles" component={Vehicles} />
+                  <Route exact path="/NewMaintenance" component={NewMaintenance} />
+                  <Route exact path="/Vehicles/5" component={VehicleDisplay} />
+                </VehicleContext.Provider>
+              </Switch>
+            </UserContext.Provider>
+          </header>
+        </div >
+      </AuthContext.Provider>
     </Router>
   );
 }
