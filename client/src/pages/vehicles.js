@@ -16,14 +16,14 @@ class Vehicles extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      type: "car",
+      type: "",
       make: "",
       model: "",
       year: "",
       vin: "",
       mileage: "",
       yearPurchased: "",
-      condition: "Excellent",
+      condition: "",
       accidents: "",
       numOfOwners: "",
       locationLastOwned: "",
