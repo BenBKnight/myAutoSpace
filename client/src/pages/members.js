@@ -1,55 +1,86 @@
 import React, { Component } from "react";
 import API from "../utils/API";
+import './members.css';
 import Vehicles from "../components/vehicles/vehicles";
 import Card from "../components/card/card";
 import Header from "../components/header/header";
 import Subtitle from "../components/subtitle/subtitle";
+import Navbar from '../components/Navbar copy';
+import NavbarLink from '../components/NavbarLink';
+import ActionBtn from '../components/ActionBtn';
+import CarInfoBox from '../components/CarInfoBox';
+import UserInfo from '../components/UserInfo';
 
 
 class Members extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            userId: localStorage.getItem("userId"),
-            vehicle: []
+  constructor(props) {
+    super(props)
+    this.state = {
+      userId: localStorage.getItem("userId"),
+      vehicle: []
+    }
+  };
+  componentDidMount() {
+    API.allVehicles(this.state.userId)
+      .then(res => {
+        this.setState({
+          vehicle: res.data
         }
-    };
-    componentDidMount() {
-        API.allVehicles(this.state.userId)
-            .then(res => {
-                this.setState({
-                    vehicle: res.data
-                }
-                )
-            })
-            .catch(err => {
-                console.log(err);
-            })
-    }
-    render() {
-        return (
-            <div>
-                <br />
-                <Card>
-                    <Header
-                        className={"tile box mt-5 has-text-centered container-center vehicle-style"}
-                        value={"Welcome"} />
-                </Card>
-                <br />
-                <Card>
-                    <Subtitle className={"subtitle label"} value={"Your Vehicles"} />
-                    <div className="section">
-                        {this.state.vehicle.map(vehicles => (
-                            <span key={vehicles.id}>
-                                <Vehicles
-                                    vehicle={vehicles}
-                                />
-                            </span>
-                        ))}
-                    </div>
-                </Card>
-            </div>
+        )
+      })
+      .catch(err => {
+        console.log(err);
+      })
+  }
+  render() {
+    return (
+      <>
+      <Navbar>
+        <NavbarLink url='/garage' active={true}>My Garage</NavbarLink>
+        <NavbarLink url='/add-vehicle'>Add Vehicle</NavbarLink>
+        <NavbarLink url='/add-maintenance'>Add Maintenance</NavbarLink>
+        <ActionBtn url='/'>Sign Out</ActionBtn>
+      </Navbar>
+      <div className='garageWrapper'>
+        <div className='garageSidebar'>
+          <UserInfo />
+        </div>
+        <div className='garageMain'>
+          <h1 className='garagePageTitle'>My Garage</h1>
+          <br></br>
+          <br></br>
+          <br></br>
+          <CarInfoBox />
+          <CarInfoBox />
+          <CarInfoBox />
+          <CarInfoBox />
+        </div>
+        <div className='garageSidebar'></div>
+      </div>
+
+      <div>
+        <br />
+        <Card>
+          <Header
+            className={"tile box mt-5 has-text-centered container-center vehicle-style"}
+            value={"Welcome"} />
+        </Card>
+        <br />
+        <Card>
+          <Subtitle className={"subtitle label"} value={"Your Vehicles"} />
+          <div className="section">
+            {this.state.vehicle.map(vehicles => (
+              <span key={vehicles.id}>
+                <Vehicles
+                  vehicle={vehicles}
+                />
+              </span>
+            ))}
+          </div>
+        </Card>
+      </div>
+      </>
         );
-    }
+  }
 }
 export default Members;
