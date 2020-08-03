@@ -176,16 +176,16 @@ class NewMaintenance extends Component {
       <br></br>
       <div className='maintFlex'>
         <div className='addMaintenanceWrapper'>
-          <FormInputTwo setWidth='width100' name='jobName' type='text' label='Job Name'></FormInputTwo>
-          <FormInputTwo setWidth='width100' name='milage' type='text' label='Milage at Service'></FormInputTwo>
+          <FormInputTwo setWidth='width100' name='jobName' type='text' label='Job Name' id="name" value={this.state.maintToAdd.name} handleInputChange={this.handleInputChange}></FormInputTwo>
+          <FormInputTwo setWidth='width100' name='milage' type='text' label='Milage at Service' id="milage" value={this.state.maintToAdd.milage} handleInputChange={this.handleInputChange}></FormInputTwo>
           <span className='flex'>
-            <FormInputTwo setWidth='width25' name='day' type='text' label='Service Day'></FormInputTwo>
-            <FormInputTwo setWidth='width25' name='month' type='text' label='Service Month'></FormInputTwo>
-            <FormInputTwo setWidth='width25' name='year' type='text' label='Service Year'></FormInputTwo>
+            <FormInputTwo setWidth='width25' name='day' type='text' label='Service Day' handleInputChange={this.handleInputChange}></FormInputTwo>
+            <FormInputTwo setWidth='width25' name='month' type='text' label='Service Month' handleInputChange={this.handleInputChange}></FormInputTwo>
+            <FormInputTwo setWidth='width25' name='year' type='text' label='Service Year' handleInputChange={this.handleInputChange}></FormInputTwo>
           </span>
         </div>
         <div className='addMaintenanceWrapper'>
-          <textarea className='inputText textArea maintAddTextArea' placeholder='Description' name='description' type='text' label='Description' />
+          <textarea className='inputText textArea maintAddTextArea' placeholder='Description' name='description' type='text' label='Description' id="description" value={this.state.description} onChange={this.handleInputChange}/>
         </div>
       </div>
       <br />
