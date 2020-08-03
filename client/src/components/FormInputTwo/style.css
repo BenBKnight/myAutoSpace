@@ -52,6 +52,10 @@
   width: 25%;
 }
 
+input{
+  text-align: start;
+}
+
 @media (max-width: 769px) {
   .width45{
     width: 100%;
