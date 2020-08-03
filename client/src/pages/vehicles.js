@@ -28,6 +28,7 @@ class Vehicles extends Component {
       numOfOwners: "",
       locationLastOwned: "",
       UserId: localStorage.getItem("userId"),
+      
       vehicleType:{
         car: true,
         truck: false,
@@ -108,8 +109,6 @@ class Vehicles extends Component {
           <NavbarLink url='/add-maintenance'>Add Maintenance</NavbarLink>
           <ActionBtn url='/'>Sign Out</ActionBtn>
         </Navbar>
-        <br></br>
-        <br></br>
         <div className='addCarFlex'>
           <div className='width40 carSelectionFormat'>
             <h2 className='addCarSubHeader'>Select Vehicle Type</h2>
@@ -138,19 +137,19 @@ class Vehicles extends Component {
             <br></br>
             <br></br>
             <span className='flex'>
-              <FormInputTwo setWidth='width45' name='make' type='text' label='Make'></FormInputTwo>
-              <FormInputTwo setWidth='width45' name='model' type='text' label='Model'></FormInputTwo>
+              <FormInputTwo setWidth='width45' name='make' type='text' label='Make' id="make" value={this.state.make} handleInputChange={this.handleInputChange}></FormInputTwo>
+              <FormInputTwo setWidth='width45' name='model' type='text' label='Model' id="model" value={this.state.model} handleInputChange={this.handleInputChange}></FormInputTwo>
             </span>
-            <FormInputTwo setWidth='width100' name='vin' type='text' label='Vin'></FormInputTwo>
+            <FormInputTwo setWidth='width100' name='vin' type='text' label='Vin' id="vin" value={this.state.vin} handleInputChange={this.handleInputChange}></FormInputTwo>
             <span className='flex'>
-              <FormInputTwo setWidth='width45' name='vehicleYear' type='text' label='Vehicle Year'></FormInputTwo>
-              <FormInputTwo setWidth='width45' name='milage' type='text' label='Milage'></FormInputTwo>
+              <FormInputTwo setWidth='width45' name='vehicleYear' type='text' label='Vehicle Year' id="year" value={this.state.year} handleInputChange={this.handleInputChange}></FormInputTwo>
+              <FormInputTwo setWidth='width45' name='milage' type='text' label='Milage' id="mileage" value={this.state.mileage} handleInputChange={this.handleInputChange}></FormInputTwo>
             </span>
             <span className='flex'>
-              <FormInputTwo setWidth='width45' name='yearOfPurchase' type='text' label='Year of Purchase'></FormInputTwo>
-              <FormInputTwo setWidth='width45' name='accidents' type='text' label='Number of Accidents'></FormInputTwo>
+              <FormInputTwo setWidth='width45' name='yearOfPurchase' type='text' label='Year of Purchase' id="yearPurchased" value={this.state.yearPurchased} handleInputChange={this.handleInputChange}></FormInputTwo>
+              <FormInputTwo setWidth='width45' name='accidents' type='text' label='Number of Accidents' id="accidents" value={this.state.accidents} handleInputChange={this.handleInputChange}></FormInputTwo>
             </span>
-            <ActionBtn url='/garage'>Add Vehicle</ActionBtn>
+            <ActionBtn handleClick={this.handleFormSubmit}>Add Vehicle</ActionBtn>
           </div>
         </div>
         <div className="container-center-col">
