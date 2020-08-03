@@ -17,6 +17,8 @@
 }
 
 .garagePageTitle{
+  font-size: 2rem;
+  font-weight: 600;
   text-align: center;
   color: #505050;
 }
