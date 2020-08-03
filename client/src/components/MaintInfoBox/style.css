@@ -1,0 +1,35 @@
+.maintInfoBox{
+  margin: 1rem;
+  padding: 1rem;
+  background-color: white;
+  border: solid #505050 1px;
+  border-radius: 3px;
+  box-shadow: #505050 1px 2px;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.maintBoxImg{
+  width: 25%;
+  object-fit: scale-down;
+  height: auto;
+}
+
+.maintBoxTitle{
+  color: #505050;
+}
+
+.maintBoxText{
+  color: #505050;
+}
+
+@media(max-width: 769px) {
+  .maintBoxImg{
+    width: 60%;
+  }
+
+  .maintInfoBox{
+    width: 85%;
+    margin-left: 1.5rem;
+  }
+}

@@ -1,0 +1,27 @@
+.carFormImg{
+  height: 3rem;
+  margin: .3rem 2rem;
+}
+
+.carFormLine{
+  background-color: #424ea1;
+  height: 2px;
+  width: 75%;
+  margin: auto;
+  transition: ease-in-out;
+}
+
+.imgNameText{
+  margin-top: .5rem;
+  font-size: 1.25rem;
+  color: #424ea1;
+  text-align: center;
+  transition: ease-in-out;
+}
+
+@media(max-width: 769px) {
+  .carFormImg{
+    height: 2rem;
+    margin: .3rem 1rem;
+  }
+}

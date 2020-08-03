@@ -1,0 +1,69 @@
+.mainHeader{
+  text-align: center;
+  font-size: 3rem;
+  color: #505050;
+}
+
+.addCarFlex{
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.flex{
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.addCarWrapper{
+  width: 40%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.addCarHeader{
+  text-align: center;
+  color: #505050;
+  font-size: 2.5rem;
+  margin: .2rem;
+  padding: .2rem;
+  padding-left: .5;
+}
+
+.addCarSubHeader{
+  text-align: center;
+  color: #505050;
+  font-size: 1.5rem;
+  font-weight: 500;
+  padding-left: .5;
+  margin-bottom: 1rem;
+}
+
+.carFormInputWrapper{
+  display: flex;
+  margin-bottom: 3rem;
+}
+
+.carSelectionFormat{
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+
+@media (max-width: 769px) {
+  .addCarHeader{
+    font-size: 1.5rem;
+  }
+
+  .addCarWrapper{
+    width: 90%;
+    justify-content: center;
+  }
+}
