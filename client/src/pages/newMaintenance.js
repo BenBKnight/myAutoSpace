@@ -206,7 +206,7 @@ class NewMaintenance extends Component {
       <br></br>
       <br></br>
       <div className='newMaintBtn'>
-        <ActionBtn url='/job'>Add Maintenance</ActionBtn>
+        <ActionBtn handleClick={this.handleFormSubmit}>Add Maintenance</ActionBtn>
       </div>
 
       <div className="section columns" >
