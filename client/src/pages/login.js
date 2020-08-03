@@ -1,12 +1,7 @@
 import React, { Component } from "react";
 import './login.css';
 import API from "../utils/API";
-import FormInput from "../components/formInput/formInput";
-import FormInputButton from "../components/formInputButton/FormInputButton";
 import { withRouter } from "react-router-dom";
-import Card from "../components/card/card";
-import Header from "../components/header/header";
-import Subtitle from "../components/subtitle/subtitle";
 import { AuthContext } from "../utils/authContext";
 import Navbar from '../components/Navbar copy';
 import NavbarInput from '../components/NavbarInput';
@@ -31,16 +26,17 @@ class Login extends Component {
   };
   static contextType = AuthContext;
 
-  handleFormSubmit = (e) => {
+  handleLogInSubmit = (e) => {
     e.preventDefault();
-
+    console.log('hit');
     let user = {
-      email: this.state.email.trim(),
-      password: this.state.password.trim()
+      email: this.state.emailInput.trim(),
+      password: this.state.passwordInput.trim()
     }
-    if (!this.state.email || !this.state.password) {
+    if (!this.state.emailInput || !this.state.passwordInput) {
       return;
     }
+    console.log(user);
     API.loginUser(user)
       .then((res) => {
         this.props.history.push("/Members")
@@ -49,6 +45,33 @@ class Login extends Component {
         console.log(err);
       })
   };
+
+  handleSignUpSubmit = event => {
+    event.preventDefault();
+    console.log('hit');
+    let user = {
+        email: this.state.email.trim(),
+        password: this.state.password.trim(),
+        firstName: this.state.firstName.trim(),
+        lastName: this.state.lastName.trim(),
+        location: this.state.location.trim()
+    }
+    if (!this.state.email || !this.state.password) {
+        return;
+    }
+    console.log(user)
+    API.signUp(user)
+        .then(() => {
+            this.props.history.push("/Members")
+        })
+        .catch(err => {
+            console.log(err);
+        })
+};
+handleSignUpErr(err) {
+    alert(err);
+};
+
   handleInputChange = event => {
     // Getting the value and name of the input which triggered the change
     let value = event.target.value;
@@ -72,7 +95,7 @@ class Login extends Component {
         <Navbar>
           <NavbarInput handleInputChange={this.handleInputChange} value={this.state.emailInput} name='username' type='email' label='Username' id="emailInput"/>
           <NavbarInput handleInputChange={this.handleInputChange} value={this.state.passwordInput} name='password' type='password' label='Password' id="passwordInput"/>
-          <ActionBtn url='/garage'>Login</ActionBtn>
+          <ActionBtn handleClick={this.handleLogInSubmit}>Login</ActionBtn>
         </Navbar>
         <h1 className='mainHeader'>MyCarSpace</h1>
         <br></br>
@@ -88,7 +111,7 @@ class Login extends Component {
             <FormInputTwo handleInputChange={this.handleInputChange} value={this.state.email} setWidth='width100' name='email' type='email' label='Email' id='email'></FormInputTwo>
             <FormInputTwo handleInputChange={this.handleInputChange} value={this.state.password} setWidth='width100' name='password' type='password' label='Password' id='password'></FormInputTwo>
             <FormInputTwo handleInputChange={this.handleInputChange} value={this.state.location} setWidth='width100' name='location' type='text' label='Location' id='location'></FormInputTwo>
-            <ActionBtn>Sign Up</ActionBtn>
+            <ActionBtn handleClick={this.handleSignUpSubmit}>Sign Up</ActionBtn>
           </div>
 
           <div className='width40'>
@@ -97,15 +120,6 @@ class Login extends Component {
             <BulletPoint src={require('../components/BulletPoint/img/chat.png')}>Connect with other vehicle owners and share information</BulletPoint>
           </div>
         </div>
-        <br />
-        <br />
-        <Card title="Login Page">
-          <form className="login">
-            <FormInput className={"style"} handleInputChange={this.handleInputChange} value={this.state.email} htmlFor="exampleInputEmail1" id="emailInput" placeholder="User@email.com" type="email">Email address:</FormInput>
-            <FormInput handleInputChange={this.handleInputChange} value={this.state.password} htmlFor="exampleInputEmail1" id="passwordInput" placeholder="Password" type="password">Password</FormInput>
-            <FormInputButton handleFormSubmit={this.handleFormSubmit}>Login</FormInputButton>
-          </form>
-        </Card>
       </div>
     );
   }

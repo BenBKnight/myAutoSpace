@@ -1,6 +1,5 @@
 import React from 'react';
 import "./style.css";
-import { Link } from "react-router-dom";
 
 
 class ActionBtn extends React.Component {
@@ -12,9 +11,7 @@ class ActionBtn extends React.Component {
 
   render() {
     return (
-      <Link to={this.props.url}>
-        <button className="actionBtn">{this.props.children}</button>
-      </Link>
+        <button className="actionBtn" onClick={this.props.handleClick}>{this.props.children}</button>
     );
   }
 }
