@@ -1,0 +1,20 @@
+.navbar{
+  background-color: #505050;
+  padding-right: 1rem;
+  overflow-y: normal;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+}
+
+.navbarLine{
+  background-color: #424ea1;
+  height: .3rem;
+}
+
+@media (max-width: 769px) {
+  .navbar{
+    justify-content: center;
+  }
+}

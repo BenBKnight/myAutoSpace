@@ -1,0 +1,70 @@
+.flex{
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.addMaintenanceWrapper{
+  width: 40%;
+  display: flex;
+  margin-right: 3rem;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+}
+
+.addMaintHeader{
+  text-align: center;
+  color: #505050;
+  font-size: 2.5rem;
+  margin: .2rem;
+  padding: .2rem;
+  padding-left: .5;
+}
+
+.carSelector{
+  background-color: #505050;
+  color: white;
+  width: 90%;
+  padding: .5rem 1rem;
+  font-size: 1rem;
+}
+
+.maintFlex{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.textArea{
+  height: 228%;
+  font-size: 2rem;
+  font-family: 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;;
+}
+
+.photoFileLabel{
+  font-size: 1.5rem;
+  margin: 1rem;
+  color: #424ea1;
+}
+
+.newMaintBtn{
+  text-align: center;
+}
+
+.justifyLeft{
+  justify-content: start;
+}
+
+.maintAddTextArea::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: white;
+  opacity: 1; /* Firefox */
+}
+
+@media (max-width: 769px) {
+  .addMaintenanceWrapper{
+    width: 90%;
+    justify-content: center;
+  }
+}

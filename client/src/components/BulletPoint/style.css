@@ -1,0 +1,29 @@
+.bulletWrapper{
+  display: flex;
+  padding: .5rem;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.bulletText{
+  width: 80%;
+  font-size: 1.75rem;
+  color: #505050;
+  align-items: center;
+}
+
+.bulletImg{
+  width: 3rem;
+}
+
+@media (max-width: 769px) {
+  .bulletWrapper{
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .bulletText{
+    text-align: center;
+  }
+}

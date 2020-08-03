@@ -44,7 +44,6 @@ class App extends Component {
         }}>
           <div className="App">
             <header className="App-header">
-              <Navbar />
               <Switch>
                 <Route exact path="/" component={Login} />
                 <Route path="/MaintRecord/:id" component={MaintRecord} />
