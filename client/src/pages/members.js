@@ -23,6 +23,7 @@ class Members extends Component {
   componentDidMount() {
     API.allVehicles(this.state.userId)
       .then(res => {
+        console.log(res.data);
         this.setState({
           vehicle: res.data
         }
@@ -36,8 +37,8 @@ class Members extends Component {
     return (
       <>
       <Navbar>
-        <NavbarLink url='/garage' active={true}>My Garage</NavbarLink>
-        <NavbarLink url='/add-vehicle'>Add Vehicle</NavbarLink>
+        <NavbarLink url='/members' active={true}>My Garage</NavbarLink>
+        <NavbarLink url='/vehicles'>Add Vehicle</NavbarLink>
         <NavbarLink url='/add-maintenance'>Add Maintenance</NavbarLink>
         <ActionBtn url='/'>Sign Out</ActionBtn>
       </Navbar>
@@ -50,10 +51,13 @@ class Members extends Component {
           <br></br>
           <br></br>
           <br></br>
-          <CarInfoBox />
-          <CarInfoBox />
-          <CarInfoBox />
-          <CarInfoBox />
+          {this.state.vehicle.map(vehicles => (
+              <span key={vehicles.id}>
+                <CarInfoBox
+                  vehicle={vehicles}
+                />
+              </span>
+            ))}
         </div>
         <div className='garageSidebar'></div>
       </div>

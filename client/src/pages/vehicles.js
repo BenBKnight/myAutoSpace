@@ -104,8 +104,8 @@ class Vehicles extends Component {
     return (
       <>
         <Navbar>
-          <NavbarLink url='/garage'>My Garage</NavbarLink>
-          <NavbarLink url='/add-vehicle' active={true}>Add Vehicle</NavbarLink>
+          <NavbarLink url='/members'>My Garage</NavbarLink>
+          <NavbarLink url='/vehicles' active={true}>Add Vehicle</NavbarLink>
           <NavbarLink url='/add-maintenance'>Add Maintenance</NavbarLink>
           <ActionBtn url='/'>Sign Out</ActionBtn>
         </Navbar>

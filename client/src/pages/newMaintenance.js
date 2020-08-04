@@ -151,7 +151,7 @@ class NewMaintenance extends Component {
     return (
       <>
       <Navbar>
-        <NavbarLink url='/garage'>My Garage</NavbarLink>
+        <NavbarLink url='/members'>My Garage</NavbarLink>
         <NavbarLink url='/vehicles'>Add Vehicle</NavbarLink>
         <NavbarLink url='/add-maintenance' active={true}>Add Maintenance</NavbarLink>
         <ActionBtn url='/'>Sign Out</ActionBtn>
