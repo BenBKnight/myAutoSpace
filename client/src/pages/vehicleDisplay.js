@@ -106,7 +106,7 @@ class VehicleDisplay extends Component {
           <CarInfoSidebar vehicle={this.state.vehicle}/>
         </div>
         <div className='garageMain'>
-          <h1 className='garagePageTitle'>{this.state.vehicle.model} {this.state.vehicle.make}</h1>
+          <h1 className='garagePageTitle'>{this.state.vehicle.make} {this.state.vehicle.model}</h1>
           <br></br>
           <br></br>
           <br></br>
