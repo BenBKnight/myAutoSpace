@@ -74,6 +74,7 @@ class Vehicles extends Component {
   };
   handleFormSubmit = (e) => {
     e.preventDefault();
+    console.log('hit');
     let vehicleNew = this.state;
     API.newVehicle(vehicleNew)
       .then((res) => {
@@ -149,7 +150,7 @@ class Vehicles extends Component {
               <FormInputTwo setWidth='width45' name='yearOfPurchase' type='text' label='Year of Purchase' id="yearPurchased" value={this.state.yearPurchased} handleInputChange={this.handleInputChange}></FormInputTwo>
               <FormInputTwo setWidth='width45' name='accidents' type='text' label='Number of Accidents' id="accidents" value={this.state.accidents} handleInputChange={this.handleInputChange}></FormInputTwo>
             </span>
-            <ActionBtn handleClick={this.handleFormSubmit}>Add Vehicle</ActionBtn>
+            <ActionBtn url='#' handleClick={this.handleFormSubmit}>Add Vehicle</ActionBtn>
           </div>
         </div>
         <div className="container-center-col">

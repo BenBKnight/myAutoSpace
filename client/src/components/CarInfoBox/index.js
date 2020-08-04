@@ -14,7 +14,7 @@ function CarInfoBox(props) {
       <div>
         <h2 className='carBoxTitle'>{props.vehicle.year} {props.vehicle.make} {props.vehicle.model}</h2>
         <br></br>
-        <p className='carBoxText'>Milage: {props.vehicle.milage}</p>
+        <p className='carBoxText'>Milage: {props.vehicle.mileage}</p>
         <p className='carBoxText'>Vin: {props.vehicle.vin}</p>
       </div>
       </span>

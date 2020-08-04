@@ -95,7 +95,7 @@ handleSignUpErr(err) {
         <Navbar>
           <NavbarInput handleInputChange={this.handleInputChange} value={this.state.emailInput} name='username' type='email' label='Username' id="emailInput"/>
           <NavbarInput handleInputChange={this.handleInputChange} value={this.state.passwordInput} name='password' type='password' label='Password' id="passwordInput"/>
-          <ActionBtn handleClick={this.handleLogInSubmit}>Login</ActionBtn>
+          <ActionBtn url='#' handleClick={this.handleLogInSubmit}>Login</ActionBtn>
         </Navbar>
         <h1 className='mainHeader'>MyCarSpace</h1>
         <br></br>
@@ -111,7 +111,7 @@ handleSignUpErr(err) {
             <FormInputTwo handleInputChange={this.handleInputChange} value={this.state.email} setWidth='width100' name='email' type='email' label='Email' id='email'></FormInputTwo>
             <FormInputTwo handleInputChange={this.handleInputChange} value={this.state.password} setWidth='width100' name='password' type='password' label='Password' id='password'></FormInputTwo>
             <FormInputTwo handleInputChange={this.handleInputChange} value={this.state.location} setWidth='width100' name='location' type='text' label='Location' id='location'></FormInputTwo>
-            <ActionBtn handleClick={this.handleSignUpSubmit}>Sign Up</ActionBtn>
+            <ActionBtn url='#' handleClick={this.handleSignUpSubmit}>Sign Up</ActionBtn>
           </div>
 
           <div className='width40'>
