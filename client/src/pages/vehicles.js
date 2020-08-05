@@ -6,6 +6,7 @@ import DropDown from "../components/dropDown/dropDown";
 import FormInputButton from "../components/formInputButton/FormInputButton";
 import API from "../utils/API";
 import Card from "../components/card/card";
+import { withRouter } from "react-router-dom";
 import { AuthContext } from "../utils/authContext";
 import Navbar from '../components/Navbar copy';
 import NavbarLink from '../components/NavbarLink';
@@ -16,16 +17,16 @@ class Vehicles extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      type: "",
+      type: "Car",
       make: "",
       model: "",
       year: "",
       vin: "",
       mileage: "",
       yearPurchased: "",
-      condition: "",
+      condition: "Good",
       accidents: "",
-      numOfOwners: "",
+      numOfOwners: "Two",
       locationLastOwned: "",
       UserId: localStorage.getItem("userId"),
       
@@ -79,6 +80,7 @@ class Vehicles extends Component {
     API.newVehicle(vehicleNew)
       .then((res) => {
         console.log("api returned", res);
+        this.props.history.push("/Members");
       })
       .catch(err => {
         console.log(err);
@@ -89,12 +91,33 @@ class Vehicles extends Component {
     e.preventDefault();
     const choiceValue = e.target.dataset.value;
     const choiceField = e.target.dataset.field;
+    const choiceId = e.target.id;
+    console.log(choiceId);
+    switch (choiceField) {
+      case "vehicleType":
+        this.setState({
+          type: choiceId
+        }) 
+        break; 
+      case "vehicleCondition":
+        this.setState({
+          condition: choiceId
+        })  
+        break; 
+      case "vehicleOwners": 
+        this.setState({
+          numOfOwners: choiceId
+        }) 
+        break; 
+    }
 
     this.setState({
       [choiceField]:{
         [choiceValue]: true
       }
     })
+
+    console.log(this.state);
   }
 
   render() {
@@ -114,22 +137,22 @@ class Vehicles extends Component {
           <div className='width40 carSelectionFormat'>
             <h2 className='addCarSubHeader'>Select Vehicle Type</h2>
             <div className="carFormInputWrapper">
-              <FormImg dataField='vehicleType' dataValue='car' src='car_gray.png' srcActive='car_blue.png' imgName='Car' active={this.state.vehicleType.car} handleSelectionClick={this.handleSelectionClick}></FormImg>
-              <FormImg dataField='vehicleType' dataValue='truck' src='truck_gray.png' srcActive='truck_blue.png' imgName='Truck' active={this.state.vehicleType.truck} handleSelectionClick={this.handleSelectionClick}></FormImg>
-              <FormImg dataField='vehicleType' dataValue='bike' src='bike_gray.png' srcActive='bike_blue.png' imgName='Motorcycle' active={this.state.vehicleType.bike} handleSelectionClick={this.handleSelectionClick}></FormImg>
+              <FormImg id='Car' dataField='vehicleType' dataValue='car' src='car_gray.png' srcActive='car_blue.png' imgName='Car' active={this.state.vehicleType.car} handleSelectionClick={this.handleSelectionClick}></FormImg>
+              <FormImg id='Truck' dataField='vehicleType' dataValue='truck' src='truck_gray.png' srcActive='truck_blue.png' imgName='Truck' active={this.state.vehicleType.truck} handleSelectionClick={this.handleSelectionClick}></FormImg>
+              <FormImg id='Motorcycle' dataField='vehicleType' dataValue='bike' src='bike_gray.png' srcActive='bike_blue.png' imgName='Motorcycle' active={this.state.vehicleType.bike} handleSelectionClick={this.handleSelectionClick}></FormImg>
             </div>
             <h2 className='addCarSubHeader'>Vehicle Condition</h2>
             <div className="carFormInputWrapper">
-              <FormImg dataField='vehicleCondition' dataValue='good' src='good_gray.png' srcActive='good_blue.png' imgName='Good' active={this.state.vehicleCondition.good} handleSelectionClick={this.handleSelectionClick}></FormImg>
-              <FormImg dataField='vehicleCondition' dataValue='fair' src='fair_gray.png' srcActive='fair_blue.png' imgName='Fair' active={this.state.vehicleCondition.fair} handleSelectionClick={this.handleSelectionClick}></FormImg>
-              <FormImg dataField='vehicleCondition' dataValue='poor' src='poor_gray.png' srcActive='poor_blue.png' imgName='Poor' active={this.state.vehicleCondition.poor} handleSelectionClick={this.handleSelectionClick}></FormImg>
+              <FormImg id='Good' dataField='vehicleCondition' dataValue='good' src='good_gray.png' srcActive='good_blue.png' imgName='Good' active={this.state.vehicleCondition.good} handleSelectionClick={this.handleSelectionClick}></FormImg>
+              <FormImg id='Fair' dataField='vehicleCondition' dataValue='fair' src='fair_gray.png' srcActive='fair_blue.png' imgName='Fair' active={this.state.vehicleCondition.fair} handleSelectionClick={this.handleSelectionClick}></FormImg>
+              <FormImg id='Poor' dataField='vehicleCondition' dataValue='poor' src='poor_gray.png' srcActive='poor_blue.png' imgName='Poor' active={this.state.vehicleCondition.poor} handleSelectionClick={this.handleSelectionClick}></FormImg>
             </div>
             <h2 className='addCarSubHeader'>Number of Owners</h2>
             <div className="carFormInputWrapper">
-              <FormImg dataField='vehicleOwners' dataValue='one' src='one_gray.png' srcActive='one_blue.png' imgName='One' active={this.state.vehicleOwners.one} handleSelectionClick={this.handleSelectionClick}></FormImg>
-              <FormImg dataField='vehicleOwners' dataValue='two' src='two_gray.png' srcActive='two_blue.png' imgName='Two' active={this.state.vehicleOwners.two} handleSelectionClick={this.handleSelectionClick}></FormImg>
-              <FormImg dataField='vehicleOwners' dataValue='three' src='three_gray.png' srcActive='three_blue.png' imgName='Three' active={this.state.vehicleOwners.three} handleSelectionClick={this.handleSelectionClick}></FormImg>
-              <FormImg dataField='vehicleOwners' dataValue='more' src='more_gray.png' srcActive='more_blue.png' imgName='More' active={this.state.vehicleOwners.more} handleSelectionClick={this.handleSelectionClick}></FormImg>
+              <FormImg id={1} dataField='vehicleOwners' dataValue='one' src='one_gray.png' srcActive='one_blue.png' imgName='One' active={this.state.vehicleOwners.one} handleSelectionClick={this.handleSelectionClick}></FormImg>
+              <FormImg id={2} dataField='vehicleOwners' dataValue='two' src='two_gray.png' srcActive='two_blue.png' imgName='Two' active={this.state.vehicleOwners.two} handleSelectionClick={this.handleSelectionClick}></FormImg>
+              <FormImg id={3} dataField='vehicleOwners' dataValue='three' src='three_gray.png' srcActive='three_blue.png' imgName='Three' active={this.state.vehicleOwners.three} handleSelectionClick={this.handleSelectionClick}></FormImg>
+              <FormImg id={4} dataField='vehicleOwners' dataValue='more' src='more_gray.png' srcActive='more_blue.png' imgName='More' active={this.state.vehicleOwners.more} handleSelectionClick={this.handleSelectionClick}></FormImg>
             </div>
           </div>
           <div className='addCarWrapper'>

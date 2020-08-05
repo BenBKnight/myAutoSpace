@@ -61,28 +61,6 @@ class Members extends Component {
         </div>
         <div className='garageSidebar'></div>
       </div>
-
-      <div>
-        <br />
-        <Card>
-          <Header
-            className={"tile box mt-5 has-text-centered container-center vehicle-style"}
-            value={"Welcome"} />
-        </Card>
-        <br />
-        <Card>
-          <Subtitle className={"subtitle label"} value={"Your Vehicles"} />
-          <div className="section">
-            {this.state.vehicle.map(vehicles => (
-              <span key={vehicles.id}>
-                <Vehicles
-                  vehicle={vehicles}
-                />
-              </span>
-            ))}
-          </div>
-        </Card>
-      </div>
       </>
         );
   }
