@@ -114,7 +114,9 @@ class VehicleDisplay extends Component {
           <VehicleMaintBox header='Recent Maintenance'>
           {this.state.maintRecords.map(job => (
               <span key={job.id}>
-                <FormLine lineTitle={job.name} lineHeadOne='Service Date' lineHeadTwo='Service Milage' lineValOne={job.jobDate} lineValTwo={job.milage} />
+                <Link to={`/MaintRecord/${job.id}`}>
+                  <FormLine lineTitle={job.name} lineHeadOne='Service Date' lineHeadTwo='Service Milage' lineValOne={job.jobDate} lineValTwo={job.milage} />
+                </Link>
               </span>
             ))}
             <ActionBtn url={`/NewMaintenance/${this.state.vehicle.id}`}>Add Maintenance</ActionBtn>
