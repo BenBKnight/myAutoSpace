@@ -176,55 +176,6 @@ class Vehicles extends Component {
             <ActionBtn url='#' handleClick={this.handleFormSubmit}>Add Vehicle</ActionBtn>
           </div>
         </div>
-        <div className="container-center-col">
-          <br />
-          <Card title={"Add Your Vehicle"}>
-          </Card>
-          <br />
-          <Card>
-            <form id="vehicleForm ">
-              <DropDown handleSelect={this.handleSelect} title={"Vehicle Type:"} id="type" value={this.state.type} options={makeOptions} />
-
-              <FormInput handleInputChange={this.handleInputChange}
-                id="make" value={this.state.make} placeholder="Make" type="text">Make:
-                                    </FormInput>
-
-              <FormInput handleInputChange={this.handleInputChange}
-                id="model" value={this.state.model} placeholder="Model" type="text">Model
-                                    </FormInput>
-
-              <FormInput handleInputChange={this.handleInputChange}
-                id="year" value={this.state.year} placeholder="Year" type="text">Year
-                                    </FormInput>
-
-              <FormInput handleInputChange={this.handleInputChange}
-                id="vin" value={this.state.vin} placeholder="Vin" type="text">Vin:
-                                    </FormInput>
-
-              <FormInput handleInputChange={this.handleInputChange}
-                id="mileage" value={this.state.mileage} placeholder="Mileage" type="text">Mileage:
-                                    </FormInput>
-
-              <FormInput handleInputChange={this.handleInputChange}
-                id="yearPurchased" value={this.state.yearPurchased} placeholder="Purchased Year" type="text">Purchased Year:
-                                    </FormInput>
-              <DropDown handleSelect={this.handleSelect} title={"Vehicle Condition:"} id="condition" value={this.state.type} options={conditionOptions} />
-
-              <FormInput handleInputChange={this.handleInputChange}
-                id="accidents" value={this.state.accidents} placeholder="Number of Accidents" type="text">Number of Accidents:
-                                    </FormInput>
-
-              <FormInput handleInputChange={this.handleInputChange}
-                id="numOfOwners" value={this.state.numOfOwners} placeholder="Number of Previous Owners" type="text">Number of Previous Owners:
-                                    </FormInput>
-
-              <FormInput handleInputChange={this.handleInputChange}
-                id="locationLastOwned" value={this.state.locationLastOwned} placeholder="Location Last Owned" type="text">Location Last Owned:
-                                    </FormInput>
-              <FormInputButton handleFormSubmit={this.handleFormSubmit}>Add Vehicle</FormInputButton>
-            </form>
-          </Card>
-        </div>
       </>
     );
   }

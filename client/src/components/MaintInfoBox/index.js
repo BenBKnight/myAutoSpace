@@ -8,7 +8,7 @@ function MaintInfoBox(props) {
       <span className='flex'>
         <img className='maintBoxImg' src={require('./img/car_gray.png')} alt='Vehicle'/>
         <div>
-          <h2 className='maintBoxTitle'>{props.carYear} {props.carMake} {props.carModel}</h2>
+          <h2 className='maintBoxTitle'>{props.vehicle.year} {props.carMake} {props.carModel}</h2>
           <br></br>
           <p className='maintBoxText'>Milage: {props.carMilage}</p>
           <p className='maintBoxText'>Vin: {props.carVin}</p>

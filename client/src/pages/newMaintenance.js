@@ -60,7 +60,9 @@ class NewMaintenance extends Component {
   handleFormSubmit = (e) => {
     e.preventDefault();
     // this.setDate();
+    this.state.maintToAdd.VehicleId = this.state.vehicleId;
     let newMaint = this.state.maintToAdd;
+    newMaint.VehicleId = this.state.vehicleID;
     console.log(newMaint)
     API.maintRecord(newMaint)
       .then((res) => {
@@ -70,84 +72,31 @@ class NewMaintenance extends Component {
         console.log(err);
       })
   };
-  // setDate = () => {
-  //     this.setState(prevState => {
-  //         let maintToAdd = Object.assign({}, prevState.maintToAdd);
-  //         maintToAdd.jobDate = this.state.year + "-" + this.state.month + "-" + this.state.day;
-  //         console.log(maintToAdd.jobDate);
-  //         return maintToAdd;
-  //     })
-  // };
+
+  componentDidMount() {
+    let location = this.props.match.params.id;
+    this.setState({
+      vehicleID: location
+    }, () => {
+      this.apiCall()
+    })
+  };
+  
+  apiCall = () => {
+    API.vehicleById(this.state.vehicleID)
+      .then((res) => {
+        this.setState({
+          vehicle: res.data[0]
+        })
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  };
+
   render() {
-    // const jobYears = [
-    //     "2020",
-    //     "2019",
-    //     "2018",
-    //     "2017",
-    //     "2016",
-    //     "2015",
-    //     "2014",
-    //     "2013",
-    //     "2012",
-    //     "2011",
-    //     "2009",
-    //     "2008",
-    //     "2007",
-    //     "2006",
-    //     "2005",
-    //     "2004",
-    //     "2003",
-    //     "2002",
-    //     "2001",
-    //     "2000"
-    // ];
-    // const jobDays = [
-    //     "1",
-    //     "2",
-    //     "3",
-    //     "4",
-    //     "5",
-    //     "6",
-    //     "7",
-    //     "8",
-    //     "9",
-    //     "10",
-    //     "11",
-    //     "12",
-    //     "13",
-    //     "14",
-    //     "15",
-    //     "16",
-    //     "17",
-    //     "18",
-    //     "19",
-    //     "20",
-    //     "21",
-    //     "22",
-    //     "23",
-    //     "24",
-    //     "25",
-    //     "26",
-    //     "27",
-    //     "28",
-    //     "29",
-    //     "30",
-    //     "31"
-    // ];
-    // const jobMonths = [
-    //     "01",
-    //     "02",
-    //     "03",
-    //     "04",
-    //     "05",
-    //     "06",
-    //     "07",
-    //     "08",
-    //     "09",
-    //     "10",
-    //     "11",
-    //     "12",
-    // ]
+    console.log('render');
+    console.log(this.state);
     return (
       <>
       <Navbar>
@@ -162,15 +111,9 @@ class NewMaintenance extends Component {
       <div className='maintFlex'>
         <div className='addMaintenanceWrapper'>
           <h1 className='addMaintHeader'>New Maintenance</h1>
-          <select className='carSelector'>
-            <option value="grapefruit">Select Vehicle</option>
-            <option value="lime">Car</option>
-            <option value="coconut">Truck</option>
-            <option value="mango">Bike</option>
-          </select>
         </div>
         <div className='addMaintenanceWrapper'>
-          <MaintInfoBox carMilage='160,000' carVin='21312j1jpoiefj32j' carYear='2002' carMake='Ford' carModel='Torus' />
+          {/* <MaintInfoBox vehicle={this.state.vehicle} carMilage={this.state.vehicle.mileage} carVin={this.state.vehicle.vin} carYear={this.state.vehicle.year} carMake={this.state.vehicle.make} carModel={this.state.vehicle.model} /> */}
         </div>
       </div>
       <br></br>
@@ -178,11 +121,7 @@ class NewMaintenance extends Component {
         <div className='addMaintenanceWrapper'>
           <FormInputTwo setWidth='width100' name='jobName' type='text' label='Job Name' id="name" value={this.state.maintToAdd.name} handleInputChange={this.handleInputChange}></FormInputTwo>
           <FormInputTwo setWidth='width100' name='milage' type='text' label='Milage at Service' id="milage" value={this.state.maintToAdd.milage} handleInputChange={this.handleInputChange}></FormInputTwo>
-          <span className='flex'>
-            <FormInputTwo setWidth='width25' name='day' type='text' label='Service Day' handleInputChange={this.handleInputChange}></FormInputTwo>
-            <FormInputTwo setWidth='width25' name='month' type='text' label='Service Month' handleInputChange={this.handleInputChange}></FormInputTwo>
-            <FormInputTwo setWidth='width25' name='year' type='text' label='Service Year' handleInputChange={this.handleInputChange}></FormInputTwo>
-          </span>
+          <FormInputTwo setWidth='width100' name='jobDate' type='text' label='Service Date' id="jobDate" value={this.state.maintToAdd.jobDate} handleInputChange={this.handleInputChange}></FormInputTwo>
         </div>
         <div className='addMaintenanceWrapper'>
           <textarea className='inputText textArea maintAddTextArea' placeholder='Description' name='description' type='text' label='Description' id="description" value={this.state.description} onChange={this.handleInputChange}/>
@@ -206,7 +145,7 @@ class NewMaintenance extends Component {
       <br></br>
       <br></br>
       <div className='newMaintBtn'>
-        <ActionBtn handleClick={this.handleFormSubmit}>Add Maintenance</ActionBtn>
+        <ActionBtn url='#' handleClick={this.handleFormSubmit}>Add Maintenance</ActionBtn>
       </div>
 
       <div className="section columns" >
