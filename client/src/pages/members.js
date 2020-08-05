@@ -32,8 +32,19 @@ class Members extends Component {
       .catch(err => {
         console.log(err);
       })
+
+    API.userData()
+      .then (res => {
+        this.setState({
+          userInfo: res
+        })
+      })
+      .catch(err => {
+        console.log(err);
+      })
   }
   render() {
+    console.log(this.state);
     return (
       <>
       <Navbar>
@@ -44,7 +55,7 @@ class Members extends Component {
       </Navbar>
       <div className='garageWrapper'>
         <div className='garageSidebar'>
-          <UserInfo />
+          <UserInfo/>
         </div>
         <div className='garageMain'>
           <h1 className='garagePageTitle'>My Garage</h1>
