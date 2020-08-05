@@ -165,6 +165,7 @@ class Vehicles extends Component {
               <FormInputTwo setWidth='width45' name='model' type='text' label='Model' id="model" value={this.state.model} handleInputChange={this.handleInputChange}></FormInputTwo>
             </span>
             <FormInputTwo setWidth='width100' name='vin' type='text' label='Vin' id="vin" value={this.state.vin} handleInputChange={this.handleInputChange}></FormInputTwo>
+            <FormInputTwo setWidth='width100' name='location' type='text' label='Location' id="locationLastOwned" value={this.state.locationLastOwned} handleInputChange={this.handleInputChange}></FormInputTwo>
             <span className='flex'>
               <FormInputTwo setWidth='width45' name='vehicleYear' type='text' label='Vehicle Year' id="year" value={this.state.year} handleInputChange={this.handleInputChange}></FormInputTwo>
               <FormInputTwo setWidth='width45' name='milage' type='text' label='Milage' id="mileage" value={this.state.mileage} handleInputChange={this.handleInputChange}></FormInputTwo>
