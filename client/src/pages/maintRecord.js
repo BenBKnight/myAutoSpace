@@ -82,7 +82,7 @@ class MaintRecord extends Component {
                 </div>
                 <div className='garageSidebar vehicleLinksSidebar'>
                     <div className='vehicleBoxLinkContainer'>
-                        <Link to='/vehicle'>
+                        <Link to={`/vehicles/${this.state.data.VehicleId}`}>
                             <p className='vehicleBoxLink'>Back to Vehicle</p>
                         </Link>
                         <p className='vehicleBoxLink'>Update Milage</p>
