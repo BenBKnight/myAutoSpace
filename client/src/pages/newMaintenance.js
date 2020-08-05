@@ -147,31 +147,6 @@ class NewMaintenance extends Component {
       <div className='newMaintBtn'>
         <ActionBtn url='#' handleClick={this.handleFormSubmit}>Add Maintenance</ActionBtn>
       </div>
-
-      <div className="section columns" >
-        <Ancestor>
-          <Card>
-            <form id="maint-form">
-
-              <FormInput handleInputChange={this.handleInputChange}
-                id="name" value={this.state.job} placeholder="Job" type="text" />
-
-              <FormInput handleInputChange={this.handleInputChange}
-                id="jobDate" value={this.state.jobDate} placeholder="Job Date" type="text" />
-
-              <FormInput handleInputChange={this.handleInputChange}
-                id="milage" value={this.state.milage} placeholder="Vehicle Milage" type="text" />
-
-              <FormInput handleInputChange={this.handleInputChange}
-                id="description" value={this.state.description} placeholder="Description" type="text" />
-
-              <FormInput handleInputChange={this.handleInputChange}
-                id="parts" value={this.state.parts} placeholder="Parts" type="text" />
-              <FormInputButton handleFormSubmit={this.handleFormSubmit} />
-            </form>
-          </Card>
-        </Ancestor>
-      </div>
       </>
         );
   }
