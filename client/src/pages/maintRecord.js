@@ -93,30 +93,6 @@ class MaintRecord extends Component {
                     </div>
                 </div>
             </div>
-
-            <div>
-                <br />
-                <Card>
-                    <Header
-                        value={"Maintenance Record"} />
-                </Card>
-                <br />
-                <Card>
-                    <form id="maint-form">
-                        <InformationDisplay label="Job: " value={this.state.data.name} />
-                        <br />
-                        <InformationDisplay label="Job Date: " value={this.state.data.jobDate} />
-                        <br />
-                        <InformationDisplay label="Mileage: " value={this.state.data.milage} />
-                        <br />
-                        <InformationDisplay label="Description: " value={this.state.data.description} />
-                        <br />
-                        <InformationDisplay label="Parts: " value={this.state.data.parts} />
-                        <br />
-                    </form>
-                </Card>
-
-            </div>
             </>
         );
     }
