@@ -21,7 +21,7 @@ function CarInfoBox(props) {
       <br></br>
       <span className='carBoxMoreInfo'>
       <div>
-        <p className='carBoxText'>Last Oil Change: {props.carOil}</p>
+        <p className='carBoxText'>Last Oil Change: {props.vehicle.mileage}</p>
         <p className='carBoxText'>Condition: {props.vehicle.condition}</p>
         <p className='carBoxText'>Accidents: {props.vehicle.accidents}</p>
       </div>
