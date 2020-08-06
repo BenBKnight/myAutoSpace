@@ -69,6 +69,17 @@ class Login extends Component {
       })
       .catch(err => {
         console.log(err);
+        store.addNotification({
+          message: "Wrong email or password!",
+          type: "danger",
+          insert: "top",
+          container: "top-center",
+          animationIn: ["animate__animated", "animate__shakeX"],
+          animationOut: ["animate__animated", "animate__fadeOut"],
+          dismiss: {
+            duration: 1500
+          }
+        });
       });
   };
 
