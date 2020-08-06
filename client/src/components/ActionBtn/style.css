@@ -1,0 +1,24 @@
+.actionBtn{
+  background-color: #424ea1;
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  padding: .5rem 1rem;
+  margin: .5rem;
+  border: none;
+  border-radius: 1rem;
+}
+
+.actionBtn:hover{
+  background-color: #3b468f;
+}
+
+.actionBtn:focus{
+  outline: none;
+}
+
+.actionBtn:active{
+  outline: none;
+  background-color: #2b346d;
+  color: #e4e4e4;
+}

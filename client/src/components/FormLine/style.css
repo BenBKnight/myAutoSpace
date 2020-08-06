@@ -1,0 +1,73 @@
+.vehicleInfoBox{
+  box-sizing: border-box;
+  background-color: white;
+  border: solid #505050 1px;
+  border-radius: 3px;
+  box-shadow: #505050 1px 2px;
+  width: 100%;
+  padding: .5rem;
+  margin-bottom: 1.5rem;
+}
+
+.maintenanceDisplayImg{
+  width: 25%;
+  height: auto;
+  margin: 1rem;
+  margin-right: 3rem;
+}
+
+.formLineHeader{
+  color: #505050;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.formLineText{
+  color: #505050;
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+.formLineInput{
+  color: #505050;
+  font-size: 1rem;
+}
+
+.maintenanceDisplayTopInfo{
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.maintenanceDisplayMoreInfo{
+  display: flex;
+  flex-wrap: wrap;
+  margin: 1rem;
+  justify-content: space-between;
+  border-bottom: #505050 solid 1px;
+}
+
+.formLineSection{
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.formLineTitle{
+  width: 40%;
+}
+
+.checkbox{
+  margin-top: .2rem;
+  transform: scale(1.1);
+  display: none;
+}
+
+.display{
+  display: inherit;
+}
+
+@media(max-width: 769px) {
+
+}

@@ -1,0 +1,24 @@
+
+.carInfoSidebar{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  margin-bottom: 2rem;
+}
+
+.carBoxText{
+  color: #505050;
+  margin-bottom: .25rem;
+}
+
+.carAvatar{
+  width: 60%;
+  height: auto;
+  margin-bottom: 1rem;
+}
+
+.carName{
+  font-size: 1.5rem;
+  color: #505050;
+}

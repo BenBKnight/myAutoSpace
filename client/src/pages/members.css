@@ -1,0 +1,34 @@
+*{
+  box-sizing: border-box;
+}
+
+.garageWrapper{
+  display: flex;
+  flex-wrap: wrap;
+  padding: 1rem;
+}
+
+.garageSidebar{
+  width: 25%;
+}
+
+.garageMain{
+  width: 50%;
+}
+
+.garagePageTitle{
+  font-size: 2rem;
+  font-weight: 600;
+  text-align: center;
+  color: #505050;
+}
+
+@media (max-width: 769px) {
+  .garageSidebar{
+    width: 100%;
+  }
+  
+  .garageMain{
+    width: 100%;
+  }
+}

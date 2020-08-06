@@ -1,15 +1,13 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import './App.css';
 import Login from "./pages/login";
-import Signup from "./pages/signup";
 import Members from "./pages/members";
 import MaintRecord from "./pages/maintRecord";
 import Maintenance from "./pages/maintenance";
 import Vehicles from "./pages/vehicles";
 import VehicleDisplay from "./pages/vehicleDisplay";
 import NewMaintenance from "./pages/newMaintenance";
-import Navbar from "./components/navbar/navbar";
 import { AuthContext } from "./utils/authContext";
 
 class App extends Component {
@@ -44,7 +42,6 @@ class App extends Component {
         }}>
           <div className="App">
             <header className="App-header">
-              <Navbar />
               <Switch>
                 <Route exact path="/" component={Login} />
                 <Route path="/MaintRecord/:id" component={MaintRecord} />
