@@ -11,6 +11,9 @@ import ActionBtn from '../components/ActionBtn';
 import CarInfoBox from '../components/CarInfoBox';
 import UserInfo from '../components/UserInfo';
 
+import { store } from "react-notifications-component";
+import "react-notifications-component/dist/theme.css";
+import "animate.css";
 
 class Members extends Component {
   constructor(props) {
@@ -20,6 +23,7 @@ class Members extends Component {
       vehicle: []
     }
   };
+
   componentDidMount() {
     API.allVehicles(this.state.userId)
       .then(res => {
@@ -34,7 +38,7 @@ class Members extends Component {
       })
 
     API.userData()
-      .then (res => {
+      .then(res => {
         this.setState({
           userInfo: res
         })
@@ -47,33 +51,33 @@ class Members extends Component {
     console.log(this.state);
     return (
       <>
-      <Navbar>
-        <NavbarLink url='/members' active={true}>My Garage</NavbarLink>
-        <NavbarLink url='/vehicles'>Add Vehicle</NavbarLink>
-        <NavbarLink url='/add-maintenance'>Add Maintenance</NavbarLink>
-        <ActionBtn url='/'>Sign Out</ActionBtn>
-      </Navbar>
-      <div className='garageWrapper'>
-        <div className='garageSidebar'>
-          <UserInfo/>
-        </div>
-        <div className='garageMain'>
-          <h1 className='garagePageTitle'>My Garage</h1>
-          <br></br>
-          <br></br>
-          <br></br>
-          {this.state.vehicle.map(vehicles => (
+        <Navbar>
+          <NavbarLink url='/members' active={true}>My Garage</NavbarLink>
+          <NavbarLink url='/vehicles'>Add Vehicle</NavbarLink>
+          <NavbarLink url='/add-maintenance'>Add Maintenance</NavbarLink>
+          <ActionBtn url='/'>Sign Out</ActionBtn>
+        </Navbar>
+        <div className='garageWrapper'>
+          <div className='garageSidebar'>
+            <UserInfo />
+          </div>
+          <div className='garageMain'>
+            <h1 className='garagePageTitle'>My Garage</h1>
+            <br></br>
+            <br></br>
+            <br></br>
+            {this.state.vehicle.map(vehicles => (
               <span key={vehicles.id}>
                 <CarInfoBox
                   vehicle={vehicles}
                 />
               </span>
             ))}
+          </div>
+          <div className='garageSidebar'></div>
         </div>
-        <div className='garageSidebar'></div>
-      </div>
       </>
-        );
+    );
   }
 }
 export default Members;

@@ -9,6 +9,7 @@ import Vehicles from "./pages/vehicles";
 import VehicleDisplay from "./pages/vehicleDisplay";
 import NewMaintenance from "./pages/newMaintenance";
 import { AuthContext } from "./utils/authContext";
+import ReactNotification from "react-notifications-component";
 
 class App extends Component {
   constructor(props) {
@@ -32,8 +33,8 @@ class App extends Component {
   }
   render() {
     return (
-
       <Router>
+        <ReactNotification />
         <AuthContext.Provider value={{
           token: this.state.token,
           userId: this.state.userId,

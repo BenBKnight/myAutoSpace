@@ -7,8 +7,11 @@ import Navbar from '../components/Navbar copy';
 import NavbarInput from '../components/NavbarInput';
 import ActionBtn from '../components/ActionBtn';
 import BulletPoint from '../components/BulletPoint';
-import FormInputTwo from '../components/FormInputTwo'
+import FormInputTwo from '../components/FormInputTwo';
 
+import { store } from "react-notifications-component";
+import "react-notifications-component/dist/theme.css";
+import "animate.css";
 
 class Login extends Component {
   constructor(props) {
@@ -34,43 +37,66 @@ class Login extends Component {
       password: this.state.passwordInput.trim()
     }
     if (!this.state.emailInput || !this.state.passwordInput) {
+      store.addNotification({
+        message: "Enter email and password!",
+        type: "danger",
+        insert: "top",
+        container: "top-center",
+        animationIn: ["animate__animated", "animate__shakeX"],
+        animationOut: ["animate__animated", "animate__fadeOut"],
+        dismiss: {
+          duration: 1500
+        }
+      });
       return;
     }
     console.log(user);
     API.loginUser(user)
       .then((res) => {
-        this.props.history.push("/Members")
+        console.log(res);
+        this.props.history.push("/Members");
+        store.addNotification({
+          message: "logged-in",
+          type: "success",
+          insert: "top",
+          container: "top-center",
+          animationIn: ["animate__animated", "animate__bounceIn"],
+          animationOut: ["animate__animated", "animate__bounceOut"],
+          dismiss: {
+            duration: 1500
+          }
+        });
       })
       .catch(err => {
         console.log(err);
-      })
+      });
   };
 
   handleSignUpSubmit = event => {
     event.preventDefault();
     console.log('hit');
     let user = {
-        email: this.state.email.trim(),
-        password: this.state.password.trim(),
-        firstName: this.state.firstName.trim(),
-        lastName: this.state.lastName.trim(),
-        location: this.state.location.trim()
+      email: this.state.email.trim(),
+      password: this.state.password.trim(),
+      firstName: this.state.firstName.trim(),
+      lastName: this.state.lastName.trim(),
+      location: this.state.location.trim()
     }
     if (!this.state.email || !this.state.password) {
-        return;
+      return;
     }
     console.log(user)
     API.signUp(user)
-        .then(() => {
-            this.props.history.push("/Members")
-        })
-        .catch(err => {
-            console.log(err);
-        })
-};
-handleSignUpErr(err) {
+      .then(() => {
+        this.props.history.push("/Members")
+      })
+      .catch(err => {
+        console.log(err);
+      })
+  };
+  handleSignUpErr(err) {
     alert(err);
-};
+  };
 
   handleInputChange = event => {
     // Getting the value and name of the input which triggered the change
@@ -93,8 +119,8 @@ handleSignUpErr(err) {
     return (
       <div>
         <Navbar>
-          <NavbarInput handleInputChange={this.handleInputChange} value={this.state.emailInput} name='username' type='email' label='Username' id="emailInput"/>
-          <NavbarInput handleInputChange={this.handleInputChange} value={this.state.passwordInput} name='password' type='password' label='Password' id="passwordInput"/>
+          <NavbarInput handleInputChange={this.handleInputChange} value={this.state.emailInput} name='username' type='email' label='Username' id="emailInput" />
+          <NavbarInput handleInputChange={this.handleInputChange} value={this.state.passwordInput} name='password' type='password' label='Password' id="passwordInput" />
           <ActionBtn url='#' handleClick={this.handleLogInSubmit}>Login</ActionBtn>
         </Navbar>
         <h1 className='mainHeader'>MyCarSpace</h1>

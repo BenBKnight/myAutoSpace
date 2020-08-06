@@ -26,7 +26,7 @@ class Vehicles extends Component {
       yearPurchased: "",
       condition: "Good",
       accidents: "",
-      numOfOwners: "Two",
+      numOfOwners: "2",
       locationLastOwned: "",
       UserId: localStorage.getItem("userId"),
       
