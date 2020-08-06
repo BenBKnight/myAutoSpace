@@ -55,9 +55,8 @@ class NewMaintenance extends Component {
         e.preventDefault();
         // this.setDate();
         let newMaint = this.state.maintToAdd;
-        console.log(newMaint)
         API.maintRecord(newMaint)
-            .then((res) => {
+            .then(() => {
                 this.props.history.push(`/Vehicles/${this.state.maintToAdd.VehicleId}`)
             })
             .catch(err => {

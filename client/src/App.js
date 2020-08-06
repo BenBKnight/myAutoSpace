@@ -10,56 +10,34 @@ import Vehicles from "./pages/vehicles";
 import VehicleDisplay from "./pages/vehicleDisplay";
 import NewMaintenance from "./pages/newMaintenance";
 import Navbar from "./components/navbar/navbar";
-import { AuthContext } from "./utils/authContext";
+import { AuthProvider, AuthContext } from "./utils/authContext";
+import { useContext } from 'react';
 
-class App extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      token: null,
-      userId: null,
-    };
-  };
-  login = (token, userId) => {
-    this.setState({
-      token: token,
-      userId: userId
-    })
-  }
-  logout = () => {
-    this.setState({
-      token: null,
-      userId: null
-    })
-  }
-  render() {
-    return (
+export default function App() {
 
-      <Router>
-        <AuthContext.Provider value={{
-          token: this.state.token,
-          userId: this.state.userId,
-          login: this.login,
-          logout: this.logout
-        }}>
-          <div className="App">
-            <header className="App-header">
-              <Navbar />
-              <Switch>
-                <Route exact path="/" component={Login} />
-                <Route path="/MaintRecord/:id" component={MaintRecord} />
-                <Route exact path="/Members" component={Members} />
-                <Route exact path="/Maintenance" component={Maintenance} />
-                <Route exact path="/Vehicles" component={Vehicles} />
-                <Route exact path="/NewMaintenance/:id" component={NewMaintenance} />
-                <Route path="/Vehicles/:id" component={VehicleDisplay} />
-              </Switch>
-            </header>
-          </div >
-        </AuthContext.Provider>
-      </Router>
-    );
-  }
+  // const [userId, setUserId] = useContext(AuthContext)
+
+  return (
+    <Router>
+      <AuthProvider >
+        <div className="App">
+          <header className="App-header">
+            <Navbar />
+            <Switch>
+              <Route exact path="/" component={Login} />
+              <Route exact path="/Signup" component={Signup} />
+              {/* {userId ? <Route path="/MaintRecord/:id" component={MaintRecord} /> : <Redirect to="/" />} */}
+              <Route path="/MaintRecord/:id" component={MaintRecord} />
+              <Route exact path="/Members" component={Members} />
+              <Route exact path="/Maintenance" component={Maintenance} />
+              <Route exact path="/Vehicles" component={Vehicles} />
+              <Route exact path="/NewMaintenance/:id" component={NewMaintenance} />
+              <Route path="/Vehicles/:id" component={VehicleDisplay} />
+            </Switch>
+          </header>
+        </div >
+      </AuthProvider>
+    </Router>
+  );
 }
 
-export default App;

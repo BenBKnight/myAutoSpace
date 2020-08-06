@@ -8,6 +8,7 @@ import Subtitle from "../components/subtitle/subtitle";
 import API from "../utils/API";
 import TableMd from "../components/tableMd/tableMd";
 import TestMdData from "../db/testData";
+import { AuthContext } from "../utils/authContext";
 
 class VehicleDisplay extends Component {
     constructor(props) {
@@ -20,8 +21,11 @@ class VehicleDisplay extends Component {
             maintRecordsTable: {}
         };
     };
+    static contextType = AuthContext;
+
     componentDidMount() {
         let location = this.props.match.params.id;
+        console.log(this.context.userId)
         this.setState({
             vehicleID: location
         }, () => {
@@ -162,6 +166,7 @@ class VehicleDisplay extends Component {
                     </Card>
                 </Ancestor>
             </div >
+
         );
     }
 }

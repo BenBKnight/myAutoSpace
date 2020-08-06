@@ -4,6 +4,7 @@ const path = require("path")
 const app = express();
 const PORT = 8080;
 const mysql = require("mysql");
+require("dotenv").config()
 // const passport = require("./config");
 const db = require("./models")
 
@@ -18,22 +19,15 @@ if (process.env.JAWSDB_URL) {
     connection = mysql.createConnection(process.env.JAWSDB_URL);
 } else {
     connection = mysql.createConnection({
-        host: "localhost",
-        user: "root",
+        host: process.env.HOST_KEY,
+        user: process.env.USER_KEY,
         password: process.env.MYSQL_KEY,
-        database: "carFacts"
+        database: process.env.DATA_BASE_KEY
     })
 }
 // Creating express app and configuring middleware needed for authentication
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-
-// We need to use sessions to keep track of our user's login status
-// app.use(
-//     session({ secret: "keyboard cat", resave: true, saveUninitialized: true })
-// );
-// app.use(passport.initialize());
-// app.use(passport.session());
 
 //  app.post()
 const routes = require("./routes");
@@ -51,11 +45,3 @@ db.sequelize.sync().then(() => {
         );
     });
 });
-
-// app.listen(PORT, () => {
-//     console.log(
-//         "==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.",
-//         PORT,
-//         PORT
-//     );
-// });

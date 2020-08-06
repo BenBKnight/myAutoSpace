@@ -1,6 +1,6 @@
 import axios from "axios";
 import setAuthorizationToken from "./setAuthorizationToken";
-import jwt from "jsonwebtoken";
+
 
 
 const serverUrl = "http://localhost:8080";
@@ -14,19 +14,22 @@ export default {
         return axios.post(serverUrl + "/api/login", user)
             .then(res => {
                 const token = res.data.token;
+                const userId = res.data.id;
                 localStorage.setItem("jwt.Token", token);
-                const decoded = jwt.decode(token)
-                localStorage.setItem("userId", decoded.id)
                 setAuthorizationToken(token);
-            })
+                return res;
+            });
     },
     signUp: function (data) {
         return axios.post(serverUrl + "/api/signup", data)
             .then(res => {
                 const token = res.data.token;
+                const userId = res.data.id;
                 localStorage.setItem("jwt.Token", token);
+                localStorage.setItem("userId", userId)
                 setAuthorizationToken(token);
-            })
+                return res;
+            });
     },
     newVehicle: function (data) {
         return axios.post(serverUrl + "/api/postVehicle", data, {

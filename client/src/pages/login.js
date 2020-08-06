@@ -7,38 +7,43 @@ import Card from "../components/card/card";
 import Header from "../components/header/header";
 import Subtitle from "../components/subtitle/subtitle";
 import { AuthContext } from "../utils/authContext";
+import { useState } from "react";
+import { useContext } from "react";
 
+function Login(props) {
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [userId, setUserId] = useContext(AuthContext)
 
-class Login extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            email: "",
-            password: "",
-            id: ""
-        };
-    };
-    static contextType = AuthContext;
-
-    handleFormSubmit = (e) => {
+    // const [id, setId] = useState({})
+    const handleFormSubmit = (e) => {
         e.preventDefault();
 
         let user = {
-            email: this.state.email.trim(),
-            password: this.state.password.trim()
+            email: email.trim(),
+            password: password.trim()
         }
-        if (!this.state.email || !this.state.password) {
+        if (!email || !password) {
             return;
         }
         API.loginUser(user)
-            .then((res) => {
-                this.props.history.push("/Members")
+            .then(resData => {
+                console.log(resData.data.token, resData.data.id)
+                // context.login(
+                //     resData.data.token,
+                //     resData.data.userId
+                // )
+                // console.log(context)
+                setUserId({ id: resData.data.id });
+            }).then(() => {
+                props.history.push("/Members")
+
             })
             .catch(err => {
                 console.log(err);
             })
     };
-    handleInputChange = event => {
+    const handleInputChange = event => {
         // Getting the value and name of the input which triggered the change
         let value = event.target.value;
         const name = event.target.type;
@@ -47,15 +52,22 @@ class Login extends Component {
             value = value.substring(0, 15);
         }
         // Updating the input's state
-        this.setState({
-            [name]: value
-        }); if (!this.state.email || !this.state.password) {
+        if (name === "password") {
+            setPassword(value)
+        } else {
+            setEmail(value)
+        }
+
+        // setEmail({
+        //     [name]: value
+        // }); 
+        if (!email || !password) {
             return;
         }
     };
 
-    render() {
-        return (
+    return (
+        <AuthContext.Provider>
             <div>
                 <br />
                 <Card>
@@ -74,13 +86,13 @@ class Login extends Component {
                 <br />
                 <Card title="Login Page">
                     <form className="login">
-                        <FormInput className={"style"} handleInputChange={this.handleInputChange} value={this.state.email} htmlFor="exampleInputEmail1" id="emailInput" placeholder="User@email.com" type="email">Email address:</FormInput>
-                        <FormInput handleInputChange={this.handleInputChange} value={this.state.password} htmlFor="exampleInputEmail1" id="passwordInput" placeholder="Password" type="password">Password</FormInput>
-                        <FormInputButton handleFormSubmit={this.handleFormSubmit}>Login</FormInputButton>
+                        <FormInput className={"style"} handleInputChange={handleInputChange} value={email} htmlFor="exampleInputEmail1" id="emailInput" placeholder="User@email.com" type="email">Email address:</FormInput>
+                        <FormInput handleInputChange={handleInputChange} value={password} htmlFor="exampleInputEmail1" id="passwordInput" placeholder="Password" type="password">Password</FormInput>
+                        <FormInputButton handleFormSubmit={handleFormSubmit}>Login</FormInputButton>
                     </form>
                 </Card>
             </div>
-        );
-    }
+        </AuthContext.Provider>
+    );
 }
 export default withRouter(Login);
