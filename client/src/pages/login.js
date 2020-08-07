@@ -36,20 +36,20 @@ class Login extends Component {
       email: this.state.emailInput.trim(),
       password: this.state.passwordInput.trim()
     }
-    if (!this.state.emailInput || !this.state.passwordInput) {
-      store.addNotification({
-        message: "Enter email and password!",
-        type: "danger",
-        insert: "top",
-        container: "top-center",
-        animationIn: ["animate__animated", "animate__shakeX"],
-        animationOut: ["animate__animated", "animate__fadeOut"],
-        dismiss: {
-          duration: 1500
-        }
-      });
-      return;
-    }
+    // if (!this.state.emailInput || !this.state.passwordInput) {
+    //   store.addNotification({
+    //     message: "Enter email and password!",
+    //     type: "danger",
+    //     insert: "top",
+    //     container: "top-center",
+    //     animationIn: ["animate__animated", "animate__shakeX"],
+    //     animationOut: ["animate__animated", "animate__fadeOut"],
+    //     dismiss: {
+    //       duration: 1500
+    //     }
+    //   });
+    //   return;
+    // }
     console.log(user);
     API.loginUser(user)
       .then((res) => {
@@ -69,17 +69,34 @@ class Login extends Component {
       })
       .catch(err => {
         console.log(err);
-        store.addNotification({
-          message: "Wrong email or password!",
-          type: "danger",
-          insert: "top",
-          container: "top-center",
-          animationIn: ["animate__animated", "animate__shakeX"],
-          animationOut: ["animate__animated", "animate__fadeOut"],
-          dismiss: {
-            duration: 1500
-          }
-        });
+        switch (err.message) {
+          case "Request failed with status code 401":
+            store.addNotification({
+              message: "Wrong email or password!",
+              type: "danger",
+              insert: "top",
+              container: "top-center",
+              animationIn: ["animate__animated", "animate__shakeX"],
+              animationOut: ["animate__animated", "animate__fadeOut"],
+              dismiss: {
+                duration: 1500
+              }
+            });
+            break;
+          case "Network Error":
+            store.addNotification({
+              message: "No internet!",
+              type: "danger",
+              insert: "top",
+              container: "top-center",
+              animationIn: ["animate__animated", "animate__shakeX"],
+              animationOut: ["animate__animated", "animate__fadeOut"],
+              dismiss: {
+                duration: 1500
+              }
+            });
+            break;
+        }
       });
   };
 
