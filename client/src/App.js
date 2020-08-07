@@ -1,32 +1,23 @@
-import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
+import React from 'react';
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import './App.css';
 import Login from "./pages/login";
-import Signup from "./pages/signup";
 import Members from "./pages/members";
 import MaintRecord from "./pages/maintRecord";
 import Maintenance from "./pages/maintenance";
 import Vehicles from "./pages/vehicles";
 import VehicleDisplay from "./pages/vehicleDisplay";
 import NewMaintenance from "./pages/newMaintenance";
-import Navbar from "./components/navbar/navbar";
-import { AuthProvider, AuthContext } from "./utils/authContext";
-import { useContext } from 'react';
+import { AuthProvider } from "./utils/authContext";
 
 export default function App() {
-
-  // const [userId, setUserId] = useContext(AuthContext)
-
   return (
     <Router>
-      <AuthProvider >
+      <AuthProvider>
         <div className="App">
           <header className="App-header">
-            <Navbar />
             <Switch>
               <Route exact path="/" component={Login} />
-              <Route exact path="/Signup" component={Signup} />
-              {/* {userId ? <Route path="/MaintRecord/:id" component={MaintRecord} /> : <Redirect to="/" />} */}
               <Route path="/MaintRecord/:id" component={MaintRecord} />
               <Route exact path="/Members" component={Members} />
               <Route exact path="/Maintenance" component={Maintenance} />
@@ -38,6 +29,6 @@ export default function App() {
         </div >
       </AuthProvider>
     </Router>
-  );
+  )
 }
 

@@ -1,0 +1,80 @@
+.inputText{
+  font-size: 1rem;
+  margin: 1rem;
+  margin-left: 0rem;
+  padding: .5rem;
+  width: 100%;
+  color: white;
+  background-color: #505050;
+  border: solid gray 1px;
+  border-radius: 2px;
+}
+
+.inputText:focus{
+  outline: none;
+  border: solid #424ea1 2px;
+}
+
+.floatingLabel{
+  position: absolute;
+  color: white;
+  transform: translate(10px, 90%);
+  transition: .2s ease-out;
+  pointer-events: none;
+}
+
+.floatingLabelFocus{
+  position: absolute;
+  color: #424ea1;
+  /* background-color: white; */
+  padding: 2px;
+  transform: translate(0px, -25%);
+  transition: .2s ease-out;
+}
+
+.floatingLabelComplete{
+  color: gray;
+}
+
+.width100{
+  width: 100%;
+}
+
+.width40{
+  width: 40%;
+}
+
+.width45{
+  width: 45%;
+}
+
+.width25{
+  width: 25%;
+}
+
+input{
+  text-align: start;
+}
+
+@media (max-width: 769px) {
+  .width45{
+    width: 100%;
+  }
+  
+  .width25{
+    width: 100%;
+  }
+
+  .inputText{
+    width: 90%;
+    margin-left: 1rem;
+  }
+
+  .floatingLabel{
+    transform: translate(25px, 135%);
+  }
+
+  .floatingLabelFocus{
+    transform: translate(14px, -25%);
+  }
+}

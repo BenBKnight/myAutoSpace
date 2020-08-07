@@ -22,7 +22,7 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.INTEGER
     },
     vin: {
-      type: DataTypes.INTEGER
+      type: DataTypes.STRING
     },
     mileage: {
       type: DataTypes.INTEGER

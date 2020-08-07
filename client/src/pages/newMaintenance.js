@@ -1,172 +1,148 @@
 import React, { Component } from "react";
-import Card from "../components/card/card";
-import Ancestor from "../components/ancestor/ancestor";
+import './newMaintenance.css';
 import API from "../utils/API";
-import FormInput from "../components/formInput/formInput";
-import FormInputButton from "../components/formInputButton/FormInputButton";
+import FormInputTwo from "../components/FormInputTwo";
 import { withRouter } from "react-router-dom";
+import Navbar from '../components/Navbar copy';
+import NavbarLink from '../components/NavbarLink';
+import ActionBtn from '../components/ActionBtn';
 
 
 class NewMaintenance extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            maintToAdd: {
-                name: "",
-                description: "",
-                milage: "",
-                parts: "",
-                jobDate: "",
-                VehicleId: localStorage.getItem("vehicleId")
-            },
-            year: "",
-            day: "",
-            month: ""
-        };
+  constructor(props) {
+    super(props)
+    this.state = {
+      maintToAdd: {
+        name: "",
+        description: "",
+        milage: "",
+        parts: "",
+        jobDate: "",
+        VehicleId: localStorage.getItem("vehicleId")
+      },
+      year: "",
+      day: "",
+      month: ""
     };
-    handleInputChange = event => {
-        console.log(this.state)
-        // Getting the value and name of the input which triggered the change
-        let value = event.target.value;
-        const name = event.target.id;
+  };
+  handleInputChange = event => {
+    console.log(this.state)
+    // Getting the value and name of the input which triggered the change
+    let value = event.target.value;
+    const name = event.target.id;
+    this.setState({
+      maintToAdd: {
+        ...this.state.maintToAdd,
+        [name]: value
+      }
+    });
+    // if (!this.state.email || !this.state.password) {
+    //     return;
+    // }
+  };
+  handleSelect = event => {
+    let value = event.target.value;
+    const name = event.target.id;
+    console.log(event, value, name)
+
+    this.setState({
+      [name]: value
+    });
+    // if (!this.state.email || !this.state.password) {
+    //     return;
+    // }
+  };
+  handleFormSubmit = (e) => {
+    e.preventDefault();
+    // this.setDate();
+    this.state.maintToAdd.VehicleId = this.state.vehicleId;
+    let newMaint = this.state.maintToAdd;
+    newMaint.VehicleId = this.state.vehicleID;
+    API.maintRecord(newMaint)
+      .then((res) => {
+        this.props.history.push(`/Vehicles/${this.state.maintToAdd.VehicleId}`)
+      })
+      .catch(err => {
+        console.log(err);
+      })
+  };
+
+  componentDidMount() {
+    let location = this.props.match.params.id;
+    this.setState({
+      vehicleID: location
+    }, () => {
+      this.apiCall()
+    })
+  };
+
+  apiCall = () => {
+    API.vehicleById(this.state.vehicleID)
+      .then((res) => {
         this.setState({
-            maintToAdd: {
-                ...this.state.maintToAdd,
-                [name]: value
-            }
-        });
-        // if (!this.state.email || !this.state.password) {
-        //     return;
-        // }
-    };
-    handleSelect = event => {
-        let value = event.target.value;
-        const name = event.target.id;
-        console.log(event, value, name)
+          vehicle: res.data[0]
+        })
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  };
 
-        this.setState({
-            [name]: value
-        });
-        // if (!this.state.email || !this.state.password) {
-        //     return;
-        // }
-    };
-    handleFormSubmit = (e) => {
-        e.preventDefault();
-        // this.setDate();
-        let newMaint = this.state.maintToAdd;
-        API.maintRecord(newMaint)
-            .then(() => {
-                this.props.history.push(`/Vehicles/${this.state.maintToAdd.VehicleId}`)
-            })
-            .catch(err => {
-                console.log(err);
-            })
-    };
-    // setDate = () => {
-    //     this.setState(prevState => {
-    //         let maintToAdd = Object.assign({}, prevState.maintToAdd);
-    //         maintToAdd.jobDate = this.state.year + "-" + this.state.month + "-" + this.state.day;
-    //         console.log(maintToAdd.jobDate);
-    //         return maintToAdd;
-    //     })
-    // };
-    render() {
-        // const jobYears = [
-        //     "2020",
-        //     "2019",
-        //     "2018",
-        //     "2017",
-        //     "2016",
-        //     "2015",
-        //     "2014",
-        //     "2013",
-        //     "2012",
-        //     "2011",
-        //     "2009",
-        //     "2008",
-        //     "2007",
-        //     "2006",
-        //     "2005",
-        //     "2004",
-        //     "2003",
-        //     "2002",
-        //     "2001",
-        //     "2000"
-        // ];
-        // const jobDays = [
-        //     "1",
-        //     "2",
-        //     "3",
-        //     "4",
-        //     "5",
-        //     "6",
-        //     "7",
-        //     "8",
-        //     "9",
-        //     "10",
-        //     "11",
-        //     "12",
-        //     "13",
-        //     "14",
-        //     "15",
-        //     "16",
-        //     "17",
-        //     "18",
-        //     "19",
-        //     "20",
-        //     "21",
-        //     "22",
-        //     "23",
-        //     "24",
-        //     "25",
-        //     "26",
-        //     "27",
-        //     "28",
-        //     "29",
-        //     "30",
-        //     "31"
-        // ];
-        // const jobMonths = [
-        //     "01",
-        //     "02",
-        //     "03",
-        //     "04",
-        //     "05",
-        //     "06",
-        //     "07",
-        //     "08",
-        //     "09",
-        //     "10",
-        //     "11",
-        //     "12",
-        // ]
-        return (
-            <div className="section columns" >
-                <Ancestor>
-                    <Card>
-                        <form id="maint-form">
-
-                            <FormInput handleInputChange={this.handleInputChange}
-                                id="name" value={this.state.job} placeholder="Job" type="text" />
-
-                            <FormInput handleInputChange={this.handleInputChange}
-                                id="jobDate" value={this.state.jobDate} placeholder="Job Date" type="text" />
-
-                            <FormInput handleInputChange={this.handleInputChange}
-                                id="milage" value={this.state.milage} placeholder="Vehicle Milage" type="text" />
-
-                            <FormInput handleInputChange={this.handleInputChange}
-                                id="description" value={this.state.description} placeholder="Description" type="text" />
-
-                            <FormInput handleInputChange={this.handleInputChange}
-                                id="parts" value={this.state.parts} placeholder="Parts" type="text" />
-                            <FormInputButton handleFormSubmit={this.handleFormSubmit} />
-                        </form>
-                    </Card>
-                </Ancestor>
-            </div>
-        );
-    }
+  render() {
+    console.log('render');
+    console.log(this.state);
+    return (
+      <>
+        <Navbar>
+          <NavbarLink url='/members'>My Garage</NavbarLink>
+          <NavbarLink url='/vehicles'>Add Vehicle</NavbarLink>
+          <NavbarLink url='/add-maintenance' active={true}>Add Maintenance</NavbarLink>
+          <ActionBtn url='/'>Sign Out</ActionBtn>
+        </Navbar>
+        <br></br>
+        <br></br>
+        <br></br>
+        <div className='maintFlex'>
+          <div className='addMaintenanceWrapper'>
+            <h1 className='addMaintHeader'>New Maintenance</h1>
+          </div>
+          <div className='addMaintenanceWrapper'>
+            {/* <MaintInfoBox vehicle={this.state.vehicle} carMilage={this.state.vehicle.mileage} carVin={this.state.vehicle.vin} carYear={this.state.vehicle.year} carMake={this.state.vehicle.make} carModel={this.state.vehicle.model} /> */}
+          </div>
+        </div>
+        <br></br>
+        <div className='maintFlex'>
+          <div className='addMaintenanceWrapper'>
+            <FormInputTwo setWidth='width100' name='jobName' type='text' label='Job Name' id="name" value={this.state.maintToAdd.name} handleInputChange={this.handleInputChange}></FormInputTwo>
+            <FormInputTwo setWidth='width100' name='milage' type='text' label='Milage at Service' id="milage" value={this.state.maintToAdd.milage} handleInputChange={this.handleInputChange}></FormInputTwo>
+            <FormInputTwo setWidth='width100' name='jobDate' type='text' label='Service Date' id="jobDate" value={this.state.maintToAdd.jobDate} handleInputChange={this.handleInputChange}></FormInputTwo>
+          </div>
+          <div className='addMaintenanceWrapper'>
+            <textarea className='inputText textArea maintAddTextArea' placeholder='Description' name='description' type='text' label='Description' id="description" value={this.state.description} onChange={this.handleInputChange} />
+          </div>
+        </div>
+        <br />
+        <div className='maintFlex'>
+          <div className='addMaintenanceWrapper'>
+            <span>
+              <label className='photoFileLabel'>Add Parts</label>
+              <input type='file' />
+            </span>
+          </div>
+          <div className='addMaintenanceWrapper'>
+            <span>
+              <label className='photoFileLabel'>Add Photos</label>
+              <input type='file' />
+            </span>
+          </div>
+        </div>
+        <br></br>
+        <br></br>
+        <div className='newMaintBtn'>
+          <ActionBtn url='#' handleClick={this.handleFormSubmit}>Add Maintenance</ActionBtn>
+        </div>
+      </>
+    );
+  }
 }
 export default withRouter(NewMaintenance);

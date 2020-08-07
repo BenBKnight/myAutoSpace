@@ -1,0 +1,72 @@
+.carInfoBox{
+  box-sizing: border-box;
+  background-color: white;
+  border: solid #505050 1px;
+  border-radius: 3px;
+  box-shadow: #505050 1px 2px;
+  width: 100%;
+  padding: .5rem;
+  margin-bottom: 1.5rem;
+}
+
+.carBoxImg{
+  width: 25%;
+  height: auto;
+  margin: 1rem;
+  margin-right: 3rem;
+}
+
+.carBoxTitle{
+  color: #505050;
+  font-size: 2rem;
+  text-align: center;
+  font-weight: 600;
+}
+
+.carBoxText{
+  color: #505050;
+  margin-bottom: .25rem;
+}
+
+.carBoxTopInfo{
+  display: flex;
+  flex-wrap: wrap;
+}
+.carBoxMoreInfo{
+  display: flex;
+  flex-wrap: wrap;
+  margin: 1rem;
+  justify-content: space-between;
+}
+
+.carBoxLink{
+  color: #424ea1;
+  margin-bottom: .25rem;
+  cursor: default;
+}
+
+.carBoxLink:hover{
+  color: #3a458f;
+  cursor: default;
+  text-shadow: #3a458f 1px 1px;
+}
+
+.carBoxLinkRed{
+  color: red;
+  margin-bottom: .25rem;
+  cursor: default;
+}
+
+.carBoxLinkRed:hover{
+  color: rgb(190, 3, 3);
+  cursor: default;
+  text-shadow: rgb(190, 3, 3) 1px 1px;
+}
+
+.carBoxLinkContainer{
+  align-self: baseline;
+}
+
+@media(max-width: 769px) {
+
+}

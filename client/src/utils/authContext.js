@@ -4,7 +4,9 @@ export const AuthContext = createContext();
 
 
 export const AuthProvider = props => {
-    const [userId, setUserId] = useState({ id: "" })
+    const [userId, setUserId] = useState({
+        id: ""
+    })
 
     return (
         <AuthContext.Provider value={[userId, setUserId]}>

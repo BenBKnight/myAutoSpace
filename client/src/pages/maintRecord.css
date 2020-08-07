@@ -1,0 +1,63 @@
+*{
+  box-sizing: border-box;
+}
+
+.garageWrapper{
+  display: flex;
+  flex-wrap: wrap;
+  padding: 1rem;
+}
+
+.garageSidebar{
+  width: 25%;
+  padding-top: 1rem;
+}
+
+.garageMain{
+  width: 50%;
+}
+
+.garagePageTitle{
+  text-align: center;
+  color: #505050;
+}
+
+.maintHomeInfo{
+  padding: 1rem;
+  color: #505050;
+}
+
+.vehicleLinksSidebar{
+  display: flex;
+  justify-content: flex-end;
+}
+
+.vehicleBoxLink{
+  color: #424ea1;
+  margin-bottom: 1.5rem;
+  cursor: default;
+}
+
+.vehicleBoxLinkRed{
+  color: red;
+  margin-bottom: 1.5rem;
+  cursor: default;
+}
+
+.vehicleBoxLink:hover{
+  color: #2c346b;
+}
+
+.vehicleBoxLinkRed:hover{
+  color: rgb(122, 0, 0);
+}
+
+@media (max-width: 769px) {
+  .garageSidebar{
+    width: 100%;
+  }
+  
+  .garageMain{
+    width: 100%;
+  }
+}
