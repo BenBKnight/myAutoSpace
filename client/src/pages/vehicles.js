@@ -93,8 +93,8 @@ class Vehicles extends Component {
           type: "warning",
           insert: "top",
           container: "top-center",
-          animationIn: ["animate__animated", "animate__bounceIn"],
-          animationOut: ["animate__animated", "animate__bounceOut"],
+          animationIn: ["animate__animated", "animate__shakeX"],
+          animationOut: ["animate__animated", "animate__fadeOut"],
           dismiss: {
             duration: 1500
           }
