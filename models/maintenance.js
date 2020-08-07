@@ -21,6 +21,9 @@ module.exports = function(sequelize, DataTypes) {
 
     jobDate: {
       type: DataTypes.DATEONLY
+    },
+    imageUrl: {
+      type: DataTypes.STRING
     }
   });
 

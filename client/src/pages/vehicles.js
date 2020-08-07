@@ -12,6 +12,9 @@ import Navbar from '../components/Navbar copy';
 import NavbarLink from '../components/NavbarLink';
 import ActionBtn from '../components/ActionBtn';
 import FormImg from '../components/FormImg';
+import ImageUpload from '../components/imageUpload/imageUpload';
+import { app } from "../utils/base";
+const db = app.firestore();
 
 class Vehicles extends Component {
   constructor(props) {
@@ -26,9 +29,10 @@ class Vehicles extends Component {
       yearPurchased: "",
       condition: "Good",
       accidents: "",
-      numOfOwners: "Two",
+      numOfOwners: "2",
       locationLastOwned: "",
       UserId: localStorage.getItem("userId"),
+      imageUrl: null,
       
       vehicleType:{
         car: true,
@@ -86,6 +90,23 @@ class Vehicles extends Component {
         console.log(err);
       })
   };
+
+  onFileChange = async (e) => {
+    const file = e.target.files[0];
+    const storageRef = app.storage().ref();
+    const fileRef = storageRef.child(file.name);
+    await fileRef.put(file);
+  
+    this.setState({ ...this.state, imageUrl: (await fileRef.getDownloadURL())});
+    await db.collection("users").doc(this.state.vin).set({
+      make: this.state.make,
+      model: this.state.model,
+      year: this.state.year,
+      vin: this.state.vin,
+      image: this.state.imageUrl,
+    });
+  }
+
 
   handleSelectionClick = (e) =>{
     e.preventDefault();
@@ -159,6 +180,8 @@ class Vehicles extends Component {
             <h1 className='addCarHeader'>Add a Vehicle</h1>
             <h1 className='addCarSubHeader'>Please fill out the required fields for adding your new vehicle</h1>
             <br></br>
+            <span className='flex'>
+            </span>
             <br></br>
             <span className='flex'>
               <FormInputTwo setWidth='width45' name='make' type='text' label='Make' id="make" value={this.state.make} handleInputChange={this.handleInputChange}></FormInputTwo>
@@ -174,6 +197,11 @@ class Vehicles extends Component {
               <FormInputTwo setWidth='width45' name='yearOfPurchase' type='text' label='Year of Purchase' id="yearPurchased" value={this.state.yearPurchased} handleInputChange={this.handleInputChange}></FormInputTwo>
               <FormInputTwo setWidth='width45' name='accidents' type='text' label='Number of Accidents' id="accidents" value={this.state.accidents} handleInputChange={this.handleInputChange}></FormInputTwo>
             </span>
+            <br></br>
+            <span>
+            <ImageUpload onFileChange={this.onFileChange} />
+            </span>
+            <br></br>
             <ActionBtn url='#' handleClick={this.handleFormSubmit}>Add Vehicle</ActionBtn>
           </div>
         </div>

@@ -7,6 +7,7 @@ const jwt = require("jsonwebtoken")
 
 // Takes new user information and sends it to database
 router.post("/api/signup", (req, res) => {
+  console.log(req.body);
   bcrypt.hash(req.body.password, 10, (err, hash) => {
     if (err) {
       return res.status(500).json({
@@ -18,7 +19,8 @@ router.post("/api/signup", (req, res) => {
         password: hash,
         firstName: req.body.firstName,
         lastName: req.body.lastName,
-        location: req.body.location
+        location: req.body.location,
+        imageUrl: req.body.imageUrl
       })
         .then(user => {
           const token = jwt.sign({

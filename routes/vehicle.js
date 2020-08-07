@@ -45,6 +45,7 @@ router.post("/api/postVehicle", isAuthenticated, (req, res) => {
     accidents: req.body.accidents,
     numOfOwners: req.body.numOfOwners,
     locationLastOwned: req.body.locationLastOwned,
+    imageUrl: req.body.imageUrl,
     UserId: req.body.UserId
   }).then(dbPost => {
     console.log("Posting Vehicle");

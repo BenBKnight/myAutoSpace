@@ -10,7 +10,7 @@ function CarInfoBox(props) {
   return (
     <div className='carInfoBox'>
       <span className='carBoxTopInfo'>
-      <img className='carBoxImg' src={require('../FormImg/img/car_gray.png')} alt='Vehicle'/>
+      <img className='carBoxImg' src={props.vehicle.imageUrl} alt='Vehicle'/>
       <div>
         <h2 className='carBoxTitle'>{props.vehicle.year} {props.vehicle.make} {props.vehicle.model}</h2>
         <br></br>

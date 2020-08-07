@@ -8,6 +8,9 @@ import NavbarInput from '../components/NavbarInput';
 import ActionBtn from '../components/ActionBtn';
 import BulletPoint from '../components/BulletPoint';
 import FormInputTwo from '../components/FormInputTwo'
+import ImageUpload from '../components/imageUpload/imageUpload';
+import { app } from "../utils/base";
+const db = app.firestore();
 
 
 class Login extends Component {
@@ -21,7 +24,8 @@ class Login extends Component {
       id: '',
       firstName: '',
       lastName: '',
-      location: ''
+      location: '',
+      imageUrl: null,
     };
   };
   static contextType = AuthContext;
@@ -89,6 +93,21 @@ handleSignUpErr(err) {
     }
   };
 
+  onFileChange = async (e) => {
+    const file = e.target.files[0];
+    const storageRef = app.storage().ref();
+    const fileRef = storageRef.child(file.name);
+    await fileRef.put(file);
+  
+    this.setState({ ...this.state, imageUrl: (await fileRef.getDownloadURL())});
+    await db.collection("users").doc(this.state.firstName).set({
+      email: this.state.email,
+      firstName: this.state.firstName,
+      lastName: this.state.lastName,
+      image: this.state.imageUrl,
+    });
+  }
+
   render() {
     return (
       <div>
@@ -111,6 +130,9 @@ handleSignUpErr(err) {
             <FormInputTwo handleInputChange={this.handleInputChange} value={this.state.email} setWidth='width100' name='email' type='email' label='Email' id='email'></FormInputTwo>
             <FormInputTwo handleInputChange={this.handleInputChange} value={this.state.password} setWidth='width100' name='password' type='password' label='Password' id='password'></FormInputTwo>
             <FormInputTwo handleInputChange={this.handleInputChange} value={this.state.location} setWidth='width100' name='location' type='text' label='Location' id='location'></FormInputTwo>
+            <br></br>
+            <span><ImageUpload onFileChange={this.onFileChange} /></span>
+            <br></br>
             <ActionBtn url='#' handleClick={this.handleSignUpSubmit}>Sign Up</ActionBtn>
           </div>
 

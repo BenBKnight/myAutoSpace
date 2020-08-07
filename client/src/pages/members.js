@@ -35,6 +35,7 @@ class Members extends Component {
 
     API.userData()
       .then (res => {
+        console.log(res);
         this.setState({
           userInfo: res
         })
