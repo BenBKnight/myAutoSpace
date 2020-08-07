@@ -49,11 +49,10 @@ router.post("/api/postVehicle", isAuthenticated, (req, res) => {
   }).then(dbPost => {
     console.log("Posting Vehicle");
     res.json(dbPost);
-  })
-    .catch(err => {
-      console.log(err)
-      res.status(401)
-    });
+  }).catch(err => {
+    console.log(err);
+    res.status(401).json(err);
+  });
 });
 
 // // DELETE route for deleting posts

@@ -13,6 +13,10 @@ import NavbarLink from '../components/NavbarLink';
 import ActionBtn from '../components/ActionBtn';
 import FormImg from '../components/FormImg';
 
+import { store } from "react-notifications-component";
+import "react-notifications-component/dist/theme.css";
+import "animate.css";
+
 class Vehicles extends Component {
   constructor(props) {
     super(props)
@@ -29,20 +33,20 @@ class Vehicles extends Component {
       numOfOwners: "2",
       locationLastOwned: "",
       UserId: localStorage.getItem("userId"),
-      
-      vehicleType:{
+
+      vehicleType: {
         car: true,
         truck: false,
         bike: false
       },
-      
-      vehicleCondition:{
+
+      vehicleCondition: {
         good: true,
         fair: false,
         poor: false
       },
-      
-      vehicleOwners:{
+
+      vehicleOwners: {
         one: false,
         two: true,
         three: false,
@@ -84,10 +88,21 @@ class Vehicles extends Component {
       })
       .catch(err => {
         console.log(err);
-      })
+        store.addNotification({
+          message: "Please fill out all the required fields!",
+          type: "warning",
+          insert: "top",
+          container: "top-center",
+          animationIn: ["animate__animated", "animate__bounceIn"],
+          animationOut: ["animate__animated", "animate__bounceOut"],
+          dismiss: {
+            duration: 1500
+          }
+        });
+      });
   };
 
-  handleSelectionClick = (e) =>{
+  handleSelectionClick = (e) => {
     e.preventDefault();
     const choiceValue = e.target.dataset.value;
     const choiceField = e.target.dataset.field;
@@ -97,22 +112,22 @@ class Vehicles extends Component {
       case "vehicleType":
         this.setState({
           type: choiceId
-        }) 
-        break; 
+        })
+        break;
       case "vehicleCondition":
         this.setState({
           condition: choiceId
-        })  
-        break; 
-      case "vehicleOwners": 
+        })
+        break;
+      case "vehicleOwners":
         this.setState({
           numOfOwners: choiceId
-        }) 
-        break; 
+        })
+        break;
     }
 
     this.setState({
-      [choiceField]:{
+      [choiceField]: {
         [choiceValue]: true
       }
     })
