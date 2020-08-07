@@ -42,7 +42,7 @@ router.post("/api/login", (req, res) => {
           message: "Auth Unsuccessful"
         })
       })
-    }).catch(err => { res.status(401).json({ message: err }) });
+    }).catch(err => { res.status(401).send(err);});
 })
 
 

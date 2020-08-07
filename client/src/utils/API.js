@@ -13,12 +13,13 @@ export default {
     loginUser: function (user) {
         return axios.post(serverUrl + "/api/login", user)
             .then(res => {
+                console.log(res);
                 const token = res.data.token;
                 localStorage.setItem("jwt.Token", token);
                 const decoded = jwt.decode(token)
                 localStorage.setItem("userId", decoded.id)
                 setAuthorizationToken(token);
-            })
+            });
     },
     signUp: function (data) {
         return axios.post(serverUrl + "/api/signup", data)

@@ -68,7 +68,7 @@ class Login extends Component {
         });
       })
       .catch(err => {
-        console.log(err);
+        console.log(err.response);
         switch (err.message) {
           case "Request failed with status code 401":
             store.addNotification({
