@@ -12,9 +12,9 @@ import CarInfoBox from "../components/CarInfoBox"
 
 
 export default function Members(props) {
-  const [userId] = useContext(AuthContext);
+  const [userId, setUserId] = useContext(AuthContext);
   const [userVehicles, setVehicle] = useState([]);
-
+  const signOut = () => { localStorage.removeItem("jwt.Token") }
   useEffect(() => {
     API.allVehicles(userId.id)
       .then(res => {
@@ -35,7 +35,7 @@ export default function Members(props) {
         <NavbarLink url='/members' active={true}>My Garage</NavbarLink>
         <NavbarLink url='/vehicles'>Add Vehicle</NavbarLink>
         <NavbarLink url='/add-maintenance'>Add Maintenance</NavbarLink>
-        <ActionBtn url='/'>Sign Out</ActionBtn>
+        <ActionBtn handleClick={signOut} url='/'>Sign Out</ActionBtn>
       </Navbar>
       <div className='garageWrapper'>
         <div className='garageSidebar'>

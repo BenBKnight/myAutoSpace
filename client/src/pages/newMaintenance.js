@@ -87,6 +87,7 @@ class NewMaintenance extends Component {
         console.log(err)
       })
   };
+  signOut = () => { localStorage.removeItem("jwt.Token") }
 
   render() {
     console.log('render');
@@ -97,7 +98,7 @@ class NewMaintenance extends Component {
           <NavbarLink url='/members'>My Garage</NavbarLink>
           <NavbarLink url='/vehicles'>Add Vehicle</NavbarLink>
           <NavbarLink url='/add-maintenance' active={true}>Add Maintenance</NavbarLink>
-          <ActionBtn url='/'>Sign Out</ActionBtn>
+          <ActionBtn handleClick={this.signOut} url='/'>Sign Out</ActionBtn>
         </Navbar>
         <br></br>
         <br></br>

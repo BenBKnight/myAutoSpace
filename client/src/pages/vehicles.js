@@ -19,9 +19,31 @@ function Vehicles(props) {
   const [accidents, setAccidents] = useState("");
   const [locationLastOwned, setLocationLastOwned] = useState("");
 
-  const [vehicleType, setVehicleType] = useState("");
-  const [vehicleCondition, setVehicleCondition] = useState("");
-  const [vehicleOwners, setVehicleOwners] = useState("");
+  const [vehicleType, setVehicleType] = useState({
+    typeOfVehicle: "",
+    active: {
+      car: true,
+      truck: false,
+      bike: false
+    }
+  });
+  const [vehicleCondition, setVehicleCondition] = useState({
+    theVehicleCondtion: "",
+    active: {
+      good: true,
+      fair: false,
+      poor: false
+    }
+  });
+  const [vehicleOwners, setVehicleOwners] = useState({
+    theVehicleOwners: "",
+    active: {
+      one: false,
+      two: true,
+      three: false,
+      more: false
+    }
+  });
 
   const [userId] = useContext(AuthContext);
 
@@ -53,16 +75,16 @@ function Vehicles(props) {
     e.preventDefault();
     console.log('hit');
     let vehicleNew = {
-      type: vehicleType,
+      type: vehicleType.typeOfVehicle,
       make: make,
       model: model,
       year: year,
       vin: vin,
       mileage: mileage,
       yearPurchased: yearPurchased,
-      condition: vehicleCondition,
+      condition: vehicleCondition.theVehicleCondtion,
       accidents: accidents,
-      numOfOwners: vehicleOwners,
+      numOfOwners: vehicleOwners.theVehicleOwners,
       locationLastOwned: locationLastOwned,
       UserId: userId.id
     };
@@ -83,13 +105,28 @@ function Vehicles(props) {
     const choiceId = e.target.id;
     switch (choiceField) {
       case "vehicleType":
-        setVehicleType(choiceId)
+        setVehicleType({
+          typeOfVehicle: choiceId,
+          active: {
+            choiceId: true
+          }
+        })
         break;
       case "vehicleCondition":
-        setVehicleCondition(choiceId)
+        setVehicleCondition({
+          theVehicleCondtion: choiceId,
+          active: {
+            choiceId: true
+          }
+        })
         break;
       case "vehicleOwners":
-        setVehicleOwners(choiceId)
+        setVehicleOwners({
+          theVehicleOwners: choiceId,
+          active: {
+            choiceId: true
+          }
+        })
         break;
       default:
         break;
@@ -98,34 +135,36 @@ function Vehicles(props) {
   useEffect(() => {
     console.log(userId.id)
   })
+  const signOut = () => { localStorage.removeItem("jwt.Token") }
+
   return (
     <>
       <Navbar>
         <NavbarLink url='/members'>My Garage</NavbarLink>
         <NavbarLink url='/vehicles' active={true}>Add Vehicle</NavbarLink>
         <NavbarLink url='/add-maintenance'>Add Maintenance</NavbarLink>
-        <ActionBtn url='/'>Sign Out</ActionBtn>
+        <ActionBtn handleClick={signOut} url='/'>Sign Out</ActionBtn>
       </Navbar>
       <div className='addCarFlex'>
         <div className='width40 carSelectionFormat'>
           <h2 className='addCarSubHeader'>Select Vehicle Type</h2>
           <div className="carFormInputWrapper">
-            <FormImg id='Car' dataField='vehicleType' dataValue='car' src='car_gray.png' srcActive='car_blue.png' imgName='Car' active={vehicleType.car} handleSelectionClick={handleSelectionClick}></FormImg>
-            <FormImg id='Truck' dataField='vehicleType' dataValue='truck' src='truck_gray.png' srcActive='truck_blue.png' imgName='Truck' active={vehicleType.truck} handleSelectionClick={handleSelectionClick}></FormImg>
-            <FormImg id='Motorcycle' dataField='vehicleType' dataValue='bike' src='bike_gray.png' srcActive='bike_blue.png' imgName='Motorcycle' active={vehicleType.bike} handleSelectionClick={handleSelectionClick}></FormImg>
+            <FormImg onFocus id='Car' dataField='vehicleType' dataValue='car' src='car_gray.png' srcActive='car_blue.png' imgName='Car' active={vehicleType.active.car} handleSelectionClick={handleSelectionClick}></FormImg>
+            <FormImg id='Truck' dataField='vehicleType' dataValue='truck' src='truck_gray.png' srcActive='truck_blue.png' imgName='Truck' active={vehicleType.active.truck} handleSelectionClick={handleSelectionClick}></FormImg>
+            <FormImg id='Motorcycle' dataField='vehicleType' dataValue='bike' src='bike_gray.png' srcActive='bike_blue.png' imgName='Motorcycle' active={vehicleType.active.bike} handleSelectionClick={handleSelectionClick}></FormImg>
           </div>
           <h2 className='addCarSubHeader'>Vehicle Condition</h2>
           <div className="carFormInputWrapper">
-            <FormImg id='Good' dataField='vehicleCondition' dataValue='good' src='good_gray.png' srcActive='good_blue.png' imgName='Good' active={vehicleCondition.good} handleSelectionClick={handleSelectionClick}></FormImg>
-            <FormImg id='Fair' dataField='vehicleCondition' dataValue='fair' src='fair_gray.png' srcActive='fair_blue.png' imgName='Fair' active={vehicleCondition.fair} handleSelectionClick={handleSelectionClick}></FormImg>
-            <FormImg id='Poor' dataField='vehicleCondition' dataValue='poor' src='poor_gray.png' srcActive='poor_blue.png' imgName='Poor' active={vehicleCondition.poor} handleSelectionClick={handleSelectionClick}></FormImg>
+            <FormImg id='Good' dataField='vehicleCondition' dataValue='good' src='good_gray.png' srcActive='good_blue.png' imgName='Good' active={vehicleCondition.active.good} handleSelectionClick={handleSelectionClick}></FormImg>
+            <FormImg id='Fair' dataField='vehicleCondition' dataValue='fair' src='fair_gray.png' srcActive='fair_blue.png' imgName='Fair' active={vehicleCondition.active.fair} handleSelectionClick={handleSelectionClick}></FormImg>
+            <FormImg id='Poor' dataField='vehicleCondition' dataValue='poor' src='poor_gray.png' srcActive='poor_blue.png' imgName='Poor' active={vehicleCondition.active.poor} handleSelectionClick={handleSelectionClick}></FormImg>
           </div>
           <h2 className='addCarSubHeader'>Number of Owners</h2>
           <div className="carFormInputWrapper">
-            <FormImg id={1} dataField='vehicleOwners' dataValue='one' src='one_gray.png' srcActive='one_blue.png' imgName='One' active={vehicleOwners.one} handleSelectionClick={handleSelectionClick}></FormImg>
-            <FormImg id={2} dataField='vehicleOwners' dataValue='two' src='two_gray.png' srcActive='two_blue.png' imgName='Two' active={vehicleOwners.two} handleSelectionClick={handleSelectionClick}></FormImg>
-            <FormImg id={3} dataField='vehicleOwners' dataValue='three' src='three_gray.png' srcActive='three_blue.png' imgName='Three' active={vehicleOwners.three} handleSelectionClick={handleSelectionClick}></FormImg>
-            <FormImg id={4} dataField='vehicleOwners' dataValue='more' src='more_gray.png' srcActive='more_blue.png' imgName='More' active={vehicleOwners.more} handleSelectionClick={handleSelectionClick}></FormImg>
+            <FormImg id={1} dataField='vehicleOwners' dataValue='one' src='one_gray.png' srcActive='one_blue.png' imgName='One' active={vehicleOwners.active.one} handleSelectionClick={handleSelectionClick}></FormImg>
+            <FormImg id={2} dataField='vehicleOwners' dataValue='two' src='two_gray.png' srcActive='two_blue.png' imgName='Two' active={vehicleOwners.active.two} handleSelectionClick={handleSelectionClick}></FormImg>
+            <FormImg id={3} dataField='vehicleOwners' dataValue='three' src='three_gray.png' srcActive='three_blue.png' imgName='Three' active={vehicleOwners.active.three} handleSelectionClick={handleSelectionClick}></FormImg>
+            <FormImg id={4} dataField='vehicleOwners' dataValue='more' src='more_gray.png' srcActive='more_blue.png' imgName='More' active={vehicleOwners.active.more} handleSelectionClick={handleSelectionClick}></FormImg>
           </div>
         </div>
         <div className='addCarWrapper'>
