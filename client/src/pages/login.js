@@ -34,7 +34,13 @@ function Login(props) {
     }
     API.loginUser(user)
       .then(resData => {
-        setUserId({ id: resData.data.id })
+        console.log(resData.data)
+        setUserId({
+          id: resData.data.id,
+          firstName: resData.data.firstName,
+          lastName: resData.data.lastName,
+          token: resData.data.token
+        })
         props.history.push("/Members")
       })
       .catch(err => {

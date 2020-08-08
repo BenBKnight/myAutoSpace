@@ -49,6 +49,8 @@ class MaintRecord extends Component {
                 console.log(err)
             })
     }
+    signOut = () => { localStorage.removeItem("jwt.Token") }
+
     render() {
         console.log(this.state);
         return (
@@ -57,7 +59,7 @@ class MaintRecord extends Component {
                     <NavbarLink url='/Members'>My Garage</NavbarLink>
                     <NavbarLink url='/vehicles'>Add Vehicle</NavbarLink>
                     <NavbarLink url='/add-maintenance'>Add Maintenance</NavbarLink>
-                    <ActionBtn url='/'>Sign Out</ActionBtn>
+                    <ActionBtn handleClick={this.signOut} url='/'>Sign Out</ActionBtn>
                 </Navbar>
                 <div className='garageWrapper'>
                     <div className='garageSidebar'>

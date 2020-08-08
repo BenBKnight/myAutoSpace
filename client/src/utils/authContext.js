@@ -5,7 +5,13 @@ export const AuthContext = createContext();
 
 export const AuthProvider = props => {
     const [userId, setUserId] = useState({
-        id: ""
+        id: "",
+        firstName: "",
+        lastName: "",
+        token: "",
+        logout: () => {
+            localStorage.removeItem("jwt.Token")
+        }
     })
 
     return (
