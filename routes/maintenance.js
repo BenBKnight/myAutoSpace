@@ -38,6 +38,7 @@ router.get("/maintenancefindvehicle/:vehicleid", isAuthenticated, (req, res) => 
       VehicleId: vehicleId
     }
   }).then(result => {
+    console.log(result)
     res.send(result);
   })
     .catch(() => res.status(401).json(err));

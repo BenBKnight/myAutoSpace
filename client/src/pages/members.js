@@ -15,6 +15,7 @@ export default function Members(props) {
   const [userVehicles, setVehicle] = useState([]);
   const signOut = () => { localStorage.removeItem("jwt.Token") }
   useEffect(() => {
+    console.log(userId)
     API.allVehicles(userId.id)
       .then(res => {
         console.log(res)

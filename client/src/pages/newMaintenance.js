@@ -6,7 +6,7 @@ import { withRouter } from "react-router-dom";
 import Navbar from '../components/Navbar copy';
 import NavbarLink from '../components/NavbarLink';
 import ActionBtn from '../components/ActionBtn';
-
+import MaintInfoBox from "../components/MaintInfoBox";
 
 class NewMaintenance extends Component {
   constructor(props) {
@@ -22,7 +22,8 @@ class NewMaintenance extends Component {
       },
       year: "",
       day: "",
-      month: ""
+      month: "",
+      vehicle: []
     };
   };
   handleInputChange = event => {
@@ -77,6 +78,7 @@ class NewMaintenance extends Component {
   };
 
   apiCall = () => {
+    console.log(this.state.vehicleID)
     API.vehicleById(this.state.vehicleID)
       .then((res) => {
         this.setState({
@@ -90,8 +92,6 @@ class NewMaintenance extends Component {
   signOut = () => { localStorage.removeItem("jwt.Token") }
 
   render() {
-    console.log('render');
-    console.log(this.state);
     return (
       <>
         <Navbar>
@@ -108,7 +108,7 @@ class NewMaintenance extends Component {
             <h1 className='addMaintHeader'>New Maintenance</h1>
           </div>
           <div className='addMaintenanceWrapper'>
-            {/* <MaintInfoBox vehicle={this.state.vehicle} carMilage={this.state.vehicle.mileage} carVin={this.state.vehicle.vin} carYear={this.state.vehicle.year} carMake={this.state.vehicle.make} carModel={this.state.vehicle.model} /> */}
+            <MaintInfoBox vehicle={this.state.vehicle} carMilage={this.state.vehicle.mileage} carVin={this.state.vehicle.vin} carYear={this.state.vehicle.year} carMake={this.state.vehicle.make} carModel={this.state.vehicle.model} />
           </div>
         </div>
         <br></br>
