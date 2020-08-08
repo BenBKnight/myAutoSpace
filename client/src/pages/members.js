@@ -27,7 +27,7 @@ export default function Members(props) {
           //   reg.showNotification("You have " + res.data.length + " vehicles in your garage.");
           // });
           console.log("my notification");
-          setUserId({ showNotification: false });
+          setUserId({ ...userId, showNotification: false });
         }
       })
       .catch(err => {
