@@ -36,6 +36,7 @@ function Login(props) {
       .then(resData => {
         console.log(resData.data)
         setUserId({
+          ...userId,
           id: resData.data.id,
           firstName: resData.data.firstName,
           lastName: resData.data.lastName,
