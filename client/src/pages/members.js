@@ -1,52 +1,36 @@
-import React, { Component } from "react";
+import React, { useContext } from "react";
 import API from "../utils/API";
 import './members.css';
-import Vehicles from "../components/vehicles/vehicles";
-import Card from "../components/card/card";
-import Header from "../components/header/header";
-import Subtitle from "../components/subtitle/subtitle";
+import { AuthContext } from "../utils/authContext";
+import { useState } from "react";
+import { useEffect } from "react";
 import Navbar from '../components/Navbar copy';
 import NavbarLink from '../components/NavbarLink';
 import ActionBtn from '../components/ActionBtn';
-import CarInfoBox from '../components/CarInfoBox';
 import UserInfo from '../components/UserInfo';
+import CarInfoBox from "../components/CarInfoBox"
 
 
-class Members extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      userId: localStorage.getItem("userId"),
-      vehicle: []
-    }
-  };
-  componentDidMount() {
-    API.allVehicles(this.state.userId)
+export default function Members(props) {
+  const [userId] = useContext(AuthContext);
+  const [userVehicles, setVehicle] = useState([]);
+
+  useEffect(() => {
+    API.allVehicles(userId.id)
       .then(res => {
-        console.log(res.data);
-        this.setState({
-          vehicle: res.data
-        }
-        )
+        console.log(res)
+        setVehicle([
+          ...userVehicles,
+          ...res.data
+        ])
       })
       .catch(err => {
         console.log(err);
       })
+  }, [])
 
-    API.userData()
-      .then (res => {
-        this.setState({
-          userInfo: res
-        })
-      })
-      .catch(err => {
-        console.log(err);
-      })
-  }
-  render() {
-    console.log(this.state);
-    return (
-      <>
+  return (
+    <>
       <Navbar>
         <NavbarLink url='/members' active={true}>My Garage</NavbarLink>
         <NavbarLink url='/vehicles'>Add Vehicle</NavbarLink>
@@ -55,25 +39,23 @@ class Members extends Component {
       </Navbar>
       <div className='garageWrapper'>
         <div className='garageSidebar'>
-          <UserInfo/>
+          <UserInfo />
         </div>
         <div className='garageMain'>
           <h1 className='garagePageTitle'>My Garage</h1>
           <br></br>
           <br></br>
           <br></br>
-          {this.state.vehicle.map(vehicles => (
-              <span key={vehicles.id}>
-                <CarInfoBox
-                  vehicle={vehicles}
-                />
-              </span>
-            ))}
+          {userVehicles.map(vehicles => (
+            <span key={vehicles.id}>
+              <CarInfoBox
+                vehicle={vehicles}
+              />
+            </span>
+          ))}
         </div>
         <div className='garageSidebar'></div>
       </div>
-      </>
-        );
-  }
+    </>
+  );
 }
-export default Members;

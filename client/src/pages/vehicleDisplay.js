@@ -1,14 +1,7 @@
 import React, { Component } from "react";
 import { Link, withRouter } from "react-router-dom";
 import "./vehicleDisplay.css";
-import Card from "../components/card/card";
-import InformationDisplay from "../components/informationDisplay/informationDisplay";
-import Ancestor from "../components/ancestor/ancestor";
-import TableMaint from "../components/tableMaint/tableMaint";
-import Subtitle from "../components/subtitle/subtitle";
 import API from "../utils/API";
-import TableMd from "../components/tableMd/tableMd";
-import TestMdData from "../db/testData";
 import Navbar from '../components/Navbar copy';
 import NavbarLink from '../components/NavbarLink';
 import ActionBtn from '../components/ActionBtn';
@@ -89,53 +82,49 @@ class VehicleDisplay extends Component {
   };
 
   render() {
-    let maintRecordHeaders = ["Job", "Mileage", "Date", "Link"];
-    let carMdHeaders = ["Description", "Mileage", "More Information", "Complete"]
-    console.log(this.state);
-
     return (
       <>
-      <Navbar>
-        <NavbarLink url='/members'>My Garage</NavbarLink>
-        <NavbarLink url='/vehicles'>Add Vehicle</NavbarLink>
-        <NavbarLink url='/add-maintenance'>Add Maintenance</NavbarLink>
-        <ActionBtn url='/'>Sign Out</ActionBtn>
-      </Navbar>
-      <div className='garageWrapper'>
-        <div className='garageSidebar'>
-          <CarInfoSidebar vehicle={this.state.vehicle}/>
-        </div>
-        <div className='garageMain'>
-          <h1 className='garagePageTitle'>{this.state.vehicle.make} {this.state.vehicle.model}</h1>
-          <br></br>
-          <br></br>
-          <br></br>
-          <VehicleOverviewBox vehicle={this.state.vehicle}/>
-          <VehicleMaintBox header='Recent Maintenance'>
-          {this.state.maintRecords.map(job => (
-              <span key={job.id}>
-                <Link to={`/MaintRecord/${job.id}`}>
-                  <FormLine lineTitle={job.name} lineHeadOne='Service Date' lineHeadTwo='Service Milage' lineValOne={job.jobDate} lineValTwo={job.milage} />
-                </Link>
-              </span>
-            ))}
-            <ActionBtn url={`/NewMaintenance/${this.state.vehicle.id}`}>Add Maintenance</ActionBtn>
-          </VehicleMaintBox>
-          <VehicleMaintBox header='Recommended Maintenance'>
-            <FormLine lineTitle='Break Replacement' lineHeadOne='Service Milage' lineHeadTwo='Complete Service' lineValOne='160,000' checkbox='display' />
-            <FormLine lineTitle='Break Replacement' lineHeadOne='Service Milage' lineHeadTwo='Complete Service' lineValOne='160,000' checkbox='display' />
-          </VehicleMaintBox>
-        </div>
-        <div className='garageSidebar vehicleLinksSidebar'>
-          <div className='vehicleBoxLinkContainer'>
-            <p className='vehicleBoxLink'>Update Milage</p>
-            <Link to={`/NewMaintenance/${this.state.vehicle.id}`}>
-              <p className='vehicleBoxLink'>New Maintenance</p>
-            </Link>
-            <p className='vehicleBoxLinkRed'>Delete</p>
+        <Navbar>
+          <NavbarLink url='/members'>My Garage</NavbarLink>
+          <NavbarLink url='/vehicles'>Add Vehicle</NavbarLink>
+          <NavbarLink url='/add-maintenance'>Add Maintenance</NavbarLink>
+          <ActionBtn url='/'>Sign Out</ActionBtn>
+        </Navbar>
+        <div className='garageWrapper'>
+          <div className='garageSidebar'>
+            <CarInfoSidebar vehicle={this.state.vehicle} />
+          </div>
+          <div className='garageMain'>
+            <h1 className='garagePageTitle'>{this.state.vehicle.make} {this.state.vehicle.model}</h1>
+            <br></br>
+            <br></br>
+            <br></br>
+            <VehicleOverviewBox vehicle={this.state.vehicle} />
+            <VehicleMaintBox header='Recent Maintenance'>
+              {this.state.maintRecords.map(job => (
+                <span key={job.id}>
+                  <Link to={`/MaintRecord/${job.id}`}>
+                    <FormLine lineTitle={job.name} lineHeadOne='Service Date' lineHeadTwo='Service Milage' lineValOne={job.jobDate} lineValTwo={job.milage} />
+                  </Link>
+                </span>
+              ))}
+              <ActionBtn url={`/NewMaintenance/${this.state.vehicle.id}`}>Add Maintenance</ActionBtn>
+            </VehicleMaintBox>
+            <VehicleMaintBox header='Recommended Maintenance'>
+              <FormLine lineTitle='Break Replacement' lineHeadOne='Service Milage' lineHeadTwo='Complete Service' lineValOne='160,000' checkbox='display' />
+              <FormLine lineTitle='Break Replacement' lineHeadOne='Service Milage' lineHeadTwo='Complete Service' lineValOne='160,000' checkbox='display' />
+            </VehicleMaintBox>
+          </div>
+          <div className='garageSidebar vehicleLinksSidebar'>
+            <div className='vehicleBoxLinkContainer'>
+              <p className='vehicleBoxLink'>Update Milage</p>
+              <Link to={`/NewMaintenance/${this.state.vehicle.id}`}>
+                <p className='vehicleBoxLink'>New Maintenance</p>
+              </Link>
+              <p className='vehicleBoxLinkRed'>Delete</p>
+            </div>
           </div>
         </div>
-      </div>
       </>
     );
   }
