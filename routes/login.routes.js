@@ -27,7 +27,9 @@ router.post("/api/login", (req, res) => {
         if (result) {
           const token = jwt.sign({
             email: user.dataValues.email,
-            id: user.dataValues.id
+            id: user.dataValues.id,
+            lastName: user.dataValues.lastName,
+            firstName: user.dataValues.firstName
           },
             process.env.JWT_KEY,
             {
@@ -38,7 +40,9 @@ router.post("/api/login", (req, res) => {
             .json({
               message: "Auth Successful",
               token: token,
-              id: user.dataValues.id
+              id: user.dataValues.id,
+              lastName: user.dataValues.lastName,
+              firstName: user.dataValues.firstName
             })
         }
         res.status(401).json({

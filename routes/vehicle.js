@@ -6,7 +6,6 @@ const router = app.Router();
 
 router.get("/vehiclefind/:userid", isAuthenticated, (req, res) => {
   const userId = req.params.userid;
-  console.log("===============111111111111", userId)
   db.Vehicle.findAll({
     where: {
       UserId: userId
@@ -18,17 +17,6 @@ router.get("/vehiclefind/:userid", isAuthenticated, (req, res) => {
       console.log(err)
       res.status(401).send("Auth Unsuccessful");
     });
-});
-
-router.get("/vehicleid/:id", isAuthenticated, (req, res) => {
-  const vehicleId = req.params.id;
-  db.Vehicle.findAll({
-    where: {
-      id: vehicleId
-    }
-  }).then(result => {
-    res.send(result);
-  });
 });
 
 // POST route for saving a new post
@@ -47,7 +35,6 @@ router.post("/api/postVehicle", isAuthenticated, (req, res) => {
     locationLastOwned: req.body.locationLastOwned,
     UserId: req.body.UserId
   }).then(dbPost => {
-    console.log("Posting Vehicle");
     res.json(dbPost);
   }).catch(err => {
     console.log(err);
@@ -66,6 +53,8 @@ router.post("/api/postVehicle", isAuthenticated, (req, res) => {
 //   });
 // });
 
+// I don't remember this one being used in the original project, but might be something someone is 
+// wanting to use later?
 // // Get route for returning posts of a specific type
 // router.get("/api/allVehicles/type/:type", isAuthenticated, (req, res) => {
 //   db.Vehicle.findAll({
