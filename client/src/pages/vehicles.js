@@ -22,7 +22,7 @@ function Vehicles(props) {
   const [yearPurchased, setYearPurchased] = useState("");
   const [accidents, setAccidents] = useState("");
   const [locationLastOwned, setLocationLastOwned] = useState("");
-  const [imageUrl, setImageUrl] = React.useState(null);
+  const [imageUrl, setImageUrl] = useState("");
 
   const [vehicleType, setVehicleType] = useState({
     typeOfVehicle: "",

@@ -19,10 +19,10 @@ if (process.env.JAWSDB_URL) {
     connection = mysql.createConnection(process.env.JAWSDB_URL);
 } else {
     connection = mysql.createConnection({
-        host: process.env.HOST_KEY,
-        user: process.env.USER_KEY,
-        password: process.env.MYSQL_KEY,
-        database: process.env.DATA_BASE_KEY
+        host: '127.0.0.1',
+        user: 'root',
+        password: 'Iloveskymarie1!',
+        database: 'carFacts'
     })
 }
 // Creating express app and configuring middleware needed for authentication
