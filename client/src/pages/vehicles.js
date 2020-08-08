@@ -146,7 +146,7 @@ function Vehicles(props) {
   useEffect(() => {
     console.log(userId.id)
   })
-  const signOut = () => { localStorage.removeItem("jwt.Token") }
+  const signOut = () => { setUserId({ ...userId, showNotification: true }); localStorage.removeItem("jwt.Token"); }
 
   return (
     <>

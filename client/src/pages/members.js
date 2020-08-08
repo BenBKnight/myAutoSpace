@@ -13,7 +13,7 @@ import CarInfoBox from "../components/CarInfoBox"
 export default function Members(props) {
   const [userId, setUserId] = useContext(AuthContext);
   const [userVehicles, setVehicle] = useState([]);
-  const signOut = () => { localStorage.removeItem("jwt.Token") }
+  const signOut = () => { setUserId({ ...userId, showNotification: true }); localStorage.removeItem("jwt.Token"); }
   useEffect(() => {
     console.log(userId)
     API.allVehicles(userId.id)
