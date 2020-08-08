@@ -35,7 +35,10 @@ router.post("/api/signup", (req, res) => {
           console.log(token)
           return res.status(200).json({
             message: "Auth Successful",
-            token: token
+            token: token,
+            id: user.dataValues.id,
+            lastName: user.dataValues.lastName,
+            firstName: user.dataValues.firstName
           })
             .catch(err => {
               console.log(err)
