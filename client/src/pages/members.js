@@ -15,7 +15,9 @@ export default function Members(props) {
   const [userId, setUserId] = useContext(AuthContext);
   const [userVehicles, setVehicle] = useState([]);
   const signOut = () => { localStorage.removeItem("jwt.Token") }
+
   useEffect(() => {
+    console.log(userId.id)
     API.allVehicles(userId.id)
       .then(res => {
         console.log(res)
