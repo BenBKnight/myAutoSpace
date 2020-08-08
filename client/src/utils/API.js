@@ -50,6 +50,9 @@ export default {
             headers: {
                 Authorization: localStorage.getItem("jwt.Token")
             }
+        }).then(res => {
+            console.log(res)
+            return res;
         })
     },
     userData: function (data) {
@@ -57,7 +60,7 @@ export default {
     },
     vehicleById: function (data) {
         // Data is Equal to Vehicle Id
-        return axios.get(serverUrl + "/vehicleid/" + data, {
+        return axios.get(serverUrl + "/vehicleOnefind/" + data, {
             headers: {
                 Authorization: localStorage.getItem("jwt.Token")
             }
