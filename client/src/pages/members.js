@@ -25,6 +25,18 @@ class Members extends Component {
   };
 
   componentDidMount() {
+    if (Notification.permission === "granted") {
+      navigator.serviceWorker.getRegistration().then(reg => {
+        const options = {
+          body: "test notification",
+          data: {
+            primaryKey: 1
+          },
+          actions: [{ action: "test", title: "test" }]
+        }
+        reg.showNotification("test", options);
+      });
+    }
     API.allVehicles(this.state.userId)
       .then(res => {
         console.log(res.data);

@@ -29,6 +29,22 @@ class Login extends Component {
   };
   static contextType = AuthContext;
 
+  componentDidMount() {
+    Notification.requestPermission();
+    if (Notification.permission === "granted") {
+      navigator.serviceWorker.getRegistration().then(reg => {
+        const options = {
+          body: "test notification",
+          data: {
+            primaryKey: 1
+          },
+          actions: [{ action: "test", title: "test" }]
+        }
+        reg.showNotification("test", options);
+      });
+    }
+  }
+
   handleLogInSubmit = (e) => {
     e.preventDefault();
     console.log('hit');
