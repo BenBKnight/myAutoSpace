@@ -8,10 +8,7 @@ export const AuthProvider = props => {
         id: "",
         firstName: "",
         lastName: "",
-        token: "",
-        logout: () => {
-            localStorage.removeItem("jwt.Token")
-        }
+        token: ""
     })
 
     return (
