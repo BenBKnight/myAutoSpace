@@ -14,9 +14,6 @@ router.post("/api/login", (req, res) => {
   })
     .then(user => {
       console.log(user.dataValues)
-      console.log("compare");
-      console.log("compare");
-      console.log("compare");
       // If they cannot find a user
       bcrypt.compare(req.body.password, user.dataValues.password, (err, result) => {
         if (err) {
@@ -49,7 +46,7 @@ router.post("/api/login", (req, res) => {
           message: "Auth Unsuccessful"
         })
       })
-    }).catch(err => { console.log("compare");res.status(401).json();});
+    }).catch(err => { res.status(401).json(err); });
 })
 
 

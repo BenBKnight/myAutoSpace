@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
 import './App.css';
 import Login from "./pages/login";
@@ -8,12 +8,14 @@ import Maintenance from "./pages/maintenance";
 import Vehicles from "./pages/vehicles";
 import VehicleDisplay from "./pages/vehicleDisplay";
 import NewMaintenance from "./pages/newMaintenance";
-import { AuthContext } from "./utils/authContext";
 import ReactNotification from "react-notifications-component";
 import { AuthProvider, AuthContext } from "./utils/authContext";
 import ProtectedRoute from './utils/protectedRoute';
 
 export default function App() {
+  useEffect(() => {
+    Notification.requestPermission();
+  });
   return (
     <Router>
       <ReactNotification />

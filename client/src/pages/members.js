@@ -21,11 +21,18 @@ export default function Members(props) {
         setVehicle([
           ...userVehicles,
           ...res.data
-        ])
+        ]);
+        if (Notification.permission === "granted" && userId.showNotification === true) {
+          // navigator.serviceWorker.getRegistration().then(reg => {
+          //   reg.showNotification("You have " + res.data.length + " vehicles in your garage.");
+          // });
+          console.log("my notification");
+          setUserId({ showNotification: false });
+        }
       })
       .catch(err => {
         console.log(err);
-      })
+      });
   }, [])
 
   return (

@@ -17,6 +17,7 @@ export default {
                 const token = res.data.token;
                 localStorage.setItem("jwt.Token", token);
                 setAuthorizationToken(token);
+                return res;
             });
     },
     signUp: function (data) {

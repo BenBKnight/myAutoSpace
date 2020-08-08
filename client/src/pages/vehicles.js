@@ -8,6 +8,9 @@ import NavbarLink from '../components/NavbarLink';
 import ActionBtn from '../components/ActionBtn';
 import FormImg from '../components/FormImg';
 import { useEffect } from "react";
+import { store } from "react-notifications-component";
+import "react-notifications-component/dist/theme.css";
+import "animate.css";
 
 function Vehicles(props) {
   const [make, setMake] = useState("");
@@ -45,7 +48,7 @@ function Vehicles(props) {
     }
   });
 
-  const [userId] = useContext(AuthContext);
+  const [userId, setUserId] = useContext(AuthContext);
 
   const handleInputChange = event => {
     // Getting the value and name of the input which triggered the change
@@ -91,8 +94,20 @@ function Vehicles(props) {
     console.log(vehicleNew)
     API.newVehicle(vehicleNew)
       .then((res) => {
+        setUserId({ showNotofication: true });
         console.log("api returned", res);
         props.history.push("/Members");
+        store.addNotification({
+          message: "Added new vehicle.",
+          type: "success",
+          insert: "top",
+          container: "top-center",
+          animationIn: ["animate__animated", "animate__bounceIn"],
+          animationOut: ["animate__animated", "animate__bounceOut"],
+          dismiss: {
+            duration: 1500
+          }
+        });
       })
       .catch(err => {
         console.log(err);

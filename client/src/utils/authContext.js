@@ -9,6 +9,7 @@ export const AuthProvider = props => {
         firstName: "",
         lastName: "",
         token: "",
+        showNotification: true,
         logout: () => {
             localStorage.removeItem("jwt.Token")
         }

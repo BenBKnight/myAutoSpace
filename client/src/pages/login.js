@@ -25,36 +25,30 @@ function Login(props) {
   const [lastName, setLastName] = useState("");
   const [location, setLocation] = useState("");
 
-  componentDidMount() {
-    Notification.requestPermission();
-    // if (Notification.permission === "granted") {
-    //   navigator.serviceWorker.getRegistration().then(reg => {
-    //     const options = {
-    //       body: "test notification",
-    //       data: {
-    //         primaryKey: 1
-    //       },
-    //       actions: [{ action: "test", title: "test" }]
-    //     }
-    //     reg.showNotification("test", options);
-    //   });
-    // }
-  }
-
   const handleLogInSubmit = (e) => {
     e.preventDefault();
-    console.log('hit');
     let user = {
       email: emailInput.trim(),
       password: passwordInput.trim()
     }
     if (!emailInput || !passwordInput) {
+      store.addNotification({
+        message: "Enter email and password!",
+        type: "danger",
+        insert: "top",
+        container: "top-center",
+        animationIn: ["animate__animated", "animate__shakeX"],
+        animationOut: ["animate__animated", "animate__fadeOut"],
+        dismiss: {
+          duration: 1500
+        }
+      });
       return;
     }
     API.loginUser(user)
       .then(resData => {
-        console.log(resData.data)
         setUserId({
+          ...userId,
           id: resData.data.id,
           firstName: resData.data.firstName,
           lastName: resData.data.lastName,
@@ -62,7 +56,7 @@ function Login(props) {
         })
         props.history.push("/Members");
         store.addNotification({
-          message: "logged-in",
+          message: "Logged-in",
           type: "success",
           insert: "top",
           container: "top-center",
@@ -74,7 +68,6 @@ function Login(props) {
         });
       })
       .catch(err => {
-        console.log(err.response);
         switch (err.message) {
           case "Request failed with status code 401":
             store.addNotification({
@@ -116,6 +109,17 @@ function Login(props) {
       location: location.trim()
     }
     if (!email || !password) {
+      store.addNotification({
+        message: "Please fill out all the required fields!",
+        type: "warning",
+        insert: "top",
+        container: "top-center",
+        animationIn: ["animate__animated", "animate__shakeX"],
+        animationOut: ["animate__animated", "animate__fadeOut"],
+        dismiss: {
+          duration: 1500
+        }
+      });
       return;
     }
     console.log(user)
@@ -124,6 +128,17 @@ function Login(props) {
         console.log(resData)
         setUserId({ id: resData.data.id })
         props.history.push("/Members")
+        store.addNotification({
+          message: "Signed-up and logged-in",
+          type: "success",
+          insert: "top",
+          container: "top-center",
+          animationIn: ["animate__animated", "animate__bounceIn"],
+          animationOut: ["animate__animated", "animate__bounceOut"],
+          dismiss: {
+            duration: 1500
+          }
+        });
       })
       .catch(err => {
         console.log(err);
@@ -163,7 +178,6 @@ function Login(props) {
       return;
     }
   };
-
 
   return (
     <div>
