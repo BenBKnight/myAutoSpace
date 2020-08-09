@@ -22,7 +22,7 @@ function Vehicles(props) {
   const [yearPurchased, setYearPurchased] = useState("");
   const [accidents, setAccidents] = useState("");
   const [locationLastOwned, setLocationLastOwned] = useState("");
-  const [imageUrl, setImageUrl] = useState("");
+  const [imageUrl, setImageUrl] = React.useState(null);
 
   const [vehicleType, setVehicleType] = useState({
     typeOfVehicle: "",
@@ -76,9 +76,9 @@ function Vehicles(props) {
     }
   };
 
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
-    console.log('hit');
+    // console.log('hit');
     let vehicleNew = {
       type: vehicleType.typeOfVehicle,
       make: make,
@@ -91,12 +91,20 @@ function Vehicles(props) {
       accidents: accidents,
       numOfOwners: vehicleOwners.theVehicleOwners,
       locationLastOwned: locationLastOwned,
-      UserId: userId.id
+      UserId: userId.id,
+      imageUrl: imageUrl
     };
-    console.log(vehicleNew)
+    await db.collection("users").doc(vin).set({
+      make: make,
+      model: model,
+      year: year,
+      vin: vin,
+      image: imageUrl,
+    });
+    // console.log(vehicleNew)
     API.newVehicle(vehicleNew)
       .then((res) => {
-        console.log("api returned", res);
+        // console.log("api returned", res);
         props.history.push("/Members");
       })
       .catch(err => {
@@ -110,13 +118,6 @@ function Vehicles(props) {
     const fileRef = storageRef.child(file.name);
     await fileRef.put(file);
     setImageUrl(await fileRef.getDownloadURL());
-    await db.collection("users").doc(vin).set({
-      make: make,
-      model: model,
-      year: year,
-      vin: vin,
-      image: imageUrl,
-    });
   }
 
 
@@ -154,7 +155,7 @@ function Vehicles(props) {
     }
   }
   useEffect(() => {
-    console.log(userId.id)
+    // console.log(userId.id)
   })
   const signOut = () => { localStorage.removeItem("jwt.Token") }
 

@@ -13,14 +13,17 @@ import CarInfoBox from "../components/CarInfoBox"
 
 export default function Members(props) {
   const [userId, setUserId] = useContext(AuthContext);
-  const [userInfo, setUserInfo] = useState([]);
+  const [userInfo, setUserInfo] = useState({});
   const [userVehicles, setVehicle] = useState([]);
   const signOut = () => { localStorage.removeItem("jwt.Token") }
+  const [didMount, setDidMount] = useState(false);
 
   useEffect(() => {
+    setDidMount(true);
+    // console.log(userId.id);
     API.allVehicles(userId.id)
       .then(res => {
-        console.log(res)
+        // console.log(res)
         setVehicle([
           ...userVehicles,
           ...res.data
@@ -29,16 +32,26 @@ export default function Members(props) {
       .catch(err => {
         console.log(err);
       })
+
+    API.userData(userId.id)
+      .then(res => {
+        // console.log(res);
+        // setUserInfo(res)
+        setUserInfo(
+          ...res.data
+        )
+      })
+      .catch(err => {
+        console.log(err);
+      })
+
   }, [])
 
-  API.userData()
-    .then(res => {
-      console.log(res);
-      // setUserInfo(res)
-    })
-    .catch(err => {
-      console.log(err);
-    })
+
+  if (!didMount) {
+    return null;
+  }
+
   return (
     <>
       <Navbar>
@@ -49,7 +62,7 @@ export default function Members(props) {
       </Navbar>
       <div className='garageWrapper'>
         <div className='garageSidebar'>
-          <UserInfo />
+          <UserInfo userInfo={userInfo} />
         </div>
         <div className='garageMain'>
           <h1 className='garagePageTitle'>My Garage</h1>

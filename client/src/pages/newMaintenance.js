@@ -55,6 +55,7 @@ class NewMaintenance extends Component {
   handleFormSubmit = (e) => {
     e.preventDefault();
     // this.setDate();
+    //insert set state because you are not suppose to mutate state directly
     this.state.maintToAdd.VehicleId = this.state.vehicleId;
     let newMaint = this.state.maintToAdd;
     newMaint.VehicleId = this.state.vehicleID;

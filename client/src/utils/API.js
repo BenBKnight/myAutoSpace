@@ -54,7 +54,7 @@ export default {
         })
     },
     userData: function (data) {
-        return axios.get(serverUrl + "/api/user_data")
+        return axios.get(serverUrl + "/api/user_data/" + data)
     },
     vehicleById: function (data) {
         // Data is Equal to Vehicle Id

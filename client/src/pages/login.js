@@ -28,7 +28,7 @@ function Login(props) {
 
   const handleLogInSubmit = (e) => {
     e.preventDefault();
-    console.log('hit');
+    // console.log('hit');
     let user = {
       email: emailInput.trim(),
       password: passwordInput.trim()
@@ -38,12 +38,13 @@ function Login(props) {
     }
     API.loginUser(user)
       .then(resData => {
-        console.log(resData.data)
+        // console.log(resData.data)
         setUserId({
           id: resData.data.id,
           firstName: resData.data.firstName,
           lastName: resData.data.lastName,
-          token: resData.data.token
+          token: resData.data.token,
+          imageUrl: imageUrl
         })
         props.history.push("/Members")
       })
@@ -52,18 +53,25 @@ function Login(props) {
       })
   };
 
-  const handleSignUpSubmit = event => {
+  const handleSignUpSubmit = async event => {
     event.preventDefault();
     let user = {
       email: email.trim(),
       password: password.trim(),
       firstName: firstName.trim(),
       lastName: lastName.trim(),
-      location: location.trim()
+      location: location.trim(),
+      imageUrl: imageUrl
     }
     if (!email || !password) {
       return;
     }
+    await db.collection("users").doc(firstName).set({
+      email: email,
+      firstName: firstName,
+      lastName: lastName,
+      image: imageUrl,
+    });
     console.log(user)
     API.signUp(user)
       .then(resData => {
@@ -115,14 +123,7 @@ function Login(props) {
     const storageRef = app.storage().ref();
     const fileRef = storageRef.child(file.name);
     await fileRef.put(file);
-  
     setImageUrl(await fileRef.getDownloadURL());
-    await db.collection("users").doc(firstName).set({
-      email: email,
-      firstName: firstName,
-      lastName: lastName,
-      image: imageUrl,
-    });
   }
 
   return (

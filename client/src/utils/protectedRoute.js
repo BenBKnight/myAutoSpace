@@ -4,7 +4,8 @@ import jwt from "jsonwebtoken";
 import { AuthContext } from "./authContext";
 
 export default function ProtectedRoute({ component: Component, ...rest }) {
-    const [useId, SetUserId] = useContext(AuthContext)
+    // took out SetUserId : never used
+    const [useId] = useContext(AuthContext)
     const [isAuthenticated, setIsAuthenticated] = useState(null);
     useEffect(() => {
         let token = localStorage.getItem("jwt.Token");
