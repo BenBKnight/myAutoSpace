@@ -16,9 +16,6 @@ export default function Members(props) {
   const [userVehicles, setVehicle] = useState([]);
   const signOut = () => { localStorage.removeItem("jwt.Token") }
   
-  const deleteVehicle = () => {
-    console.log("delete");
-  };
 
   useEffect(() => {
     console.log(userId)
@@ -56,7 +53,6 @@ export default function Members(props) {
             <span key={vehicles.id}>
               <CarInfoBox
                 vehicle={vehicles}
-                delete={deleteVehicle}
               />
             </span>
           ))}

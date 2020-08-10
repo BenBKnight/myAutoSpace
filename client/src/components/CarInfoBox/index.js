@@ -2,7 +2,9 @@ import React from 'react';
 import "./style.css";
 import { Link } from "react-router-dom";
 
-
+const deleteVehicle = () => {
+  console.log("delete");
+};
 
 function CarInfoBox(props) {
   // console.log("props");
@@ -33,7 +35,7 @@ function CarInfoBox(props) {
           <Link to={`/NewMaintenance/${props.vehicle.id}`}>
             <p className='carBoxLink'>New Maintenance</p>
           </Link>
-          <p className='carBoxLinkRed' onClick={props.delete}>Delete</p>
+          <p className='carBoxLinkRed' onClick={deleteVehicle}>Delete</p>
         </div>
       </span>
     </div>
