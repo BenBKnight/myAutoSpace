@@ -21,6 +21,7 @@ export default function Members(props) {
   useEffect(() => {
     setDidMount(true);
     // console.log(userId.id);
+    console.log(userId)
     API.allVehicles(userId.id)
       .then(res => {
         // console.log(res)

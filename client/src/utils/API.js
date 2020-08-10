@@ -8,7 +8,6 @@ const serverUrl = "http://localhost:8080";
 
 
 export default {
-
     // Post Routes
     loginUser: function (user) {
         return axios.post(serverUrl + "/api/login", user)
@@ -51,6 +50,9 @@ export default {
             headers: {
                 Authorization: localStorage.getItem("jwt.Token")
             }
+        }).then(res => {
+            console.log(res)
+            return res;
         })
     },
     userData: function (data) {
@@ -58,7 +60,7 @@ export default {
     },
     vehicleById: function (data) {
         // Data is Equal to Vehicle Id
-        return axios.get(serverUrl + "/vehicleid/" + data, {
+        return axios.get(serverUrl + "/vehicleOnefind/" + data, {
             headers: {
                 Authorization: localStorage.getItem("jwt.Token")
             }
