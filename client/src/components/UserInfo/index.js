@@ -7,7 +7,7 @@ function UserInfo(props) {
   return (
     <div className='userInfoBox'>
       <img className='userAvatar' src={props.userInfo.imageUrl} alt='Profile'/>
-      <h1 className='userName'>Jimmy Carmichael</h1>
+      <h1 className='userName'>{props.userInfo.firstName} {props.userInfo.lastName}</h1>
     </div>
   );
 }

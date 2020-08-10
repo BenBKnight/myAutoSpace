@@ -51,7 +51,7 @@ export default {
                 Authorization: localStorage.getItem("jwt.Token")
             }
         }).then(res => {
-            console.log(res)
+            // console.log(res)
             return res;
         })
     },

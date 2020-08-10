@@ -15,18 +15,10 @@ app.use(express.static("./client"));
 const cors = require("cors")
 app.use(cors());
     connection = mysql.createConnection({
-<<<<<<< HEAD
         host: '127.0.0.1',
         user: 'root',
         password: 'Iloveskymarie1!',
         database: 'carFacts'
-=======
-        host:'127.0.0.1',
-        user: 'root',
-        password: 'Iloveskymarie1!',
-        database: 'carFacts',
-        port: '3306'
->>>>>>> master
     })
 // Creating express app and configuring middleware needed for authentication
 app.use(express.urlencoded({ extended: true }));

@@ -21,7 +21,7 @@ export default function Members(props) {
   useEffect(() => {
     setDidMount(true);
     // console.log(userId.id);
-    console.log(userId)
+    // console.log(userId)
     API.allVehicles(userId.id)
       .then(res => {
         // console.log(res)
@@ -53,6 +53,8 @@ export default function Members(props) {
     return null;
   }
 
+  // console.log(userVehicles);
+
   return (
     <>
       <Navbar>
@@ -71,11 +73,11 @@ export default function Members(props) {
           <br></br>
           <br></br>
           {userVehicles.map(vehicles => (
-            <span key={vehicles.id}>
+            <div key={vehicles.updatedAt}>
               <CarInfoBox
                 vehicle={vehicles}
               />
-            </span>
+            </div>
           ))}
         </div>
         <div className='garageSidebar'></div>

@@ -26,7 +26,7 @@ router.get("/vehicleOnefind/:vehicleId", isAuthenticated, (req, res) => {
       id: VehicleIdGet
     }
   }).then(results => {
-    console.log(results)
+    // console.log(results)
     res.json(results)
   })
     .catch(err => {

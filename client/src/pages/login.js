@@ -25,6 +25,7 @@ function Login(props) {
   const [lastName, setLastName] = useState("");
   const [location, setLocation] = useState("");
   const [imageUrl, setImageUrl] = React.useState(null);
+  const [percentage, setPercentage] = useState(0);
 
   const handleLogInSubmit = (e) => {
     e.preventDefault();
@@ -123,7 +124,26 @@ function Login(props) {
     const file = e.target.files[0];
     const storageRef = app.storage().ref();
     const fileRef = storageRef.child(file.name);
+    let myVar = setInterval(myTimer, 1000);
+
+    function myTimer() {
+      if(percentage < 100){
+      setPercentage(percentage => percentage + 5);
+      } else clearInterval(myVar);
+    }
     await fileRef.put(file);
+    // progress.on('state_changed',
+    //   function progress(snapshot) {
+    //     let percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+    //     //set percentage to value of progress bar
+    //     console.log(percentage);
+    //   },
+    //   function error(err) {
+
+    //   },
+    //   function complete() {
+
+    //   });
     setImageUrl(await fileRef.getDownloadURL());
   }
 
@@ -148,7 +168,10 @@ function Login(props) {
           <FormInputTwo handleInputChange={handleInputChange} value={email} setWidth='width100' name='email' type='email' label='Email' id='email'></FormInputTwo>
           <FormInputTwo handleInputChange={handleInputChange} value={password} setWidth='width100' name='password' type='password' label='Password' id='password'></FormInputTwo>
           <FormInputTwo handleInputChange={handleInputChange} value={location} setWidth='width100' name='location' type='location' label='Location' id='location'></FormInputTwo>
-          <span><ImageUpload onFileChange={onFileChange} /></span>
+          <span>
+            <progress className="progress is-link" value={percentage} max="100">{percentage}%</progress>
+            <ImageUpload onFileChange={onFileChange} />
+          </span>
           <ActionBtn url='#' handleClick={handleSignUpSubmit}>Sign Up</ActionBtn>
         </div>
 

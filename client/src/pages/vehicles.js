@@ -137,7 +137,7 @@ function Vehicles(props) {
       default:
         break;
     }
-    console.log(activeCondition, activeOwners, activeType)
+    // console.log(activeCondition, activeOwners, activeType)
   }
   useEffect(() => {
     // console.log(userId.id)
