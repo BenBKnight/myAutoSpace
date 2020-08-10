@@ -2,13 +2,12 @@ import React from 'react';
 import "./style.css";
 import { Link } from "react-router-dom";
 
-const deleteVehicle = () => {
+const deleteVehicle = (vehicleId) => {
   console.log("delete");
 };
 
 function CarInfoBox(props) {
-  // console.log("props");
-  // console.log(props);
+
   return (
     <div className='carInfoBox'>
       <span className='carBoxTopInfo'>
