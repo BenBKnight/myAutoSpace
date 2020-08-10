@@ -7,10 +7,12 @@ import API from '../../utils/API';
 class CarInfoBox extends React.Component {
 
   deleteVehicle = () => {
-    API.deleteVehicle(this.props.vehicle.id)
-    .then(res => {
-      console.log(res)
-    })
+    if (window.confirm("Are you sure you would like to delete this Vehicle?")){
+      API.deleteVehicle(this.props.vehicle.id)
+      .then(res => {
+        console.log(res)
+      })
+    } else{return}
   };
 
   render() {
