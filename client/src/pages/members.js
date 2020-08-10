@@ -15,6 +15,11 @@ export default function Members(props) {
   const [userId, setUserId] = useContext(AuthContext);
   const [userVehicles, setVehicle] = useState([]);
   const signOut = () => { localStorage.removeItem("jwt.Token") }
+  
+  const deleteVehicle = () => {
+    console.log("delete");
+  };
+
   useEffect(() => {
     console.log(userId)
     API.allVehicles(userId.id)
@@ -51,6 +56,7 @@ export default function Members(props) {
             <span key={vehicles.id}>
               <CarInfoBox
                 vehicle={vehicles}
+                delete={deleteVehicle}
               />
             </span>
           ))}

@@ -33,7 +33,7 @@ function CarInfoBox(props) {
           <Link to={`/NewMaintenance/${props.vehicle.id}`}>
             <p className='carBoxLink'>New Maintenance</p>
           </Link>
-          <p className='carBoxLinkRed'>Delete</p>
+          <p className='carBoxLinkRed' onClick={props.delete}>Delete</p>
         </div>
       </span>
     </div>
