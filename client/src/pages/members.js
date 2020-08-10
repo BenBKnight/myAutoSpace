@@ -17,7 +17,11 @@ export default function Members(props) {
   const signOut = () => { localStorage.removeItem("jwt.Token") }
 
   useEffect(() => {
+<<<<<<< HEAD
     console.log(userId.id)
+=======
+    console.log(userId)
+>>>>>>> ce4c73adb551e7ca03f297cba78bd9182f691f91
     API.allVehicles(userId.id)
       .then(res => {
         console.log(res)
