@@ -65,6 +65,10 @@ input{
     width: 100%;
   }
 
+  .width40{
+    width: 100%;
+  }
+
   .inputText{
     width: 90%;
     margin-left: 1rem;

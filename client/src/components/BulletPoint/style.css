@@ -26,4 +26,8 @@
   .bulletText{
     text-align: center;
   }
+
+  .width40{
+    width: 100%;
+  }
 }

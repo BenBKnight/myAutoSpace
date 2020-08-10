@@ -1,5 +1,6 @@
 .navInputWrapper{
   margin: 0rem;
+  display: flex;
 }
 
 .navInput{

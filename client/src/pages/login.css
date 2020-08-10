@@ -42,4 +42,12 @@
     width: 90%;
     justify-content: center;
   }
+  .width40{
+    width: 100%;
+  }
+
+  .navbar{
+    display: flex;
+    flex-direction: column;
+  }
 }
