@@ -1,12 +1,16 @@
 import React from 'react';
 import "./style.css";
 import { Link } from "react-router-dom";
+import API from '../../utils/API';
 
 
 class CarInfoBox extends React.Component {
 
-  deleteVehicle = (vehicleId) => {
-    console.log("delete");
+  deleteVehicle = () => {
+    API.deleteVehicle(this.props.vehicle.id)
+    .then(res => {
+      console.log(res)
+    })
   };
 
   render() {

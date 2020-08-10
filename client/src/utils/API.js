@@ -74,6 +74,14 @@ export default {
             }
         })
     },
+    deleteVehicle: function (data) {
+        // Data is Equal to vehicle Id
+        return axios.delete(serverUrl + "/api/vehicles/" + data, {
+            headers: {
+                Authorization: localStorage.getItem("jwt.Token")
+            }
+        })
+    },
     getOneMaintRecord: function (data) {
         return axios.get(serverUrl + "/maintenancefind/" + data, {
             headers: {
