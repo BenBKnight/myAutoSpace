@@ -23,6 +23,8 @@ function Vehicles(props) {
   const [accidents, setAccidents] = useState("");
   const [locationLastOwned, setLocationLastOwned] = useState("");
   const [imageUrl, setImageUrl] = React.useState(null);
+  const [percentage, setPercentage] = useState(0);
+  const [didMount, setDidMount] = useState(false);
 
   const [activeType, setActiveType] = useState({
     car: true,
@@ -110,6 +112,13 @@ function Vehicles(props) {
     const file = e.target.files[0];
     const storageRef = app.storage().ref();
     const fileRef = storageRef.child(file.name);
+    let myVar = setInterval(myTimer, 1000);
+
+    function myTimer() {
+      if(percentage < 100){
+      setPercentage(percentage => percentage + 5);
+      } else clearInterval(myVar);
+    }
     await fileRef.put(file);
     setImageUrl(await fileRef.getDownloadURL());
   }
@@ -140,8 +149,16 @@ function Vehicles(props) {
     // console.log(activeCondition, activeOwners, activeType)
   }
   useEffect(() => {
-    // console.log(userId.id)
-  })
+    setDidMount(true);
+    // console.log(userId.id);
+    // console.log(userId)
+
+  }, [])
+
+
+  if (!didMount) {
+    return null;
+  }
   const signOut = () => { localStorage.removeItem("jwt.Token") }
 
   return (
@@ -194,6 +211,7 @@ function Vehicles(props) {
             <FormInputTwo setWidth='width45' name='accidents' type='text' label='Number of Accidents' id="accidents" value={accidents} handleInputChange={handleInputChange}></FormInputTwo>
           </span>
           <span>
+          <progress className="progress is-link" value={percentage} max="100">{percentage}%</progress>
             <ImageUpload onFileChange={onFileChange} />
             </span>
           <ActionBtn url='#' handleClick={handleFormSubmit}>Add Vehicle</ActionBtn>
