@@ -1,0 +1,43 @@
+{
+  "files": {
+    "main.css": "/static/css/main.90e020d9.chunk.css",
+    "main.js": "/static/js/main.8714ef3a.chunk.js",
+    "main.js.map": "/static/js/main.8714ef3a.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.09b85ec0.js",
+    "runtime-main.js.map": "/static/js/runtime-main.09b85ec0.js.map",
+    "static/css/2.f04fd611.chunk.css": "/static/css/2.f04fd611.chunk.css",
+    "static/js/2.5cdcd7ff.chunk.js": "/static/js/2.5cdcd7ff.chunk.js",
+    "static/js/2.5cdcd7ff.chunk.js.map": "/static/js/2.5cdcd7ff.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.4478ca59f002cb0bdb56a3bc432382e7.js": "/precache-manifest.4478ca59f002cb0bdb56a3bc432382e7.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/2.f04fd611.chunk.css.map": "/static/css/2.f04fd611.chunk.css.map",
+    "static/css/main.90e020d9.chunk.css.map": "/static/css/main.90e020d9.chunk.css.map",
+    "static/js/2.5cdcd7ff.chunk.js.LICENSE.txt": "/static/js/2.5cdcd7ff.chunk.js.LICENSE.txt",
+    "static/media/bike_blue.png": "/static/media/bike_blue.91db102f.png",
+    "static/media/bike_gray.png": "/static/media/bike_gray.6e793068.png",
+    "static/media/car_blue.png": "/static/media/car_blue.e37f4f37.png",
+    "static/media/car_gray.png": "/static/media/car_gray.7a8001a6.png",
+    "static/media/fair_blue.png": "/static/media/fair_blue.2650249f.png",
+    "static/media/good_blue.png": "/static/media/good_blue.7f777c52.png",
+    "static/media/good_gray.png": "/static/media/good_gray.d76bf4a5.png",
+    "static/media/more_blue.png": "/static/media/more_blue.3894faa3.png",
+    "static/media/more_gray.png": "/static/media/more_gray.09cec472.png",
+    "static/media/one_blue.png": "/static/media/one_blue.34d6529d.png",
+    "static/media/poor_blue.png": "/static/media/poor_blue.09811e4f.png",
+    "static/media/poor_gray.png": "/static/media/poor_gray.f631bb06.png",
+    "static/media/three_blue.png": "/static/media/three_blue.2dae0e96.png",
+    "static/media/three_gray.png": "/static/media/three_gray.07d0ba1d.png",
+    "static/media/two_blue.png": "/static/media/two_blue.e281117c.png",
+    "static/media/two_gray.png": "/static/media/two_gray.a58fd0e8.png",
+    "static/media/user_avatar.png": "/static/media/user_avatar.a4a8bc8c.png",
+    "static/media/wrenches.png": "/static/media/wrenches.bce425ee.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.09b85ec0.js",
+    "static/css/2.f04fd611.chunk.css",
+    "static/js/2.5cdcd7ff.chunk.js",
+    "static/css/main.90e020d9.chunk.css",
+    "static/js/main.8714ef3a.chunk.js"
+  ]
+}

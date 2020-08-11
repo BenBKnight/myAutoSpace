@@ -6,11 +6,17 @@ const PORT = process.env.PORT;
 if (PORT == null || PORT == "") {
     PORT = 8080;
 }
-
 const mysql = require("mysql");
 require("dotenv").config()
-// const passport = require("./config");
 const db = require("./models")
+
+// Creating express app and configuring middleware needed for authentication
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
+//  app.post()
+const routes = require("./routes");
+app.use(routes);
 
 // Serve static assets
 app.use(express.static("./client/build"));
@@ -25,13 +31,6 @@ if (process.env.JAWSDB_URL) {
         database: process.env.DATA_BASE_KEY
     })
 }
-// Creating express app and configuring middleware needed for authentication
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
-
-//  app.post()
-const routes = require("./routes");
-app.use(routes);
 
 // Catch all Last to Load
 app.get("*", (req, res) => res.sendFile(path.join(__dirname, "./client/build/index.html")))
