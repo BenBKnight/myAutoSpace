@@ -8,7 +8,8 @@ export const AuthProvider = props => {
         id: "",
         firstName: "",
         lastName: "",
-        token: ""
+        token: "",
+        showNotification: true
     })
 
     return (
