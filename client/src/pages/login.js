@@ -132,18 +132,6 @@ function Login(props) {
       } else clearInterval(myVar);
     }
     await fileRef.put(file);
-    // progress.on('state_changed',
-    //   function progress(snapshot) {
-    //     let percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-    //     //set percentage to value of progress bar
-    //     console.log(percentage);
-    //   },
-    //   function error(err) {
-
-    //   },
-    //   function complete() {
-
-    //   });
     setImageUrl(await fileRef.getDownloadURL());
   }
 
@@ -154,13 +142,12 @@ function Login(props) {
         <NavbarInput handleInputChange={handleInputChange} value={passwordInput} name='passwordInput' type='password' label='Password' id="passwordInput" />
         <ActionBtn url='#' handleClick={handleLogInSubmit}>Login</ActionBtn>
       </Navbar>
-      <h1 className='mainHeader'>MyCarSpace</h1>
+      <h1 className='mainHeader'>MyAutoSpace</h1>
       <br></br>
       <div className='signInFlex'>
 
         <div className='signUpWrapper'>
-          <h1 className='signUpHeader'>Become a car owner</h1>
-          <h1 className='signUpHeader'>not just a driver</h1>
+          <h2 className='signUpHeader'>Stay Informed, Maintain and Show off Your Automobile</h2>
           <span className='flex'>
             <FormInputTwo handleInputChange={handleInputChange} value={firstName} setWidth='width40' name='firstName' type='firstName' label='First Name' id='firstName'></FormInputTwo>
             <FormInputTwo handleInputChange={handleInputChange} value={lastName} setWidth='width40' name='lastName' type='lastName' label='Last Name' id='lastName'></FormInputTwo>
