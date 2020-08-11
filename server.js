@@ -11,10 +11,6 @@ const db = require("./models")
 // Serve static assets
 app.use(express.static("./client/build"));
 
-// Remove when deploying
-const cors = require("cors")
-app.use(cors());
-
 if (process.env.JAWSDB_URL) {
     connection = mysql.createConnection(process.env.JAWSDB_URL);
 } else {
