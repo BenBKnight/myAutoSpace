@@ -3,7 +3,7 @@ const session = require("express-session");
 const path = require("path")
 const app = express();
 const PORT = process.env.PORT;
-if (PORT == null || port == "") {
+if (PORT == null || PORT == "") {
     PORT = 8080;
 }
 
