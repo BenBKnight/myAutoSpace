@@ -4,8 +4,8 @@ const path = require("path")
 const app = express();
 const PORT = 8080;
 const mysql = require("mysql");
-require("dotenv").config()
-// const passport = require("./config");
+require('dotenv').config()
+// console.log(process.env);
 const db = require("./models")
 
 // Serve static assets
