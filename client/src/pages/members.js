@@ -10,11 +10,10 @@ import ActionBtn from '../components/ActionBtn';
 import UserInfo from '../components/UserInfo';
 import CarInfoBox from "../components/CarInfoBox"
 
-
 export default function Members(props) {
   const [userId, setUserId] = useContext(AuthContext);
   const [userVehicles, setVehicle] = useState([]);
-  const signOut = () => { localStorage.removeItem("jwt.Token") }
+  const signOut = () => { setUserId({ ...userId, showNotification: true }); localStorage.removeItem("jwt.Token"); }
   useEffect(() => {
     console.log(userId)
     API.allVehicles(userId.id)
@@ -23,11 +22,18 @@ export default function Members(props) {
         setVehicle([
           ...userVehicles,
           ...res.data
-        ])
+        ]);
+        if (Notification.permission === "granted" && userId.showNotification === true) {
+          // navigator.serviceWorker.getRegistration().then(reg => {
+          //   reg.showNotification("You have " + res.data.length + " vehicles in your garage.");
+          // });
+          console.log("my notification");
+          setUserId({ ...userId, showNotification: false });
+        }
       })
       .catch(err => {
         console.log(err);
-      })
+      });
   }, [])
 
   return (

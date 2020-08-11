@@ -9,8 +9,11 @@ import Navbar from '../components/Navbar copy';
 import NavbarInput from '../components/NavbarInput';
 import ActionBtn from '../components/ActionBtn';
 import BulletPoint from '../components/BulletPoint';
-import FormInputTwo from '../components/FormInputTwo'
+import FormInputTwo from '../components/FormInputTwo';
 
+import { store } from "react-notifications-component";
+import "react-notifications-component/dist/theme.css";
+import "animate.css";
 
 function Login(props) {
   const [emailInput, setEmailInput] = useState("");
@@ -24,17 +27,26 @@ function Login(props) {
 
   const handleLogInSubmit = (e) => {
     e.preventDefault();
-    console.log('hit');
     let user = {
       email: emailInput.trim(),
       password: passwordInput.trim()
     }
     if (!emailInput || !passwordInput) {
+      store.addNotification({
+        message: "Enter email and password!",
+        type: "danger",
+        insert: "top",
+        container: "top-center",
+        animationIn: ["animate__animated", "animate__shakeX"],
+        animationOut: ["animate__animated", "animate__fadeOut"],
+        dismiss: {
+          duration: 1500
+        }
+      });
       return;
     }
     API.loginUser(user)
       .then(resData => {
-        console.log(resData.data)
         setUserId({
           ...userId,
           id: resData.data.id,
@@ -42,11 +54,49 @@ function Login(props) {
           lastName: resData.data.lastName,
           token: resData.data.token
         })
-        props.history.push("/Members")
+        props.history.push("/Members");
+        store.addNotification({
+          message: "Logged-in",
+          type: "success",
+          insert: "top",
+          container: "top-center",
+          animationIn: ["animate__animated", "animate__bounceIn"],
+          animationOut: ["animate__animated", "animate__bounceOut"],
+          dismiss: {
+            duration: 1500
+          }
+        });
       })
       .catch(err => {
-        console.log(err);
-      })
+        switch (err.message) {
+          case "Request failed with status code 401":
+            store.addNotification({
+              message: "Wrong email or password!",
+              type: "danger",
+              insert: "top",
+              container: "top-center",
+              animationIn: ["animate__animated", "animate__shakeX"],
+              animationOut: ["animate__animated", "animate__fadeOut"],
+              dismiss: {
+                duration: 1500
+              }
+            });
+            break;
+          case "Network Error":
+            store.addNotification({
+              message: "No internet!",
+              type: "danger",
+              insert: "top",
+              container: "top-center",
+              animationIn: ["animate__animated", "animate__shakeX"],
+              animationOut: ["animate__animated", "animate__fadeOut"],
+              dismiss: {
+                duration: 1500
+              }
+            });
+            break;
+        }
+      });
   };
 
   const handleSignUpSubmit = event => {
@@ -59,6 +109,17 @@ function Login(props) {
       location: location.trim()
     }
     if (!email || !password) {
+      store.addNotification({
+        message: "Please fill out all the required fields!",
+        type: "warning",
+        insert: "top",
+        container: "top-center",
+        animationIn: ["animate__animated", "animate__shakeX"],
+        animationOut: ["animate__animated", "animate__fadeOut"],
+        dismiss: {
+          duration: 1500
+        }
+      });
       return;
     }
     console.log(user)
@@ -67,6 +128,17 @@ function Login(props) {
         console.log(resData)
         setUserId({ id: resData.data.id })
         props.history.push("/Members")
+        store.addNotification({
+          message: "Signed-up and logged-in",
+          type: "success",
+          insert: "top",
+          container: "top-center",
+          animationIn: ["animate__animated", "animate__bounceIn"],
+          animationOut: ["animate__animated", "animate__bounceOut"],
+          dismiss: {
+            duration: 1500
+          }
+        });
       })
       .catch(err => {
         console.log(err);
@@ -106,7 +178,6 @@ function Login(props) {
       return;
     }
   };
-
 
   return (
     <div>
