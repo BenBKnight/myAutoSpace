@@ -27,6 +27,8 @@ function Login(props) {
   const [imageUrl, setImageUrl] = React.useState(null);
   const [percentage, setPercentage] = useState(0);
 
+  // console.log("authContex:" + JSON.stringify(userId));
+
   const handleLogInSubmit = (e) => {
     e.preventDefault();
     // console.log('hit');

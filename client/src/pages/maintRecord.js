@@ -17,7 +17,9 @@ class MaintRecord extends Component {
             id: ""
         };
     };
+
     componentDidMount() {
+        // console.log('maintData: ' + this.state.data);
         let location = this.props.match.params.id;
         this.setState({
             id: location
@@ -52,7 +54,7 @@ class MaintRecord extends Component {
     signOut = () => { localStorage.removeItem("jwt.Token") }
 
     render() {
-        console.log(this.state);
+        // console.log(this.state);
         return (
             <>
                 <Navbar>
@@ -66,18 +68,19 @@ class MaintRecord extends Component {
                         {/* <CarInfoSidebar vehicle={this.state.vehicle}/> */}
                     </div>
                     <div className='garageMain'>
-                        <h1 className='garagePageTitle'>Car Name</h1>
+                        <h1 className='garagePageTitle'></h1>
+                        <img className='' src={this.state.data.imageUrl} alt='Maintenance'/>
                         <br></br>
                         <br></br>
                         <br></br>
                         <VehicleMaintBox header={this.state.data.name}>
                             <p className='maintHomeInfo'>{this.state.data.description}</p>
                         </VehicleMaintBox>
-                        <VehicleMaintBox header='Parts'>
+                        {/* <VehicleMaintBox header='Parts'>
                             <FormLine lineTitle='Break Pads' lineHeadOne='Part Link' lineHeadTwo='Cost' lineValOne='url' lineValTwo='$45' />
                             <FormLine lineTitle='Break Cleaner' lineHeadOne='Part Link' lineHeadTwo='Cost' lineValOne='url' lineValTwo='$3' />
                             <FormLine lineTitle='Break Fluid' lineHeadOne='Part Link' lineHeadTwo='Cost' lineValOne='url' lineValTwo='$3' />
-                        </VehicleMaintBox>
+                        </VehicleMaintBox> */}
                     </div>
                     <div className='garageSidebar vehicleLinksSidebar'>
                         <div className='vehicleBoxLinkContainer'>

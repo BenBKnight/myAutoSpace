@@ -74,6 +74,7 @@ function Vehicles(props) {
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
+
     // console.log('hit');
     let vehicleNew = {
       type: vehicleType,
@@ -115,8 +116,8 @@ function Vehicles(props) {
     let myVar = setInterval(myTimer, 1000);
 
     function myTimer() {
-      if(percentage < 100){
-      setPercentage(percentage => percentage + 5);
+      if (percentage < 100) {
+        setPercentage(percentage => percentage + 5);
       } else clearInterval(myVar);
     }
     await fileRef.put(file);
@@ -124,7 +125,7 @@ function Vehicles(props) {
   }
 
 
-  const handleSelectionClick = (e) =>{
+  const handleSelectionClick = (e) => {
     e.preventDefault();
     const choiceField = e.target.dataset.field;
     const choiceValue = e.target.dataset.value;
@@ -149,17 +150,20 @@ function Vehicles(props) {
     // console.log(activeCondition, activeOwners, activeType)
   }
   useEffect(() => {
-    setDidMount(true);
+    
     // console.log(userId.id);
     // console.log(userId)
 
+    setDidMount(true);
+
+    
   }, [])
-
-
-  if (!didMount) {
-    return null;
-  }
+    if (!didMount) {
+        return null;
+      }
   const signOut = () => { localStorage.removeItem("jwt.Token") }
+
+  
 
   return (
     <>
@@ -211,9 +215,9 @@ function Vehicles(props) {
             <FormInputTwo setWidth='width45' name='accidents' type='text' label='Number of Accidents' id="accidents" value={accidents} handleInputChange={handleInputChange}></FormInputTwo>
           </span>
           <span>
-          <progress className="progress is-link" value={percentage} max="100">{percentage}%</progress>
-            <ImageUpload onFileChange={onFileChange} />
-            </span>
+            <progress className="progress is-link" value={percentage} max="100">{percentage}%</progress>
+            <ImageUpload onFileChange={onFileChange}/>
+          </span>
           <ActionBtn url='#' handleClick={handleFormSubmit}>Add Vehicle</ActionBtn>
         </div>
       </div>

@@ -18,6 +18,8 @@ export default function Members(props) {
   const signOut = () => { localStorage.removeItem("jwt.Token") }
   const [didMount, setDidMount] = useState(false);
 
+  // console.log("authContext: " + JSON.stringify(userId));
+
   useEffect(() => {
     setDidMount(true);
     // console.log(userId.id);

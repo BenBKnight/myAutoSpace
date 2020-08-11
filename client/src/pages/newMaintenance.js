@@ -15,7 +15,6 @@ class NewMaintenance extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      imageUrl: '',
       percentage: 0,
       maintToAdd: {
         name: "",
@@ -33,7 +32,7 @@ class NewMaintenance extends Component {
     };
   };
   handleInputChange = event => {
-    console.log(this.state)
+    // console.log(this.state)
     // Getting the value and name of the input which triggered the change
     let value = event.target.value;
     const name = event.target.id;
@@ -50,7 +49,7 @@ class NewMaintenance extends Component {
   handleSelect = event => {
     let value = event.target.value;
     const name = event.target.id;
-    console.log(event, value, name)
+    // console.log(event, value, name)
 
     this.setState({
       [name]: value
@@ -62,8 +61,6 @@ class NewMaintenance extends Component {
   handleFormSubmit = async (e) => {
     e.preventDefault();
     // this.setDate();
-    //insert set state because you are not suppose to mutate state directly
-    this.state.maintToAdd.VehicleId = this.state.vehicleId;
     let newMaint = this.state.maintToAdd;
     newMaint.VehicleId = this.state.vehicleID;
     API.maintRecord(newMaint)
@@ -73,8 +70,8 @@ class NewMaintenance extends Component {
       .catch(err => {
         console.log(err);
       })
-    await db.collection("users").doc(this.state.maintToAdd.name).set({
-      image: this.state.imageUrl,
+    await db.collection("users").doc("maintenance").set({
+      image: this.state.maintToAdd.imageUrl,
     });
   };
 
@@ -90,7 +87,14 @@ class NewMaintenance extends Component {
     //   } else clearInterval(myVar);
     // }
     await fileRef.put(file);
-    this.setState({imageUrl: await fileRef.getDownloadURL() });
+    const fileRefDownloadUrl = await fileRef.getDownloadURL();
+
+    this.setState(prevState => ({
+      maintToAdd: {
+        ...prevState.maintToAdd,
+        imageUrl: fileRefDownloadUrl,
+      }
+    }));
   }
 
   componentDidMount() {
