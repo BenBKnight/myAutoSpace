@@ -3,8 +3,8 @@ import setAuthorizationToken from "./setAuthorizationToken";
 
 
 
-// const serverUrl = "";
-const serverUrl = "http://localhost:8080";
+const serverUrl = "";
+// const serverUrl = "http://localhost:8080";
 
 
 export default {
