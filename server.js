@@ -2,7 +2,11 @@ const express = require("express");
 const session = require("express-session");
 const path = require("path")
 const app = express();
-const PORT = 8080;
+const PORT = process.env.PORT;
+if (PORT == null || port == "") {
+    PORT = 8080;
+}
+
 const mysql = require("mysql");
 require("dotenv").config()
 // const passport = require("./config");
