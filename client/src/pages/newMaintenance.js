@@ -107,7 +107,7 @@ class NewMaintenance extends Component {
   };
 
   apiCall = () => {
-    console.log(this.state.vehicleID)
+    // console.log(this.state.vehicleID)
     API.vehicleById(this.state.vehicleID)
       .then((res) => {
         this.setState({
@@ -126,7 +126,6 @@ class NewMaintenance extends Component {
         <Navbar>
           <NavbarLink url='/members'>My Garage</NavbarLink>
           <NavbarLink url='/vehicles'>Add Vehicle</NavbarLink>
-          <NavbarLink url='/add-maintenance' active={true}>Add Maintenance</NavbarLink>
           <ActionBtn handleClick={this.signOut} url='/'>Sign Out</ActionBtn>
         </Navbar>
         <br></br>
@@ -155,7 +154,7 @@ class NewMaintenance extends Component {
         <div className='maintFlex'>
           <div className='addMaintenanceWrapper'>
             <span>
-              <label className='photoFileLabel'>Add Photos</label>
+              <label className='photoFileLabel'>Add Photo</label>
               <progress className="progress is-link" value={this.state.percentage} max="100">{this.state.percentage}%</progress>
               <ImageUpload onFileChange={this.onFileChange} />
             </span>

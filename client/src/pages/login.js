@@ -158,6 +158,7 @@ function Login(props) {
           <FormInputTwo handleInputChange={handleInputChange} value={password} setWidth='width100' name='password' type='password' label='Password' id='password'></FormInputTwo>
           <FormInputTwo handleInputChange={handleInputChange} value={location} setWidth='width100' name='location' type='location' label='Location' id='location'></FormInputTwo>
           <span>
+          <label className='photoFileLabel'>Add A Profile Image</label>
             <progress className="progress is-link" value={percentage} max="100">{percentage}%</progress>
             <ImageUpload onFileChange={onFileChange} />
           </span>

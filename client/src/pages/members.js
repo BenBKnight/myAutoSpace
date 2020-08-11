@@ -62,7 +62,6 @@ export default function Members(props) {
       <Navbar>
         <NavbarLink url='/members' active={true}>My Garage</NavbarLink>
         <NavbarLink url='/vehicles'>Add Vehicle</NavbarLink>
-        <NavbarLink url='/add-maintenance'>Add Maintenance</NavbarLink>
         <ActionBtn handleClick={signOut} url='/'>Sign Out</ActionBtn>
       </Navbar>
       <div className='garageWrapper'>

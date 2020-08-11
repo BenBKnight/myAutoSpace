@@ -170,7 +170,6 @@ function Vehicles(props) {
       <Navbar>
         <NavbarLink url='/members'>My Garage</NavbarLink>
         <NavbarLink url='/vehicles' active={true}>Add Vehicle</NavbarLink>
-        <NavbarLink url='/add-maintenance'>Add Maintenance</NavbarLink>
         <ActionBtn handleClick={signOut} url='/'>Sign Out</ActionBtn>
       </Navbar>
       <div className='addCarFlex'>
@@ -215,6 +214,7 @@ function Vehicles(props) {
             <FormInputTwo setWidth='width45' name='accidents' type='text' label='Number of Accidents' id="accidents" value={accidents} handleInputChange={handleInputChange}></FormInputTwo>
           </span>
           <span>
+          <label className='photoFileLabel'>Add Photo</label>
             <progress className="progress is-link" value={percentage} max="100">{percentage}%</progress>
             <ImageUpload onFileChange={onFileChange}/>
           </span>
