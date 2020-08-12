@@ -79,13 +79,7 @@ class NewMaintenance extends Component {
     const file = e.target.files[0];
     const storageRef = app.storage().ref();
     const fileRef = storageRef.child(file.name);
-    // let myVar = setInterval(myTimer, 1000);
 
-    // function myTimer() {
-    //   if (this.state.percentage < 100) {
-    //     this.setState({ percentage: this.state.percentage + 5 });
-    //   } else clearInterval(myVar);
-    // }
     await fileRef.put(file);
     const fileRefDownloadUrl = await fileRef.getDownloadURL();
 
@@ -142,6 +136,10 @@ class NewMaintenance extends Component {
         <br></br>
         <div className='maintFlex'>
           <div className='addMaintenanceWrapper'>
+            <span>
+              <label className='photoFileLabel'>Add Photo</label>
+              <ImageUpload onFileChange={this.onFileChange} />
+            </span>
             <FormInputTwo setWidth='width100' name='jobName' type='text' label='Job Name' id="name" value={this.state.maintToAdd.name} handleInputChange={this.handleInputChange}></FormInputTwo>
             <FormInputTwo setWidth='width100' name='milage' type='text' label='Milage at Service' id="milage" value={this.state.maintToAdd.milage} handleInputChange={this.handleInputChange}></FormInputTwo>
             <FormInputTwo setWidth='width100' name='jobDate' type='text' label='Service Date' id="jobDate" value={this.state.maintToAdd.jobDate} handleInputChange={this.handleInputChange}></FormInputTwo>
@@ -153,11 +151,6 @@ class NewMaintenance extends Component {
         <br />
         <div className='maintFlex'>
           <div className='addMaintenanceWrapper'>
-            <span>
-              <label className='photoFileLabel'>Add Photo</label>
-              <progress className="progress is-link" value={this.state.percentage} max="100">{this.state.percentage}%</progress>
-              <ImageUpload onFileChange={this.onFileChange} />
-            </span>
           </div>
           <div className='addMaintenanceWrapper'>
           </div>

@@ -21,7 +21,7 @@ export default {
     signUp: function (data) {
         return axios.post(serverUrl + "/api/signup", data)
             .then(res => {
-                console.log(res)
+                // console.log(res)
                 const token = res.data.token;
                 localStorage.setItem("jwt.Token", token);
                 setAuthorizationToken(token);

@@ -76,10 +76,10 @@ function Login(props) {
       lastName: lastName,
       image: imageUrl,
     });
-    console.log(user)
+    // console.log(user)
     API.signUp(user)
       .then(resData => {
-        console.log(resData)
+        // console.log(resData)
         setUserId({ id: resData.data.id })
         props.history.push("/Members")
       })
@@ -130,7 +130,7 @@ function Login(props) {
 
     function myTimer() {
       if(percentage < 100){
-      setPercentage(percentage => percentage + 5);
+      setPercentage(percentage => percentage + 10);
       } else clearInterval(myVar);
     }
     await fileRef.put(file);
@@ -158,7 +158,7 @@ function Login(props) {
           <FormInputTwo handleInputChange={handleInputChange} value={password} setWidth='width100' name='password' type='password' label='Password' id='password'></FormInputTwo>
           <FormInputTwo handleInputChange={handleInputChange} value={location} setWidth='width100' name='location' type='location' label='Location' id='location'></FormInputTwo>
           <span>
-          <label className='photoFileLabel'>Add A Profile Image</label>
+          <label className='photoFileLabel'>Add Profile Image</label>
             <progress className="progress is-link" value={percentage} max="100">{percentage}%</progress>
             <ImageUpload onFileChange={onFileChange} />
           </span>

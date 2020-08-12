@@ -117,7 +117,7 @@ function Vehicles(props) {
 
     function myTimer() {
       if (percentage < 100) {
-        setPercentage(percentage => percentage + 5);
+        setPercentage(percentage => percentage + 10);
       } else clearInterval(myVar);
     }
     await fileRef.put(file);

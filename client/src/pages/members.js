@@ -74,7 +74,7 @@ export default function Members(props) {
           <br></br>
           <br></br>
           {userVehicles.map(vehicles => (
-            <div key={vehicles.updatedAt}>
+            <div key={vehicles.id}>
               <CarInfoBox
                 vehicle={vehicles}
               />
