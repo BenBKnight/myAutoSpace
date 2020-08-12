@@ -29,7 +29,7 @@ router.post("/api/login", (req, res) => {
             firstName: user.dataValues.firstName,
             imageUrl: user.dataValues.imageUrl
           },
-            process.env.JWT_KEY,
+          'SecretPasswordNoOneWillEverGuess',
             {
               expiresIn: "1h"
             }

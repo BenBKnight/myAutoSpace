@@ -27,7 +27,7 @@ router.post("/api/signup", (req, res) => {
             email: user.dataValues.email,
             userId: user.dataValues.id
           },
-            process.env.JWT_KEY,
+          'SecretPasswordNoOneWillEverGuess',
             {
               expiresIn: "1h"
             }
