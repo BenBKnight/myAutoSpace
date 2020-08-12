@@ -1,11 +1,11 @@
 {
-  "name": "myAutoSpace",
+  "name": "myautospace",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "cd myAutoSpace && npm install && node server.js",
+    "start": "npm install && node server.js",
     "heroku-postbuild": "cd client && npm install && npm run build",
     "server": "nodemon --inspect server.js"
   },
