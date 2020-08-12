@@ -26,7 +26,7 @@ router.get("/vehicleOnefind/:vehicleId", isAuthenticated, (req, res) => {
       id: VehicleIdGet
     }
   }).then(results => {
-    console.log(results)
+    // console.log(results)
     res.json(results)
   })
     .catch(err => {
@@ -49,6 +49,7 @@ router.post("/api/postVehicle", isAuthenticated, (req, res) => {
     accidents: req.body.accidents,
     numOfOwners: req.body.numOfOwners,
     locationLastOwned: req.body.locationLastOwned,
+    imageUrl: req.body.imageUrl,
     UserId: req.body.UserId
   }).then(dbPost => {
     res.json(dbPost);

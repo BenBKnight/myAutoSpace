@@ -26,9 +26,10 @@ router.post("/api/login", (req, res) => {
             email: user.dataValues.email,
             id: user.dataValues.id,
             lastName: user.dataValues.lastName,
-            firstName: user.dataValues.firstName
+            firstName: user.dataValues.firstName,
+            imageUrl: user.dataValues.imageUrl
           },
-            process.env.JWT_KEY,
+          'SecretPasswordNoOneWillEverGuess',
             {
               expiresIn: "1h"
             }
@@ -39,7 +40,8 @@ router.post("/api/login", (req, res) => {
               token: token,
               id: user.dataValues.id,
               lastName: user.dataValues.lastName,
-              firstName: user.dataValues.firstName
+              firstName: user.dataValues.firstName,
+              imageUrl: user.dataValues.imageUrl
             })
         }
         res.status(401).json({

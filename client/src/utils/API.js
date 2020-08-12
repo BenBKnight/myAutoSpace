@@ -12,7 +12,7 @@ export default {
     loginUser: function (user) {
         return axios.post(serverUrl + "/api/login", user)
             .then(res => {
-                console.log(res);
+                // console.log(res);
                 const token = res.data.token;
                 localStorage.setItem("jwt.Token", token);
                 setAuthorizationToken(token);
@@ -22,7 +22,7 @@ export default {
     signUp: function (data) {
         return axios.post(serverUrl + "/api/signup", data)
             .then(res => {
-                console.log(res)
+                // console.log(res)
                 const token = res.data.token;
                 localStorage.setItem("jwt.Token", token);
                 setAuthorizationToken(token);
@@ -52,12 +52,12 @@ export default {
                 Authorization: localStorage.getItem("jwt.Token")
             }
         }).then(res => {
-            console.log(res)
+            // console.log(res)
             return res;
         })
     },
     userData: function (data) {
-        return axios.get(serverUrl + "/api/user")
+        return axios.get(serverUrl + "/api/user_data/" + data)
     },
     vehicleById: function (data) {
         // Data is Equal to Vehicle Id

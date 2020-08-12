@@ -7,17 +7,22 @@ import Navbar from '../components/Navbar copy';
 import NavbarLink from '../components/NavbarLink';
 import ActionBtn from '../components/ActionBtn';
 import MaintInfoBox from "../components/MaintInfoBox";
+import ImageUpload from '../components/imageUpload/imageUpload';
+import { app } from "../utils/base";
+const db = app.firestore();
 
 class NewMaintenance extends Component {
   constructor(props) {
     super(props)
     this.state = {
+      percentage: 0,
       maintToAdd: {
         name: "",
         description: "",
         milage: "",
         parts: "",
         jobDate: "",
+        imageUrl: '',
         VehicleId: localStorage.getItem("vehicleId")
       },
       year: "",
@@ -27,7 +32,7 @@ class NewMaintenance extends Component {
     };
   };
   handleInputChange = event => {
-    console.log(this.state)
+    // console.log(this.state)
     // Getting the value and name of the input which triggered the change
     let value = event.target.value;
     const name = event.target.id;
@@ -44,7 +49,7 @@ class NewMaintenance extends Component {
   handleSelect = event => {
     let value = event.target.value;
     const name = event.target.id;
-    console.log(event, value, name)
+    // console.log(event, value, name)
 
     this.setState({
       [name]: value
@@ -53,10 +58,9 @@ class NewMaintenance extends Component {
     //     return;
     // }
   };
-  handleFormSubmit = (e) => {
+  handleFormSubmit = async (e) => {
     e.preventDefault();
     // this.setDate();
-    this.state.maintToAdd.VehicleId = this.state.vehicleId;
     let newMaint = this.state.maintToAdd;
     newMaint.VehicleId = this.state.vehicleID;
     API.maintRecord(newMaint)
@@ -66,7 +70,26 @@ class NewMaintenance extends Component {
       .catch(err => {
         console.log(err);
       })
+    await db.collection("users").doc("maintenance").set({
+      image: this.state.maintToAdd.imageUrl,
+    });
   };
+
+  onFileChange = async (e) => {
+    const file = e.target.files[0];
+    const storageRef = app.storage().ref();
+    const fileRef = storageRef.child(file.name);
+
+    await fileRef.put(file);
+    const fileRefDownloadUrl = await fileRef.getDownloadURL();
+
+    this.setState(prevState => ({
+      maintToAdd: {
+        ...prevState.maintToAdd,
+        imageUrl: fileRefDownloadUrl,
+      }
+    }));
+  }
 
   componentDidMount() {
     let location = this.props.match.params.id;
@@ -78,7 +101,7 @@ class NewMaintenance extends Component {
   };
 
   apiCall = () => {
-    console.log(this.state.vehicleID)
+    // console.log(this.state.vehicleID)
     API.vehicleById(this.state.vehicleID)
       .then((res) => {
         this.setState({
@@ -97,7 +120,6 @@ class NewMaintenance extends Component {
         <Navbar>
           <NavbarLink url='/members'>My Garage</NavbarLink>
           <NavbarLink url='/vehicles'>Add Vehicle</NavbarLink>
-          <NavbarLink url='/add-maintenance' active={true}>Add Maintenance</NavbarLink>
           <ActionBtn handleClick={this.signOut} url='/'>Sign Out</ActionBtn>
         </Navbar>
         <br></br>
@@ -114,6 +136,10 @@ class NewMaintenance extends Component {
         <br></br>
         <div className='maintFlex'>
           <div className='addMaintenanceWrapper'>
+            <span>
+              <label className='photoFileLabel'>Add Photo</label>
+              <ImageUpload onFileChange={this.onFileChange} />
+            </span>
             <FormInputTwo setWidth='width100' name='jobName' type='text' label='Job Name' id="name" value={this.state.maintToAdd.name} handleInputChange={this.handleInputChange}></FormInputTwo>
             <FormInputTwo setWidth='width100' name='milage' type='text' label='Milage at Service' id="milage" value={this.state.maintToAdd.milage} handleInputChange={this.handleInputChange}></FormInputTwo>
             <FormInputTwo setWidth='width100' name='jobDate' type='text' label='Service Date' id="jobDate" value={this.state.maintToAdd.jobDate} handleInputChange={this.handleInputChange}></FormInputTwo>
@@ -125,16 +151,8 @@ class NewMaintenance extends Component {
         <br />
         <div className='maintFlex'>
           <div className='addMaintenanceWrapper'>
-            <span>
-              <label className='photoFileLabel'>Add Parts</label>
-              <input type='file' />
-            </span>
           </div>
           <div className='addMaintenanceWrapper'>
-            <span>
-              <label className='photoFileLabel'>Add Photos</label>
-              <input type='file' />
-            </span>
           </div>
         </div>
         <br></br>

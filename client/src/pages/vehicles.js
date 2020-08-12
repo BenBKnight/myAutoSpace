@@ -8,9 +8,12 @@ import NavbarLink from '../components/NavbarLink';
 import ActionBtn from '../components/ActionBtn';
 import FormImg from '../components/FormImg';
 import { useEffect } from "react";
+import ImageUpload from '../components/imageUpload/imageUpload';
+import { app } from "../utils/base";
 import { store } from "react-notifications-component";
 import "react-notifications-component/dist/theme.css";
 import "animate.css";
+const db = app.firestore();
 
 function Vehicles(props) {
   const [make, setMake] = useState("");
@@ -21,6 +24,9 @@ function Vehicles(props) {
   const [yearPurchased, setYearPurchased] = useState("");
   const [accidents, setAccidents] = useState("");
   const [locationLastOwned, setLocationLastOwned] = useState("");
+  const [imageUrl, setImageUrl] = React.useState(null);
+  const [percentage, setPercentage] = useState(0);
+  const [didMount, setDidMount] = useState(false);
 
   const [activeType, setActiveType] = useState({
     car: true,
@@ -68,9 +74,10 @@ function Vehicles(props) {
     }
   };
 
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
-    console.log('hit');
+
+    // console.log('hit');
     let vehicleNew = {
       type: vehicleType,
       make: make,
@@ -83,13 +90,22 @@ function Vehicles(props) {
       accidents: accidents,
       numOfOwners: vehicleOwners,
       locationLastOwned: locationLastOwned,
-      UserId: userId.id
+      UserId: userId.id,
+      imageUrl: imageUrl
     };
-    console.log(vehicleNew)
+    await db.collection("users").doc(vin).set({
+      make: make,
+      model: model,
+      year: year,
+      vin: vin,
+      image: imageUrl,
+    });
+    // console.log(vehicleNew)
     API.newVehicle(vehicleNew)
       .then((res) => {
+        // console.log("api returned", res);
         setUserId({ ...userId, showNotification: true });
-        console.log("api returned", res);
+        // console.log("api returned", res);
         props.history.push("/Members");
         store.addNotification({
           message: "Added new vehicle.",
@@ -119,6 +135,22 @@ function Vehicles(props) {
       });
   };
 
+  const onFileChange = async (e) => {
+    const file = e.target.files[0];
+    const storageRef = app.storage().ref();
+    const fileRef = storageRef.child(file.name);
+    let myVar = setInterval(myTimer, 1000);
+
+    function myTimer() {
+      if (percentage < 100) {
+        setPercentage(percentage => percentage + 10);
+      } else clearInterval(myVar);
+    }
+    await fileRef.put(file);
+    setImageUrl(await fileRef.getDownloadURL());
+  }
+
+
   const handleSelectionClick = (e) => {
     e.preventDefault();
     const choiceField = e.target.dataset.field;
@@ -141,19 +173,20 @@ function Vehicles(props) {
       default:
         break;
     }
-    console.log(activeCondition, activeOwners, activeType)
+    // console.log(activeCondition, activeOwners, activeType)
   }
   useEffect(() => {
-    console.log(userId.id)
+    // console.log(userId.id)
   })
   const signOut = () => { setUserId({ ...userId, showNotification: true }); localStorage.removeItem("jwt.Token"); }
+
+  
 
   return (
     <>
       <Navbar>
         <NavbarLink url='/members'>My Garage</NavbarLink>
         <NavbarLink url='/vehicles' active={true}>Add Vehicle</NavbarLink>
-        <NavbarLink url='/add-maintenance'>Add Maintenance</NavbarLink>
         <ActionBtn handleClick={signOut} url='/'>Sign Out</ActionBtn>
       </Navbar>
       <div className='addCarFlex'>
@@ -196,6 +229,11 @@ function Vehicles(props) {
           <span className='flex'>
             <FormInputTwo setWidth='width45' name='yearOfPurchase' type='text' label='Year of Purchase' id="yearPurchased" value={yearPurchased} handleInputChange={handleInputChange}></FormInputTwo>
             <FormInputTwo setWidth='width45' name='accidents' type='text' label='Number of Accidents' id="accidents" value={accidents} handleInputChange={handleInputChange}></FormInputTwo>
+          </span>
+          <span>
+          <label className='photoFileLabel'>Add Photo</label>
+            <progress className="progress is-link" value={percentage} max="100">{percentage}%</progress>
+            <ImageUpload onFileChange={onFileChange}/>
           </span>
           <ActionBtn url='#' handleClick={handleFormSubmit}>Add Vehicle</ActionBtn>
         </div>

@@ -68,5 +68,11 @@
   .addMaintenanceWrapper{
     width: 90%;
     justify-content: center;
+    align-items: center;
+  }
+
+  .maintFlex{
+    justify-content: center;
+    align-items: center;
   }
 }

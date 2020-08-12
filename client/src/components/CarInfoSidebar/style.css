@@ -22,3 +22,13 @@
   font-size: 1.5rem;
   color: #505050;
 }
+
+@media(max-width: 769px) {
+  .carInfoSidebar{
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    justify-items: center;
+    align-self: center;
+  }
+} 

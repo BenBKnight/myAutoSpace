@@ -9,11 +9,13 @@ import Navbar from '../components/Navbar copy';
 import NavbarInput from '../components/NavbarInput';
 import ActionBtn from '../components/ActionBtn';
 import BulletPoint from '../components/BulletPoint';
-import FormInputTwo from '../components/FormInputTwo';
-
+import FormInputTwo from '../components/FormInputTwo'
+import ImageUpload from '../components/imageUpload/imageUpload';
+import { app } from "../utils/base";
 import { store } from "react-notifications-component";
 import "react-notifications-component/dist/theme.css";
 import "animate.css";
+const db = app.firestore();
 
 function Login(props) {
   const [emailInput, setEmailInput] = useState("");
@@ -24,9 +26,14 @@ function Login(props) {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [location, setLocation] = useState("");
+  const [imageUrl, setImageUrl] = React.useState(null);
+  const [percentage, setPercentage] = useState(0);
+
+  // console.log("authContex:" + JSON.stringify(userId));
 
   const handleLogInSubmit = (e) => {
     e.preventDefault();
+    // console.log('hit');
     let user = {
       email: emailInput.trim(),
       password: passwordInput.trim()
@@ -47,12 +54,14 @@ function Login(props) {
     }
     API.loginUser(user)
       .then(resData => {
+        // console.log(resData.data)
         setUserId({
           ...userId,
           id: resData.data.id,
           firstName: resData.data.firstName,
           lastName: resData.data.lastName,
-          token: resData.data.token
+          token: resData.data.token,
+          imageUrl: imageUrl
         })
         props.history.push("/Members");
         store.addNotification({
@@ -99,14 +108,15 @@ function Login(props) {
       });
   };
 
-  const handleSignUpSubmit = event => {
+  const handleSignUpSubmit = async event => {
     event.preventDefault();
     let user = {
       email: email.trim(),
       password: password.trim(),
       firstName: firstName.trim(),
       lastName: lastName.trim(),
-      location: location.trim()
+      location: location.trim(),
+      imageUrl: imageUrl
     }
     if (!email || !password) {
       store.addNotification({
@@ -122,10 +132,16 @@ function Login(props) {
       });
       return;
     }
-    console.log(user)
+    await db.collection("users").doc(firstName).set({
+      email: email,
+      firstName: firstName,
+      lastName: lastName,
+      image: imageUrl,
+    });
+    // console.log(user)
     API.signUp(user)
       .then(resData => {
-        console.log(resData)
+        // console.log(resData)
         setUserId({ id: resData.data.id })
         props.history.push("/Members")
         store.addNotification({
@@ -179,6 +195,21 @@ function Login(props) {
     }
   };
 
+  const onFileChange = async (e) => {
+    const file = e.target.files[0];
+    const storageRef = app.storage().ref();
+    const fileRef = storageRef.child(file.name);
+    let myVar = setInterval(myTimer, 1000);
+
+    function myTimer() {
+      if(percentage < 100){
+      setPercentage(percentage => percentage + 10);
+      } else clearInterval(myVar);
+    }
+    await fileRef.put(file);
+    setImageUrl(await fileRef.getDownloadURL());
+  }
+
   return (
     <div>
       <Navbar>
@@ -186,13 +217,12 @@ function Login(props) {
         <NavbarInput handleInputChange={handleInputChange} value={passwordInput} name='passwordInput' type='password' label='Password' id="passwordInput" />
         <ActionBtn url='#' handleClick={handleLogInSubmit}>Login</ActionBtn>
       </Navbar>
-      <h1 className='mainHeader'>MyCarSpace</h1>
+      <h1 className='mainHeader'>MyAutoSpace</h1>
       <br></br>
       <div className='signInFlex'>
 
         <div className='signUpWrapper'>
-          <h1 className='signUpHeader'>Become a car owner</h1>
-          <h1 className='signUpHeader'>not just a driver</h1>
+          <h2 className='signUpHeader'>Stay Informed, Maintain and Show off Your Automobile</h2>
           <span className='flex'>
             <FormInputTwo handleInputChange={handleInputChange} value={firstName} setWidth='width40' name='firstName' type='firstName' label='First Name' id='firstName'></FormInputTwo>
             <FormInputTwo handleInputChange={handleInputChange} value={lastName} setWidth='width40' name='lastName' type='lastName' label='Last Name' id='lastName'></FormInputTwo>
@@ -200,6 +230,11 @@ function Login(props) {
           <FormInputTwo handleInputChange={handleInputChange} value={email} setWidth='width100' name='email' type='email' label='Email' id='email'></FormInputTwo>
           <FormInputTwo handleInputChange={handleInputChange} value={password} setWidth='width100' name='password' type='password' label='Password' id='password'></FormInputTwo>
           <FormInputTwo handleInputChange={handleInputChange} value={location} setWidth='width100' name='location' type='location' label='Location' id='location'></FormInputTwo>
+          <span>
+          <label className='photoFileLabel'>Add Profile Image</label>
+            <progress className="progress is-link" value={percentage} max="100">{percentage}%</progress>
+            <ImageUpload onFileChange={onFileChange} />
+          </span>
           <ActionBtn url='#' handleClick={handleSignUpSubmit}>Sign Up</ActionBtn>
         </div>
 

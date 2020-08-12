@@ -11,7 +11,8 @@ router.post("/api/maintenance/:id", isAuthenticated, (req, res) => {
     milage: req.body.milage,
     parts: req.body.parts,
     jobDate: req.body.jobDate,
-    VehicleId: req.body.VehicleId
+    VehicleId: req.body.VehicleId,
+    imageUrl: req.body.imageUrl
   })
     .then(() => {
       res.status(200).end();

@@ -41,6 +41,9 @@ module.exports = function(sequelize, DataTypes) {
     },
     locationLastOwned: {
       type: DataTypes.STRING
+    },
+    imageUrl: {
+      type: DataTypes.STRING
     }
   });
 

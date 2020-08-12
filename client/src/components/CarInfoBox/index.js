@@ -10,13 +10,13 @@ function CarInfoBox(props) {
   return (
     <div className='carInfoBox'>
       <span className='carBoxTopInfo'>
-        <img className='carBoxImg' src={require('../FormImg/img/car_gray.png')} alt='Vehicle' />
-        <div>
-          <h2 className='carBoxTitle'>{props.vehicle.year} {props.vehicle.make} {props.vehicle.model}</h2>
-          <br></br>
-          <p className='carBoxText'>Milage: {props.vehicle.mileage}</p>
-          <p className='carBoxText'>Vin: {props.vehicle.vin}</p>
-        </div>
+      <img className='carBoxImg' src={props.vehicle.imageUrl} alt='Vehicle'/>
+      <div>
+        <h2 className='carBoxTitle'>{props.vehicle.year} {props.vehicle.make} {props.vehicle.model}</h2>
+        <br></br>
+        <p className='carBoxText'>Milage: {props.vehicle.mileage}</p>
+        <p className='carBoxText'>Vin: {props.vehicle.vin}</p>
+      </div>
       </span>
       <br></br>
       <span className='carBoxMoreInfo'>
