@@ -37,7 +37,8 @@
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",
     "react-notifications-component": "^2.4.0",
-    "sequelize": "^6.3.3"
+    "sequelize": "^6.3.3",
+    "cors": "^2.8.5"
   },
   "devDependencies": {
     "cors": "^2.8.5"
