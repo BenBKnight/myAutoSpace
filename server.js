@@ -8,8 +8,7 @@ require('dotenv').config()
 const db = require("./models")
 
 // Serve static assets
-app.use(express.static("./client"));
-
+app.use(express.static(path.join(__dirname, "./client/build")));
 
 //jawsDB
 // Setting up port and requiring models for syncing
