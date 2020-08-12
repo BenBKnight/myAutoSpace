@@ -105,7 +105,7 @@ function Vehicles(props) {
       .then((res) => {
         // console.log("api returned", res);
         setUserId({ ...userId, showNotification: true });
-        console.log("api returned", res);
+        // console.log("api returned", res);
         props.history.push("/Members");
         store.addNotification({
           message: "Added new vehicle.",
@@ -176,7 +176,7 @@ function Vehicles(props) {
     // console.log(activeCondition, activeOwners, activeType)
   }
   useEffect(() => {
-    console.log(userId.id)
+    // console.log(userId.id)
   })
   const signOut = () => { setUserId({ ...userId, showNotification: true }); localStorage.removeItem("jwt.Token"); }
 
