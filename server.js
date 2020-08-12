@@ -37,7 +37,7 @@ const routes = require("./routes");
 app.use(routes);
 
 // Catch all Last to Load
-app.get("*", (req, res) => res.sendFile(path.join(__dirname, "./client/public/index.html")))
+app.get("*", (req, res) => res.sendFile(path.join(__dirname, "./client/build/index.html")))
 
 db.sequelize.sync().then(() => {
     app.listen(PORT, () => {
