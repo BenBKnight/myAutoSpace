@@ -25,8 +25,8 @@ if (process.env.JAWSDB_URL) {
     });
 }
 
-const cors = require("cors")
-app.use(cors());
+// const cors = require("cors")
+// app.use(cors());
 
 // Creating express app and configuring middleware needed for authentication
 app.use(express.urlencoded({ extended: true }));
