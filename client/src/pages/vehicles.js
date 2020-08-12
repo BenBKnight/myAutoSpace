@@ -27,20 +27,20 @@ function Vehicles(props) {
     truck: false,
     bike: false
   });
-  const [vehicleType, setVehicleType] = useState("");
+  const [vehicleType, setVehicleType] = useState("Car");
   const [activeCondition, setActiveCondition] = useState({
     good: true,
     fair: false,
     poor: false
   });
-  const [vehicleCondition, setVehicleCondition] = useState("");
+  const [vehicleCondition, setVehicleCondition] = useState("Good");
   const [activeOwners, SetActiveOwners] = useState({
     one: false,
     two: true,
     three: false,
     more: false
   });
-  const [vehicleOwners, setVehicleOwners] = useState("");
+  const [vehicleOwners, setVehicleOwners] = useState(2);
 
   const [userId, setUserId] = useContext(AuthContext);
 
