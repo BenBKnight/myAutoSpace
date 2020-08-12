@@ -69,5 +69,20 @@
 }
 
 @media(max-width: 769px) {
+  .formLineSection{
+    align-items: center;
+    justify-content: center;
+  }
 
-}
+  .formLineText{
+    text-align: center;
+  }
+
+  .formLineTitle{
+    text-align: center;
+  }
+
+  .formLineHeader{
+    font-size: 1rem;
+  }
+} 

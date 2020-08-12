@@ -38,6 +38,9 @@
 @media (max-width: 769px) {
   .garageSidebar{
     width: 100%;
+    text-align: center;
+    justify-items: center;
+    align-items: center;
   }
   
   .garageMain{
