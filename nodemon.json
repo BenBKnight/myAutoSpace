@@ -2,6 +2,6 @@
 {
     "env": {
         "JWT_KEY": "SecretPasswordNoOneWillEverGuess",
-        "MYSQL_KEY": "Iloveskymarie1!"
+        "MYSQL_KEY": "MYSQL_PASS"
     }
 }

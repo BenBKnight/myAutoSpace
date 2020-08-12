@@ -15,15 +15,13 @@ export default function Members(props) {
   const [userId, setUserId] = useContext(AuthContext);
   const [userInfo, setUserInfo] = useState({});
   const [userVehicles, setVehicle] = useState([]);
-  const signOut = () => { localStorage.removeItem("jwt.Token") }
+  const signOut = () => { setUserId({ ...userId, showNotification: true }); localStorage.removeItem("jwt.Token"); }
   const [didMount, setDidMount] = useState(false);
 
   // console.log("authContext: " + JSON.stringify(userId));
 
   useEffect(() => {
     setDidMount(true);
-    // console.log(userId.id);
-    // console.log(userId)
     // console.log(userId)
     API.allVehicles(userId.id)
       .then(res => {
@@ -32,6 +30,13 @@ export default function Members(props) {
           ...userVehicles,
           ...res.data
         ])
+        if (Notification.permission === "granted" && userId.showNotification === true) {
+          navigator.serviceWorker.getRegistration().then(reg => {
+            reg.showNotification("You have " + res.data.length + " vehicles in your garage.");
+          });
+          // console.log("my notification");
+          setUserId({ ...userId, showNotification: false });
+        }
       })
       .catch(err => {
         console.log(err);
