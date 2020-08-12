@@ -7,7 +7,6 @@ const serverUrl = "";
 // const serverUrl = "http://localhost:8080";
 
 
-
 export default {
     // Post Routes
     loginUser: function (user) {

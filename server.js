@@ -2,6 +2,7 @@ const express = require("express");
 const session = require("express-session");
 const path = require("path")
 const app = express();
+
 const mysql = require("mysql");
 require('dotenv').config()
 // console.log(process.env);
@@ -25,6 +26,7 @@ if (process.env.JAWSDB_URL) {
     });
 }
 
+
 // const cors = require("cors")
 // app.use(cors());
 
@@ -35,6 +37,7 @@ app.use(express.json());
 //  app.post()
 const routes = require("./routes");
 app.use(routes);
+
 
 // Catch all Last to Load
 app.get("*", (req, res) => res.sendFile(path.join(__dirname, "./client/build/index.html")))
