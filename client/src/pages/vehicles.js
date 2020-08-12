@@ -10,7 +10,9 @@ import FormImg from '../components/FormImg';
 import { useEffect } from "react";
 import ImageUpload from '../components/imageUpload/imageUpload';
 import { app } from "../utils/base";
-
+import { store } from "react-notifications-component";
+import "react-notifications-component/dist/theme.css";
+import "animate.css";
 const db = app.firestore();
 
 function Vehicles(props) {
@@ -46,7 +48,7 @@ function Vehicles(props) {
   });
   const [vehicleOwners, setVehicleOwners] = useState("");
 
-  const [userId] = useContext(AuthContext);
+  const [userId, setUserId] = useContext(AuthContext);
 
   const handleInputChange = event => {
     // Getting the value and name of the input which triggered the change
@@ -102,11 +104,35 @@ function Vehicles(props) {
     API.newVehicle(vehicleNew)
       .then((res) => {
         // console.log("api returned", res);
+        setUserId({ ...userId, showNotification: true });
+        console.log("api returned", res);
         props.history.push("/Members");
+        store.addNotification({
+          message: "Added new vehicle.",
+          type: "success",
+          insert: "top",
+          container: "top-center",
+          animationIn: ["animate__animated", "animate__bounceIn"],
+          animationOut: ["animate__animated", "animate__bounceOut"],
+          dismiss: {
+            duration: 1500
+          }
+        });
       })
       .catch(err => {
         console.log(err);
-      })
+        store.addNotification({
+          message: "Please fill out all the required fields!",
+          type: "warning",
+          insert: "top",
+          container: "top-center",
+          animationIn: ["animate__animated", "animate__shakeX"],
+          animationOut: ["animate__animated", "animate__fadeOut"],
+          dismiss: {
+            duration: 1500
+          }
+        });
+      });
   };
 
   const onFileChange = async (e) => {
@@ -150,18 +176,9 @@ function Vehicles(props) {
     // console.log(activeCondition, activeOwners, activeType)
   }
   useEffect(() => {
-    
-    // console.log(userId.id);
-    // console.log(userId)
-
-    setDidMount(true);
-
-    
-  }, [])
-    if (!didMount) {
-        return null;
-      }
-  const signOut = () => { localStorage.removeItem("jwt.Token") }
+    console.log(userId.id)
+  })
+  const signOut = () => { setUserId({ ...userId, showNotification: true }); localStorage.removeItem("jwt.Token"); }
 
   
 

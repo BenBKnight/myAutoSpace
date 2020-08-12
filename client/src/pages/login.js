@@ -12,8 +12,10 @@ import BulletPoint from '../components/BulletPoint';
 import FormInputTwo from '../components/FormInputTwo'
 import ImageUpload from '../components/imageUpload/imageUpload';
 import { app } from "../utils/base";
+import { store } from "react-notifications-component";
+import "react-notifications-component/dist/theme.css";
+import "animate.css";
 const db = app.firestore();
-
 
 function Login(props) {
   const [emailInput, setEmailInput] = useState("");
@@ -37,6 +39,17 @@ function Login(props) {
       password: passwordInput.trim()
     }
     if (!emailInput || !passwordInput) {
+      store.addNotification({
+        message: "Enter email and password!",
+        type: "danger",
+        insert: "top",
+        container: "top-center",
+        animationIn: ["animate__animated", "animate__shakeX"],
+        animationOut: ["animate__animated", "animate__fadeOut"],
+        dismiss: {
+          duration: 1500
+        }
+      });
       return;
     }
     API.loginUser(user)
@@ -50,11 +63,49 @@ function Login(props) {
           token: resData.data.token,
           imageUrl: imageUrl
         })
-        props.history.push("/Members")
+        props.history.push("/Members");
+        store.addNotification({
+          message: "Logged-in",
+          type: "success",
+          insert: "top",
+          container: "top-center",
+          animationIn: ["animate__animated", "animate__bounceIn"],
+          animationOut: ["animate__animated", "animate__bounceOut"],
+          dismiss: {
+            duration: 1500
+          }
+        });
       })
       .catch(err => {
-        console.log(err);
-      })
+        switch (err.message) {
+          case "Request failed with status code 401":
+            store.addNotification({
+              message: "Wrong email or password!",
+              type: "danger",
+              insert: "top",
+              container: "top-center",
+              animationIn: ["animate__animated", "animate__shakeX"],
+              animationOut: ["animate__animated", "animate__fadeOut"],
+              dismiss: {
+                duration: 1500
+              }
+            });
+            break;
+          case "Network Error":
+            store.addNotification({
+              message: "No internet!",
+              type: "danger",
+              insert: "top",
+              container: "top-center",
+              animationIn: ["animate__animated", "animate__shakeX"],
+              animationOut: ["animate__animated", "animate__fadeOut"],
+              dismiss: {
+                duration: 1500
+              }
+            });
+            break;
+        }
+      });
   };
 
   const handleSignUpSubmit = async event => {
@@ -68,6 +119,17 @@ function Login(props) {
       imageUrl: imageUrl
     }
     if (!email || !password) {
+      store.addNotification({
+        message: "Please fill out all the required fields!",
+        type: "warning",
+        insert: "top",
+        container: "top-center",
+        animationIn: ["animate__animated", "animate__shakeX"],
+        animationOut: ["animate__animated", "animate__fadeOut"],
+        dismiss: {
+          duration: 1500
+        }
+      });
       return;
     }
     await db.collection("users").doc(firstName).set({
@@ -82,6 +144,17 @@ function Login(props) {
         // console.log(resData)
         setUserId({ id: resData.data.id })
         props.history.push("/Members")
+        store.addNotification({
+          message: "Signed-up and logged-in",
+          type: "success",
+          insert: "top",
+          container: "top-center",
+          animationIn: ["animate__animated", "animate__bounceIn"],
+          animationOut: ["animate__animated", "animate__bounceOut"],
+          dismiss: {
+            duration: 1500
+          }
+        });
       })
       .catch(err => {
         console.log(err);

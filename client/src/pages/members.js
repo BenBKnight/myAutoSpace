@@ -24,6 +24,7 @@ export default function Members(props) {
     setDidMount(true);
     // console.log(userId.id);
     // console.log(userId)
+    console.log(userId)
     API.allVehicles(userId.id)
       .then(res => {
         // console.log(res)
